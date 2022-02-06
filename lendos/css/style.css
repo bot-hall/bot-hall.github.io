@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Appetite";
+  font-display: swap;
+  src: url("../fonts/Appetite.woff") format("woff"), url("../fonts/Appetite.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima";
+  font-display: swap;
+  src: url("../fonts/Proxima.woff") format("woff"), url("../fonts/Proxima.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: greenyellow;
+  display: flex;
+}
+
+h1 {
+  font-size: 30px;
+  background: url("../images/mountain-png.png") 0 0 no-repeat;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+footer {
+  background: url("../images/viking.svg") 0 0 no-repeat;
+}
+
+.red {
+  color: blue;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 25;
+  }
+
+  h2 {
+    font-size: 19px;
+  }
+}
+
+.webp h1 { background: url(../images/mountain-png.webp) 0 0 no-repeat; }
