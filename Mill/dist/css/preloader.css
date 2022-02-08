@@ -1,0 +1,135 @@
+.main-preloader {
+	background-color: #144563;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	visibility: visible;
+	opacity: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.main-preloader.done {
+	animation: hidden-loader 0.5s linear forwards;
+	animation-delay: 0.6s;
+}
+
+.main-preloader .nuot-loader-svg {
+	z-index: 2;
+	filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.9));
+}
+
+@keyframes hidden-loader {
+	to {
+		visibility: hidden;
+		opacity: 0;
+	}
+}
+
+.loader {
+	opacity: 0;
+	stroke-dasharray: 100 300;
+	stroke-dashoffset: 100;
+	display: flex;
+	width: 200px;
+	height: 2px;
+	background-color: #11364d;
+	margin-top: 50px;
+	overflow: hidden;
+	z-index: 2;
+}
+
+.load-line {
+	stroke: #fa8a3e;
+	stroke-width: 4;
+}
+
+.load-line-box {
+	width: 200px;
+	height: 2px;
+}
+
+.show-loader {
+	animation: show-loader 0.1s linear forwards, load-line 1.8s linear infinite;
+}
+
+@keyframes show-loader {
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes load-line {
+	to {
+		stroke-dashoffset: -200;
+	}
+}
+
+.nuot-loader-svg__path {
+	fill: none;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-miterlimit: 10;
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	animation: dash 5s linear forwards;
+	animation-delay: 0.8s;
+}
+
+@keyframes dash {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.loader-hide {
+	animation: scale-out-center 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@keyframes scale-out-center {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+.paint {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.pulse {
+	fill: #0e3349;
+	stroke: #0e3349;
+	stroke-width: 3;
+	stroke-miterlimit: 10;
+	animation-duration: 2s;
+	animation-name: pulse;
+	animation-iteration-count: infinite;
+	/* width: 20px;
+    height: 20px; */
+	position: absolute;
+	z-index: 1;
+}
+
+@keyframes pulse {
+	from {
+		stroke-width: 15px;
+		stroke-opacity: 1;
+		r: 5px;
+	}
+
+	to {
+		stroke-opacity: 0;
+		r: 20px;
+	}
+}

@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#144563" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#144563" />
+
+    <title>Milinal</title>
+    <link rel="shortcut icon" type="image/jpg" href="./image/favicon.ico" />
+
+    <!-- <link rel="stylesheet" href="./dist/css/preloader.css">
+    <script src="js/preloader.js"></script> -->
+
+
+    <link rel="stylesheet" href="./dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./dist/css/swiper-bundle.min.css">
+
+    <link rel="stylesheet" href="./dist/css/uikit.min.css">
+    <link rel="stylesheet" href="./dist/css/fancybox.css">
+    <link rel="stylesheet" href="./dist/css/select2.min.css">
+    <link rel="stylesheet" href="./dist/css/nouislider.min.css">
+
+    <!-- <link rel="stylesheet" href="./dist/css/threesixty.css"> -->
+
+    <link rel="stylesheet" href="./dist/css/style.min.css">
+</head>
+
+<body>
+    <!-- <div id="mainPreloader" class="main-preloader">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" class="nuot-loader-svg">
+            <path class="nuot-loader-svg__path" d="M21.7905 47.5574V15.9966L41.0728 34.544C41.5917 35.0628 42.1105 35.6248 42.6725 36.2301C43.1913 36.8354 43.7966 37.4839 44.3586 38.2621V17.2072H48.9414V48.7247L29.2268 29.8747C28.7079 29.3559 28.1891 28.8371 27.7136 28.275C27.238 27.713 26.7624 27.1077 26.3301 26.5025V47.6006H21.7905V47.5574Z" fill="none" stroke="#fa8a3e" />
+            <path class="nuot-loader-svg__path" d="M55.5127 17.553H60.3981V35.9707C60.3981 38.6944 61.0466 40.7696 62.3004 42.1531C63.5542 43.5366 65.4565 44.2284 67.9641 44.2284C70.4716 44.2284 72.3307 43.5366 73.6277 42.1531C74.8815 40.7696 75.53 38.7377 75.53 35.9707V17.553H80.4587V36.4463C80.4587 40.5535 79.421 43.6231 77.3458 45.6551C75.2706 47.6871 72.1577 48.7247 67.9641 48.7247C63.7704 48.7247 60.6575 47.7303 58.6255 45.6983C56.5503 43.6663 55.5559 40.5967 55.5559 36.4895V17.553H55.5127Z" fill="none" stroke="#fa8a3e" />
+            <path class="nuot-loader-svg__path" d="M52.3996 68.007C52.3996 70.1687 52.0105 72.2007 51.189 74.103C50.3676 76.0053 49.2003 77.7346 47.6439 79.2478C46.0874 80.761 44.3148 81.9283 42.3693 82.7065C40.4238 83.528 38.3486 83.9171 36.1869 83.9171C33.9819 83.9171 31.9067 83.528 29.918 82.7065C27.9292 81.8851 26.1998 80.761 24.6434 79.2478C23.087 77.7346 21.9197 76.0485 21.0982 74.1462C20.2768 72.2439 19.8877 70.2119 19.8877 68.007C19.8877 65.8453 20.2768 63.7701 21.0982 61.8678C21.9197 59.9655 23.087 58.2361 24.6434 56.7229C26.1998 55.2098 27.9292 54.0857 29.918 53.2642C31.8635 52.486 33.9819 52.0969 36.1436 52.0969C38.3486 52.0969 40.3806 52.486 42.3693 53.2642C44.3148 54.0424 46.0874 55.2098 47.6439 56.7229C49.2003 58.2361 50.3676 60.0087 51.189 61.911C52.0105 63.8565 52.3996 65.8885 52.3996 68.007ZM47.298 68.007C47.298 66.4938 47.0386 65.0239 46.4765 63.6404C45.9145 62.2569 45.0931 61.0463 44.0554 59.9655C43.0178 58.8846 41.8505 58.0632 40.5103 57.5012C39.17 56.9391 37.7433 56.6365 36.2301 56.6365C34.7169 56.6365 33.3334 56.9391 31.95 57.5012C30.6097 58.0632 29.3992 58.8846 28.3615 59.9655C27.3239 61.0463 26.5025 62.2569 25.9404 63.6404C25.3784 65.0239 25.119 66.4938 25.119 68.0502C25.119 69.5634 25.3784 71.0334 25.9404 72.4169C26.5025 73.8003 27.2807 75.0109 28.3615 76.0917C29.3992 77.1726 30.6097 77.994 31.95 78.5561C33.2902 79.1181 34.7169 79.4207 36.2301 79.4207C37.7001 79.4207 39.1268 79.1181 40.467 78.5561C41.8073 77.994 43.0178 77.1726 44.0554 76.0917C45.0931 75.0109 45.9145 73.8003 46.4765 72.4169C46.9954 70.9901 47.298 69.5634 47.298 68.007Z" fill="none" stroke="#fa8a3e" />
+            <path class="nuot-loader-svg__path" d="M70.2986 58.2361V84.3926H65.3699V58.2361H57.2852V54.0424H78.2968V58.2361H70.2986Z" fill="none" stroke="#fa8a3e" />
+            <path class="nuot-loader-svg__path" d="M100 100H0V0H99.9568V100H100ZM4.06399 95.8928H95.8928V4.06399H4.06399V95.8928Z" fill="none" stroke="#fa8a3e" />
+        </svg>
+        <div class="loader">
+            <svg class="load-line-box">
+                <line class="load-line" y1="2" x2="200" y2="2"></line>
+            </svg>
+        </div>
+    </div> -->
+
+    <div class="wrapper">
+        <div id="custom-modal"></div>
+        <!-- <div id="basket-modal"></div> -->
+        <!-- универсальная модалка -->
+        <div class="modal fade" id="universalModal" tabindex="-1" aria-labelledby="universalModal" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="_icon-cancel"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="universalModal favoriteModal">Что-бы добавить в избранное - авторизируйтесь <span>;-)</span></p>
+                        <p class="universalModal importantSizeModal">Пожалуйста, выберите размер <span>;-)</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- модалка изготовлено в течении N дней -->
+        <div class="modal fade" id="preOrderModal" tabindex="-1" aria-labelledby="preOrderModal" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="_icon-cancel"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="pre__title">Будет изготовлен специально для Вас в течении N дней</p>
+                        <div class="pre-size"></div>
+                        <button class="confirm__pre-order" data-dismiss="modal" aria-label="Close">ПОДТВЕРДИТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- модалка сообщить о наличии -->
+        <div class="modal fade" id="infoAvailability" tabindex="-1" aria-labelledby="infoAvailability" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-m">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="_icon-cancel"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal__inform-main-body">
+                            <p class="title">СООБЩИТЬ О НАЛИЧИИ</p>
+                            <p class="text">Укажите свой e-mail и мы сообщим о поступлении товара</p>
+                            <div class="pre-size"></div>
+                            <form class="modal__inform" id="modalInform" name="modalInform">
+                                <div class="modal__inform-inputs inform-name">
+                                    <input class="modal__inform-name input-item" form="modalInform" type="text" required placeholder="">
+                                    <label for="">Ваше имя*</label>
+                                    <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
+                                        <line class="svg-line" y1="2" x2="650" y2="2"></line>
+                                    </svg>
+                                </div>
+                                <div class="modal__inform-inputs">
+                                    <input class="modal__inform-email input-item" form="modalInform" type="email" required placeholder="">
+                                    <label for="telephoneInform">E-mail*</label>
+                                    <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
+                                        <line class="svg-line" y1="2" x2="650" y2="2"></line>
+                                    </svg>
+                                </div>
+                                <div class="spinner-inform-continer">
+                                    <div class="spinner-border spinner-inform" role="status">
+                                        <span class="sr-only">Загрузка...</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="modal__inform-inputs inform-tel">
+                                    <input class="telephoneInput input-item" form="modalInform" id="telephoneInform" type="tel" required placeholder="">
+                                    <label for="telephoneInform">Телефон*</label>
+                                    <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
+                                        <line class="svg-line" y1="2" x2="650" y2="2"></line>
+                                    </svg>
+                                </div> -->
+                                <input class="modal__inform-capcha" form="modalInform" name="capcha" type="text" style="display: none;" value="">
+                                <!-- <button class="modal__inform-inform-tel" type="button">Подтвердить номер телефона</button>
+                                <div class="modal__inform-wrapper">
+                                    <div class="modal__inform-cantainer">
+                                        <input class="modal__inform-code" form="" id="" type="number" min="99999" max="999999" required placeholder="">
+                                        <label for="">Введите код подтверждения</label>
+                                        <div class="requirements">
+                                            Мин. 6 символов
+                                        </div>
+                                    </div>
+                                    <div role="button" class="modal__back-number">Назад</div>
+                                    <div class="modal__refresh-code" role="button">Повторное СМС</div>
+                                    <div class="modal__error-number"></div>
+                                    <button class="modal__send-code" form="" type="button">Подтвердить</button>
+                                </div> -->
+                                <div class="modal__notification-container">
+                                    <!-- <div class="modal__code-success">
+                                        <span>Номер подтвержден</span>
+                                        <div class="_icon-checked"></div>
+                                    </div> -->
+                                    <!-- <div class="modal__notification-variants">
+                                        <p class="modal__notification-tilte">Сообщить с помощью</p>
+                                        <div class="modal__notification-radios">
+                                            <div class="modal__notification-item">
+                                                <input form="modalInform" class="modal__notification-radio custom-radio" id="tel-notif" type="radio" name="modal__radio-variant" value="1" required>
+                                                <label for="tel-notif">Звонок</label>
+                                            </div>
+                                            <div class="modal__notification-item">
+                                                <input form="modalInform" class="modal__notification-radio custom-radio" id="sms-notif" type="radio" value="2" name="modal__radio-variant">
+                                                <label for="sms-notif">Смс</label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <button class="modal__notification-submit" type="submit" form="modalInform">ОТПРАВИТЬ</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal__inform-success-body">
+                            <p class="inform-success-title">
+                                Ваши данные успешно
+                                отправлены!
+                            </p>
+                            <div class="inform-success-img">
+                                <img src="./image/thenks.svg" alt="">
+                            </div>
+                            <p class="inform-success-thanks">
+                                СПАСИБО!
+                            </p>
+                        </div>
+                        <div class="modal-availability-error">Произошла ошибка ...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- модалка локали -->
+        <div class="modal fade" id="langModal" tabindex="-1" aria-labelledby="langModal" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="_icon-cancel"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lang-modal__title">Выбор региона</p>
+                        <form action="" method="">
+                            <div class="input__container">
+                                <select class="country-lang-sel" name="country">
+                                    <option value="uk-ua" class="option-class">Украина</option>
+                                    <option value="ru-ru" class="option-class">Россия</option>
+                                </select>
+                                <label for="country">Доставка в</label>
+                            </div>
+                            <div class="input__container">
+                                <select class="lang-select" name="language">
+                                    <option value="">Русский</option>
+                                    <option value="">Русский</option>
+                                </select>
+                                <label for="language">Язык</label>
+                            </div>
+                            <div class="input__container">
+                                <select class="lang-select" name="currency">
+                                    <option value="">₴ Гривна</option>
+                                </select>
+                                <label for="currency">Валюта</label>
+                            </div>
+                        </form>
+                        <button class="lang-confirm" type="submit">ПОДТВЕРДИТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- модалка локали -->
+        <header>
+            <div class="header__wrapper">
+    <div class="header__top custom__container">
+        <div class="header__contacts">
+            <div class="lang-modal-btn" data-toggle="modal" data-target="#langModal" role="button">
+                <img class="lang-icon" src="./image/uk-ua.png" alt="" /><span class="lang-btn__cntr">Украина / ₴</span><span class="_icon-arrow-slider-2 lang-arrow"></span>
+            </div>
+            <div>
+                <a href="#" class="header__contacts-item "><span>Котакты</span></a>
+                <a href="#" class="header__contacts-item "><span>FAQ</span></a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="header__bottom custom__container">
+        <div class="header__body">
+            <div role="button" class="menu__icon icon-menu">
+                <div></div>
+                <div></div>
+                меню
+            </div>
+            <div class="menu__mobile-modal">
+                <div class="mobile-container">
+                    <div class="menu__mobile-wrapper">
+                        <div class="menu__mobile-container">
+                            <div class="menu__mobile-top">
+                                <div class="menu__mobile-logo">
+                                    <img src="./image/logo-min.svg" alt="" loading="lazy">
+                                </div>
+                                <div class="header__contacts header__contacts-mobile">
+                                    <a href="#" class="header__contacts-item"><span>Контакты</span></a>
+                                    <a href="#" class="header__contacts-item"><span>FAQ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="button" class="menu__mobile-unregistered _icon-user">Войти</div>
+                        <nav class="menu__mobile-list">
+                            <li class="backpacks-js menu__mobile-item menu__mobile-container">
+                                <div class="menu__mobile-sub-title">Рюкзаки</div>
+                                <div class="_icon-arrow-link"></div>
+                                <!-- сабменю начало -->
+                                <div class="menu__mob-sub-wrapper">
+                                    <div class="menu__mob-sub-title _icon-arrow-link">
+                                        Рюкзаки
+                                    </div>
+                                    <div class="mobile-sub-cont">
+                                        <ul class="menu__mob-sub-list">
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item">
+                                                <a href="sales" class="menu__mob-sub-link sale">Знижки</a>
+                                            </li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                </div>
+                                <!-- сабменю конец -->
+                            </li>
+                            <li class="handbags-js menu__mobile-item menu__mobile-container">
+                                <div class="menu__mobile-sub-title">Рюкзаки</div>
+                                <div class="_icon-arrow-link"></div>
+                                <!-- сабменю начало -->
+                                <div class="menu__mob-sub-wrapper">
+                                    <div class="menu__mob-sub-title _icon-arrow-link">
+                                        Рюкзаки
+                                    </div>
+                                    <div class="mobile-sub-cont">
+                                        <ul class="menu__mob-sub-list">
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item">
+                                                <a href="sales" class="menu__mob-sub-link sale">Знижки</a>
+                                            </li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                </div>
+                                <!-- сабменю конец -->
+                            </li>
+                            <li class="accessories-js menu__mobile-item menu__mobile-container">
+                                <div class="menu__mobile-sub-title">Рюкзаки</div>
+                                <div class="_icon-arrow-link"></div>
+                                <!-- сабменю начало -->
+                                <div class="menu__mob-sub-wrapper">
+                                    <div class="menu__mob-sub-title _icon-arrow-link">
+                                        Рюкзаки
+                                    </div>
+                                    <div class="mobile-sub-cont">
+                                        <ul class="menu__mob-sub-list">
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item"><a href="" class="menu__mob-sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__mob-sub-item">
+                                                <a href="sales" class="menu__mob-sub-link sale">Знижки</a>
+                                            </li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                </div>
+                                <!-- сабменю конец -->
+                            </li>
+                        </nav>
+                        <div class="menu__footer">
+                            <ul class="menu__mobile-container">
+                                <li><a href="" class="menu__footer-item">Магазины</a></li>
+                                <li><a href="" class="menu__footer-item">О нас</a></li>
+                                <li><a href="" class="menu__footer-item">Гарантия и возврат</a></li>
+                                <li><a href="" class="menu__footer-item">Варианты доставки</a></li>
+                                <li><a href="" class="menu__footer-item">Вопросы (FAQ)</a></li>
+                                <li><a href="" class="menu__footer-item">Блог</a></li>
+                                <li><a href="" class="menu__footer-item">Вопросы (FAQ)</a></li>
+                                <li><a href="" class="menu__footer-item">Условия приобретения</a></li>
+                                <li><a href="" class="menu__footer-item">Политика конфеденциальности</a></li>
+                                <li><a href="" class="menu__footer-item sale">СКИДКИ</a></li>
+                            </ul>
+                            <div class="mob__lang-container">
+                                <div class="lang-modal-btn lang-mob-btn-js" data-toggle="modal" data-target="#langModal" role="button">
+                                    <img class="lang-icon" src="./image/uk-ua.png" alt="" /><span class="lang-btn__cntr">Украина / ₴</span><span class="_icon-arrow-slider-2 lang-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu__mobile-close _icon-cancel"></div>
+                </div>
+            </div>
+            <div class="header__main">
+                <div class="header__menu menu">
+                    <nav class="menu__list">
+                        <li class="menu__item menu-anim">
+                            <!--   
+                                {% if selected_category == mainkey  %}
+                                <a href="{{ category.href }}" class="menu__link item-active">{{ category.name }}</a>
+                                {% else %}
+                                <a href="{{ category.href }}" class="menu__link ">{{ category.name }}</a>
+                                {% endif %}-->
+                            <a href="" class="menu__link">Рюкзаки</a>
+                            <div class="menu__sub-wrapper custom__container" aria-modal="true">
+                                <hr>
+                                <div class="sub-column">
+                                    <div class="menu__sub-container">
+                                        <p class="menu__sub-title">Рюкзаки</p>
+                                        <ul class="menu__sub-list">
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Унісекс рюкзаки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Чоловічі рюкзаки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Жіночі рюкзаки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Дитячі рюкзаки</a></li>
+                                            <!--
+                                                {% if key == 'sale'%}
+                                                <li class="menu__sub-item">
+                                                    <a href="{{ subcategory.href }}" class="menu__sub-link sale">{{ subcategory.name }}</a>
+                                                </li>
+                                                {% else %}
+                                            -->
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link sale">Скидки</a></li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                    <div class="menu__img-wrapper">
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b1.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b2.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b3.jpg" alt="" loading="lazy">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu__item menu-anim">
+                            <!--   
+                                {% if selected_category == mainkey  %}
+                                <a href="{{ category.href }}" class="menu__link item-active">{{ category.name }}</a>
+                                {% else %}
+                                <a href="{{ category.href }}" class="menu__link ">{{ category.name }}</a>
+                                {% endif %}-->
+                            <a href="" class="menu__link">Сумки</a>
+                            <div class="menu__sub-wrapper custom__container" aria-modal="true">
+                                <hr>
+                                <div class="sub-column">
+                                    <div class="menu__sub-container">
+                                        <p class="menu__sub-title">СУМКИ</p>
+                                        <ul class="menu__sub-list">
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Чоловічі сумки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Жіночі сумки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Поясні сумки</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Дитячі сумки</a></li>
+                                            <!--
+                                                {% if key == 'sale'%}
+                                                <li class="menu__sub-item">
+                                                    <a href="{{ subcategory.href }}" class="menu__sub-link sale">{{ subcategory.name }}</a>
+                                                </li>
+                                                {% else %}
+                                            -->
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link sale">Скидки</a></li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                    <div class="menu__img-wrapper">
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b1.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b2.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b3.jpg" alt="" loading="lazy">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu__item menu-anim">
+                            <!--   
+                                {% if selected_category == mainkey  %}
+                                <a href="{{ category.href }}" class="menu__link item-active">{{ category.name }}</a>
+                                {% else %}
+                                <a href="{{ category.href }}" class="menu__link ">{{ category.name }}</a>
+                                {% endif %}-->
+                            <a href="" class="menu__link menu__active-link">Аксесуари</a>
+                            <div class="menu__sub-wrapper custom__container" aria-modal="true">
+                                <hr>
+                                <div class="sub-column">
+                                    <div class="menu__sub-container">
+                                        <p class="menu__sub-title">АКСЕСУАРИ</p>
+                                        <ul class="menu__sub-list">
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Аксесуари для рюкзаків</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Чоловічі портмоне</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Жіночі портмоне</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Кейси для ноутбука</a></li>
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link">Сертифікати</a></li>
+                                            <!--
+                                                {% if key == 'sale'%}
+                                                <li class="menu__sub-item">
+                                                    <a href="{{ subcategory.href }}" class="menu__sub-link sale">{{ subcategory.name }}</a>
+                                                </li>
+                                                {% else %}
+                                            -->
+                                            <li class="menu__sub-item"><a href="" class="menu__sub-link sale">Скидки</a></li>
+                                        </ul>
+                                        <a href="" class="menu__sub-more">Дивитися все</a>
+                                    </div>
+                                    <div class="menu__img-wrapper">
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b1.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b2.jpg" alt="" loading="lazy">
+                                        </a>
+                                        <a href="/" class="menu__sub-img">
+                                            <img src="./image/b3.jpg" alt="" loading="lazy">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </nav>
+                </div>
+                <!--
+                <div class="header__lang__wrapper">
+                    <form action="" name="mainLang" id="mainLang" style="display: none;">
+                        <input type="text" form="mainLang" value="ru-ru">
+                    </form>
+                    <span>UA</span>
+                    <ul class="lang__container" aria-modal="true">
+                        <li>
+                            <button class="lang-select" type="submit" form="mainLang" name="">RU</button>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+            <a href="" class="header__logo">
+                <img src="./image/logo.svg" alt="" class="logo-max" loading="lazy">
+                <img src="./image/logo-min.svg" alt="" class="logo-min" loading="lazy">
+            </a>
+            <div class="header__navigation-wrapper">
+                <div class="lang-modal-btn" data-toggle="modal" data-target="#langModal" role="button">
+                    <img class="lang-icon" src="./image/uk-ua.png" alt="" /><span class="lang-btn__cntr">Украина / ₴</span><span class="_icon-arrow-slider-2 lang-arrow"></span>
+                </div>
+                <!-- header-checkout -->
+                <div class="header__actions">
+                    <!-- <a href="" class="header-shops _icon-shops header-icon"></a> -->
+                    <div role="button" class="header-search _icon-search header-icon"></div>
+                    <div class="header__search-wrapper" aria-modal="true">
+                        <hr>
+                        <div class="header__search-container">
+                            <form id="searchForm" action="index.php?route=product/search" method="post" enctype="multipart/form-data">
+                                <span class="_icon-search"></span>
+                                <input class="search-input" type="search" placeholder="Поиск" name="search" for="searchForm" required>
+                            </form>
+                            <div class="search__results-container">
+                                <a href="">Сумки</a>
+                                <a href="">Штаны черные мужские</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="" class="header-favorites _icon-favorites header-icon"></a>
+                    <!-- <div class="header-user">
+                            <a href="" class="_icon-user header-icon"></a>
+                            <div class="user__menu" aria-modal="true">
+                                <ul>
+                                    <li class="user__menu-item">
+                                        <a href="" class="user__menu-link"><span>МОИ ДАННЫЕ</span><span class="_icon-arrow-link"></span></a>
+                                    </li>
+                                    <li class="user__menu-item">
+                                        <a href="" class="user__menu-link"><span>ИСТОРИЯ ЗАКАЗОВ</span><span class="_icon-arrow-link"></span></a>
+                                    </li>
+                                    <li class="user__menu-item">
+                                        <a href="" class="user__menu-link"><span>КЕШБЕК СИСТЕМА</span><span class="_icon-arrow-link"></span></a>
+                                    </li>
+                                    <li class="user__menu-item">
+                                        <a href="" class="user__menu-link">ВЫЙТИ</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    <!-- нет на чекауте -->
+                    <div class="header-user">
+                        <div class="_icon-user header-icon unknown-user"></div>
+                        <div class="auth__wrapper" aria-modal="true">
+                            <div class="auth__container">
+                                <div class="auth__title">АВТОРИЗАЦИЯ</div>
+                                <div class="modal-auth-container">
+                                    <div class="number__container" style="display: none;">
+                                        <div class="number__container-title">
+                                            Введите ваш номер телефона
+                                        </div>
+                                        <p class="number__container-text">
+                                            Мы пришлем SMS c кодом
+                                            подтверждения
+                                        </p>
+                                        <form class="number__form" id="numberForm" name="numberForm">
+                                            <input class="telephoneInput" form="numberForm" id="telephoneInput" type="tel" required placeholder="+380 ( _ _ ) _ _ _ _ _ _ _">
+
+                                            <div class="spinner-border spinner-number" role="status">
+                                                <span class="sr-only">Загрузка...</span>
+                                            </div>
+
+                                            <input form="numberForm" name="chekoutTel" id="chekoutTel" type="text" style="display: none;" value="">
+                                            <!-- <div class="error-number">Неверный формат</div> -->
+                                            <button class="send-tel" form="numberForm" type="submit">получить код</button>
+                                        </form>
+                                    </div>
+                                    <div class="code__container" style="display: block;">
+                                        <div class="code__container-title">
+                                            Для подтверждения номера телефона
+                                        </div>
+                                        <p class="code__container-text">
+                                            +38 066 123 44 55
+                                        </p>
+                                        <form novalidate class="code__form" name="codeForm" id="codeForm">
+                                            <div class="code__label-container">
+                                                <input form="codeForm" id="telCode" name="codeAuth" type="number" min="99999" max="999999" required placeholder="">
+                                                <label for="telCode">Введие код подтверждения</label>
+                                                <div class="requirements">
+                                                    Мин. 6 символов
+                                                </div>
+                                            </div>
+
+                                            <div class="spinner-border spinner-code" role="status">
+                                                <span class="sr-only">Загрузка...</span>
+                                            </div>
+                                            <input form="codeForm" name="chekoutCode" type="text" style="display: none;" value="">
+                                            <input form="codeForm" name="location" type="text" class="location-login" style="display: none;">
+                                            <div role="button" class="back-number">Назад</div>
+                                            <div class="refresh-form" role="button">Повторное СМС</div>
+                                            <div class="code-error-block"></div>
+                                            <button class="send-code-btn" form="codeForm" type="submit">ПОДТВЕРДИТЬ</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="social__auth-wrapper">
+                                    <div class="social__aut-hr">
+                                        <div></div>
+                                        или
+                                        <div></div>
+                                    </div>
+                                    <div class="social__auth-container">
+                                        <a href="" class="social__auth-action">
+                                            <div>
+                                                <img src="./image/google-auth.svg" alt="" loading="lazy">
+                                            </div>
+                                        </a>
+                                        <a href="" class="social__auth-action">
+                                            <div>
+                                                <img src="./image/facebook-auth.svg" alt="" loading="lazy">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personal__wrapper" aria-modal="true">
+                            <div class="personal__container">
+                                <p class="personal__title-header">ЛИЧНЫЕ ДАННЫЕ</p>
+                                <form name="personal-data" id="personal-data" class="personal__form" action="" method="post">
+                                    <!-- needs for backend -->
+                                    <input id="telephone" name="telephone" type="text" style="display: none;" value>
+                                    <input id="code" name="codePersone" type="text" style="display: none;" value>
+                                    <input id="newsletter" name="newsletter" type="text" style="display: none;" value="0">
+                                    <input id="agree" name="agree" type="text" style="display: none;" value="1">
+                                    <input form="personal-data" name="chekoutPersone" type="text" style="display: none;" value="">
+                                    <!-- needs for backend -->
+                                    <div class="input__container">
+                                        <input id="lastname" name="lastname" type="text" minlength="2" maxlength="50" placeholder="Иванов">
+                                        <label for="lastname">Фамилия</label>
+                                    </div>
+                                    <div class="input__container">
+                                        <input id="firstname" name="firstname" type="text" minlength="2" maxlength="50" placeholder="Иван">
+                                        <label for="firstname">Имя</label>
+                                    </div>
+                                    <!-- <div class="input__container">
+                                        <input id="patronymic" name="patronymic" type="text" minlength="2" maxlength="50" placeholder="Иванович">
+                                        <label for="patronymic">Отчество</label>
+                                    </div> -->
+                                    <!-- <div class="input__container">
+                                        <input id="email" name="email" type="email" placeholder="E-mail">
+                                        <label for="email">E-mail</label>
+                                    </div> -->
+                                    <div class="input__container">
+                                        <select class="" id="gender" name="gender">
+                                            <option selected disabled></option>
+                                            <option value="male">Муж.</option>
+                                            <option value="female">Жен.</option>
+                                        </select>
+                                        <label for="gender">Пол</label>
+                                    </div>
+                                    <div class="input__container">
+                                        <input id="date_of_birth" name="date_of_birth" type="date" max="" placeholder="ДД.ММ.ГГГГ">
+                                        <label for="date_of_birth">Дата рождения</label>
+                                    </div>
+
+                                    <button class="personal-second-btn" form="personal-data" type="submit">Пропустить</button>
+                                    <button class="personal-btn" form="personal-data" type="submit">сохранить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="button" class="header-bag _icon-bag header-icon">
+                        <span class="products-total">(7)</span>
+                        <!-- <div role="button" class="header-bag _icon-bag header-icon"></div> -->
+                        <div class="header__basket-wrapper">
+                            <div class="header__basket-container">
+                                <div role="button" class="_icon-cancel close-basket"></div>
+                                <div class="basket__title">КОРЗИНА</div>
+                                <p class="basket__empty">Ваша корзина пуста :(</p>
+                                <div class="basket__items">
+                                    <div class="basket__item">
+                                        <a href="" class="basket__img">
+                                            <img src="./image/cat-1.jpg" alt="">
+                                        </a>
+                                        <div class="basket__info">
+                                            <div class="basket__info-title">
+                                                <a href="" class="basket__info-title-text">Платье летнее в цветочек</a>
+                                                <div role="button" class="_icon-cancel"></div>
+                                            </div>
+                                            <div class="basket__info-art">Арт. 1234567</div>
+                                            <div class="basket__info__details">
+                                                <div class="basket__info__details-sub">
+                                                    <div class="basket__info__details-size">M</div>
+                                                    <div class="basket__info__details-amount">
+                                                        <div class="spinner-basket-container">
+                                                            <div class="spinner-border spinner-basket" role="status">
+                                                                <span class="sr-only">Загрузка...</span>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+                                                        <input type="number" min="1" max="100" value="1" readonly class="details-amount">
+                                                        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                                                    </div>
+                                                </div>
+                                                <div class="basket__info__price">
+                                                    <div class="basket__info__price-title">Цена</div>
+                                                    <div class="basket__info__price-cost">1230 грн</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="basket__item">
+                                        <a href="" class="basket__img">
+                                            <img src="./image/cat-1.jpg" alt="">
+                                        </a>
+                                        <div class="basket__info">
+                                            <div class="basket__info-title">
+                                                <a href="" class="basket__info-title-text">Платье летнее в цветочек</a>
+                                                <div role="button" class="_icon-cancel"></div>
+                                            </div>
+                                            <div class="basket__info-art">Арт. 1234567</div>
+                                            <div class="basket__info__details">
+                                                <div class="basket__info__details-sub">
+                                                    <div class="basket__info__details-size">M</div>
+                                                    <div class="basket__info__details-amount">
+                                                        <div class="spinner-basket-container">
+                                                            <div class="spinner-border spinner-basket" role="status">
+                                                                <span class="sr-only">Загрузка...</span>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+                                                        <input type="number" min="1" max="100" value="1" readonly class="details-amount">
+                                                        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                                                    </div>
+                                                </div>
+                                                <div class="basket__info__price">
+                                                    <div class="basket__info__price-title">Цена</div>
+                                                    <div class="basket__info__price-cost">1230 грн</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="basket__count-container">
+                                    <div class="basket__count">
+                                        <div class="basket__count-title">Всего</div>
+                                        <div class="basket__count-price">2460 грн</div>
+                                    </div>
+                                </div>
+                                <div class="basket__submit-cont">
+                                    <div class="basket__submit-continue" role="button">Продолжить покупки</div>
+                                    <a href="" class="basket__submit-checkout">ОФормить заказ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- нет на чекауте -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+        </header>
+
+        <main>
+            
+
+            <section class="new-collection__wrapper">
+    <div class="new-collection-slider">
+        <div class="custom__container swiper-wrapper">
+            <div class="male__container swiper-slide">
+                <img src="./image/sale-slide.jpg" alt="">
+                <div class="male__title-wrapper">
+                    <div class="title-collection">НОВАЯ ЖЕНСКАЯ КОЛЛЕКЦИЯ</div>
+                    <div class="new-collection">весна 2021</div>
+                </div>
+                <a href="#" class="button-link new-collection__button">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+            <div class="female__container swiper-slide">
+                <img src="./image/000.jpg" alt="">
+                <div class="female__title-wrapper">
+                    <div class="title-collection">НОВАЯ МУЖСКАЯ КОЛЛЕКЦИЯ</div>
+                    <div class="new-collection">весна 2021</div>
+                </div>
+                <a href="#" class="button-link new-collection__button">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+            <div class="child__container swiper-slide">
+                <picture>
+                    <source srcset="./image/child-collection.jpg" media="(max-width: 767px)">
+                    <source srcset="" media="(max-width: 1110px)">
+                    <img src="./image/child-collection.jpg" alt="">
+                </picture>
+                <div class="child__title-wrapper">
+                    <div class="title-collection">НОВАЯ ДЕТСКАЯ КОЛЛЕКЦИЯ</div>
+                    <div class="new-collection">весна 2021</div>
+                </div>
+                <a href="#" class="button-link new-collection__button">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+        </div>
+        <div class="new-collection-pagination"></div>
+    </div>
+</section>
+<section class="sale__wrapper">
+    <div class="custom__container">
+        <div class="swiper-container sale__swiper">
+            <div class="swiper-wrapper">
+                <div class="sale__slide swiper-slide">
+                    <picture>
+                        <source srcset="./image/nuot-2.jpg" media="(max-width: 520px)">
+                        <source srcset="" media="(max-width: 768px)">
+                        <img src="./image/nuot-2.jpg" alt="">
+                    </picture>
+                    <a href="#" class="button-link">
+                        <span>Скидки</span>
+                        <div class="_icon-arrow-link"></div>
+                    </a>
+                </div>
+                <div class="sale__slide swiper-slide">
+                    <picture>
+                        <source srcset="./image/000.jpg" media="(max-width: 520px)">
+                        <source srcset="" media="(max-width: 768px)">
+                        <img src="./image/000.jpg" alt="">
+                    </picture>
+                    <a href="#" class="button-link">
+                        <span>Скидки</span>
+                        <div class="_icon-arrow-link"></div>
+                    </a>
+                </div>
+                <div class="sale__slide swiper-slide">
+                    <picture>
+                        <source srcset="./image/sale-slide.jpg" media="(max-width: 520px)">
+                        <source srcset="" media="(max-width: 768px)">
+                        <img src="./image/sale-slide.jpg" alt="">
+                    </picture>
+                    <a href="#" class="button-link">
+                        <span>Скидки</span>
+                        <div class="_icon-arrow-link"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="sale-swiper-pagination custom-swiper-pagination"></div>
+            <div class="slider__btn-cont custom-swiper-btn-cont">
+                <div class="_icon-arrow-slider-1 sale-swiper-prev"></div>
+                <span class="btn-slider-span">|</span>
+                <div class="_icon-arrow-slider-2 sale-swiper-next"></div>
+            </div>
+            <div class="sale-swiper-scrollbar custom-swiper-scrollbar"></div>
+        </div>
+    </div>
+</section>
+<section class="short-description__warapper">
+    <div class="custom__container">
+        <h5 class="short-description__title">НАШЕ ПРОИЗВОДСТВО</h5>
+        <div class="short-description__container">
+            <div class="short-description__left">
+                <p class="short-description__text">
+                    Amet ridiculus dictumst vulputate cursus maecenas montes feugiat dapibus interdum, sollicitudin
+                    suspendisse dui mus habitant mattis iaculis quis platea etiam, elit ad luctus erat morbi
+                    malesuada facilisis posuere. Ullamcorper pellentesque pretium ipsum vivamus iaculis odio
+                    ridiculus natoque at, nascetur duis vel gravida torquent inceptos elementum fermentum, porttitor
+                    libero sit vestibulum amet finibus blandit feugiat.
+                </p>
+                <a href="#" class="button-link short-description__button">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+            <div class="short-description__right">
+                <img class="right__main-img" src="./image/short-description-main.jpg" alt="" loading="lazy">
+                <div class="right__second-img">
+                    <img src="./image/short-description-second.jpg" alt="" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="categories__wrapper">
+    <div class="custom__container">
+        <div class="categories__container">
+            <div class="categories__img_container">
+                <img src="./image/bags-collection.jpg" alt="" loading="lazy">
+            </div>
+            <div class="categories__text_container">
+                <div class="categories__text__title">Название коллекции или категории из каталога</div>
+                <a href="#" class="button-link">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+        </div>
+        <div class="categories__container">
+            <div class="categories__img_container">
+                <img src="./image/category-collection-2.jpg" alt="" loading="lazy">
+            </div>
+            <div class="categories__text_container">
+                <div class="categories__text__title">Название коллекции или категории из каталога</div>
+                <a href="#" class="button-link">
+                    <span>Перейти</span>
+                    <div class="_icon-arrow-link"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="slider-cards__wrapper">
+    <div class="slider-cards__container custom__container">
+        <div class="slider-cards__title">НОВИНКИ</div>
+        <div class="swiper-container slider-cards__swiper">
+            <div class="swiper-wrapper">
+                <div class="slider-cards__slide swiper-slide">
+                    <div class="product__card-container">
+                        <div class="product__card">
+                            <div class="product__card-link" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;635&quot;,&quot;model&quot;:&quot;NOT_FOUND&quot;,&quot;href&quot;:&quot;https:\/\/nuot.utest.space\/index.php?route=product\/product&amp;product_id=635&quot;,&quot;images&quot;:[&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;],&quot;price&quot;:&quot;2650 \u0433\u0440\u043d&quot;,&quot;special&quot;:&quot;123 \u0433\u0440\u043d&quot;,&quot;small_images&quot;:{&quot;635&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;636&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;634&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;633&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;38&quot;,&quot;stock_status_id&quot;:2,&quot;option_value_id&quot;:&quot;63&quot;}],&quot;size_type&quot;:null},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;636&quot;,&quot;model&quot;:&quot;NOT_FOUND&quot;,&quot;href&quot;:&quot;https:\/\/nuot.utest.space\/index.php?route=product\/product&amp;product_id=636&quot;,&quot;images&quot;:[&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;],&quot;price&quot;:&quot;2590 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;635&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;636&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;634&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;633&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;39&quot;,&quot;stock_status_id&quot;:2,&quot;option_value_id&quot;:&quot;62&quot;}],&quot;size_type&quot;:null},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;634&quot;,&quot;model&quot;:&quot;NOT_FOUND&quot;,&quot;href&quot;:&quot;https:\/\/nuot.utest.space\/index.php?route=product\/product&amp;product_id=634&quot;,&quot;images&quot;:[&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;],&quot;price&quot;:&quot;599 \u0433\u0440\u043d&quot;,&quot;special&quot;:&quot;123 \u0433\u0440\u043d&quot;,&quot;small_images&quot;:{&quot;635&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;636&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;634&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;633&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;27-28&quot;,&quot;stock_status_id&quot;:2,&quot;option_value_id&quot;:&quot;114&quot;}],&quot;size_type&quot;:null},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;633&quot;,&quot;model&quot;:&quot;NOT_FOUND&quot;,&quot;href&quot;:&quot;https:\/\/nuot.utest.space\/index.php?route=product\/product&amp;product_id=633&quot;,&quot;images&quot;:[&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;],&quot;price&quot;:&quot;599 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;635&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;636&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;634&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;633&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;27-28&quot;,&quot;stock_status_id&quot;:2,&quot;option_value_id&quot;:&quot;114&quot;}],&quot;size_type&quot;:null},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;637&quot;,&quot;model&quot;:&quot;NOT_FOUND&quot;,&quot;href&quot;:&quot;https:\/\/nuot.utest.space\/index.php?route=product\/product&amp;product_id=637&quot;,&quot;images&quot;:[&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;],&quot;price&quot;:&quot;849 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;635&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;636&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;634&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;633&quot;:&quot;https:\/\/nuot.utest.space\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;28&quot;,&quot;stock_status_id&quot;:2,&quot;option_value_id&quot;:&quot;108&quot;}],&quot;size_type&quot;:null}]">
+
+                                <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                                <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                                    <a href="https://nuot.utest.space/index.php?route=product/product&amp;product_id=635" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-ba021e47ca2f765b" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                                        <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                            <img class="slide-img" src="https://nuot.utest.space/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-ba021e47ca2f765b" aria-disabled="true"></div>
+                                    <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-ba021e47ca2f765b" aria-disabled="true"></div>
+                                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                                </div>
+                                <a href="https://nuot.utest.space/index.php?route=product/product&amp;product_id=635" data-id="635" data-shop="0" class="product__buy-container">
+                                    <div class="_icon-bag" data-stock-status="2"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product__description-item">
+                            <div class="product__description-cont">
+                                <div class="product__description-title">NOT_FOUND</div>
+                                <div class="product__description-price__container">
+                                    <div class="product__description-price cross-out-price item-active">2650 грн</div>
+                                    <div class="product__description-price old-price">123 грн</div>
+                                </div>
+                            </div>
+                            <div class="product__description-subprod">
+                                <div data-prod-id="635" role="button" class="sub-prod focus-prod">
+                                    <img src="https://nuot.utest.space/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="">
+                                </div>
+                                <div data-prod-id="636" role="button" class="sub-prod">
+                                    <img src="https://nuot.utest.space/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="">
+                                </div>
+                                <div data-prod-id="634" role="button" class="sub-prod">
+                                    <img src="https://nuot.utest.space/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="">
+                                </div>
+                                <div data-prod-id="633" role="button" class="sub-prod">
+                                    <img src="https://nuot.utest.space/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-cards__slide swiper-slide">
+                    <div class="product__card-container">
+                        <div class="product__card">
+                            <div class="product__card-link" id="9" data-json='[{"colorID":"white","productLink":"#","colorSrc":["./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"aquamarine","productLink":"#","colorSrc":["./image/new-2.jpg","./image/new-2.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"darkturquoise","productLink":"#","colorSrc":["./image/new-3.jpg","./image/new-3.jpg","./image/new-3.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]}]'>
+                                <div aria-label="Добавить в избранное" class="_icon-favorites-fill favorit" role="button"></div>
+                                <div class="product-card-swiper swiper-container">
+                                    <a href="" class="product__card-sub-wrapper swiper-wrapper">
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-1.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-2.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-3.jpg">
+                                        </div>
+                                    </a>
+                                    <div class="_icon-arrow-slider-1 product-card-swiper-prev" role="button" aria-label="Next slide"></div>
+                                    <div class="_icon-arrow-slider-2 product-card-swiper-next" role="button" aria-label="Previous slide"></div>
+                                </div>
+                                <!-- если есть размер но мужская сетка или женская -->
+                                <a href="#" class="product__buy-container">
+                                    <div class="product_sizes">
+                                        <p class="product__sizes-title">Добавить размер</p>
+                                        <div class="product__sizes-container">
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>XS</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">S</button>
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>M</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">L</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">XL</button>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- если сетка детская одежда -->
+                                <!-- 
+								<a href="#" class="product__buy-container long-size child-size">
+                                    <div class="child-size-item" type="button" data-stock-status="1">98...174</div>
+                                </a> 
+								-->
+                                <!-- если сетка обувная -->
+                                <!-- <a href="#" class="product__buy-container long-size shoe-size"> -->
+                                <!-- жен -->
+                                <!-- <div class="multi-size-item" type="button" data-stock-status="1">36...41</div> -->
+                                <!-- муж
+                                    <div class="multi-size-item" type="button" data-stock-status="1">41...45</div>
+                                    дет
+                                    <div class="multi-size-item" type="button" data-stock-status="1">23...30</div>
+                                    носки
+                                    <div class="multi-size-item" type="button" data-stock-status="1">36-40</div> -->
+                                <!-- </a> -->
+                                <!-- если нет размера у товара -->
+                                <!-- 
+								<a href="#" class="product__buy-container">
+                                    <div class="_icon-bag" role="button" data-stock-status="1"></div>
+                                </a> 
+								-->
+                            </div>
+                        </div>
+                        <div class="product__description-item">
+                            <div class="product__description-cont">
+                                <div class="product__description-title">Футболка из хлопка</div>
+                                <div class="product__description-price__container">
+                                    <div class="product__description-price cross-out-price item-active">50000 грн</div>
+                                    <div class="product__description-price">50000 грн</div>
+                                </div>
+                            </div>
+                            <div class="product__description-subprod">
+                                <!-- каждый первый элеменит должен содержать класс class="focus-prod" -->
+                                <div data-prod-id="1" role="button" class="sub-prod focus-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-cards__slide swiper-slide">
+                    <div class="product__card-container">
+                        <div class="product__card">
+                            <div class="product__card-link" id="product-id-123456" data-json='[{"colorID":"white","productLink":"#","colorSrc":["./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"aquamarine","productLink":"#","colorSrc":["./image/new-2.jpg","./image/new-2.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"darkturquoise","productLink":"#","colorSrc":["./image/new-3.jpg","./image/new-3.jpg","./image/new-3.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]}]'>
+                                <div aria-label="Добавить в избранное" class="_icon-favorites-fill favorit" role="button"></div>
+                                <div class="product-card-swiper swiper-container">
+                                    <a href="" class="product__card-sub-wrapper swiper-wrapper">
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-1.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-2.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-3.jpg">
+                                        </div>
+                                    </a>
+                                    <div class="_icon-arrow-slider-1 product-card-swiper-prev" role="button" aria-label="Next slide"></div>
+                                    <div class="_icon-arrow-slider-2 product-card-swiper-next" role="button" aria-label="Previous slide"></div>
+                                </div>
+                                <!-- если есть размер но мужская сетка или женская -->
+                                <a href="#" class="product__buy-container">
+                                    <div class="product_sizes">
+                                        <p class="product__sizes-title">Добавить размер</p>
+                                        <div class="product__sizes-container">
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>XS</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">S</button>
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>M</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">L</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">XL</button>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- если сетка детская одежда -->
+                                <!-- 
+								<a href="#" class="product__buy-container long-size child-size">
+                                    <div class="child-size-item" type="button" data-stock-status="1">98...174</div>
+                                </a> 
+								-->
+                                <!-- если сетка обувная -->
+                                <!-- <a href="#" class="product__buy-container long-size shoe-size"> -->
+                                <!-- жен -->
+                                <!-- <div class="multi-size-item" type="button" data-stock-status="1">36...41</div> -->
+                                <!-- муж
+                                    <div class="multi-size-item" type="button" data-stock-status="1">41...45</div>
+                                    дет
+                                    <div class="multi-size-item" type="button" data-stock-status="1">23...30</div>
+                                    носки
+                                    <div class="multi-size-item" type="button" data-stock-status="1">36-40</div> -->
+                                <!-- </a> -->
+                                <!-- если нет размера у товара -->
+                                <!-- 
+								<a href="#" class="product__buy-container">
+                                    <div class="_icon-bag" role="button" data-stock-status="1"></div>
+                                </a> 
+								-->
+                            </div>
+                        </div>
+                        <div class="product__description-item">
+                            <div class="product__description-cont">
+                                <div class="product__description-title">Футболка из хлопка</div>
+                                <div class="product__description-price__container">
+                                    <div class="product__description-price cross-out-price item-active"> </div>
+                                    <div class="product__description-price old-price">50000 грн</div>
+                                </div>
+                            </div>
+                            <div class="product__description-subprod">
+                                <!-- каждый первый элеменит должен содержать класс class="focus-prod" -->
+                                <div data-prod-id="1" role="button" class="sub-prod focus-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-cards__slide swiper-slide">
+                    <div class="product__card-container">
+                        <div class="product__card">
+                            <div class="product__card-link" id="product-id-123456" data-json='[{"colorID":"white","productLink":"#","colorSrc":["./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"aquamarine","productLink":"#","colorSrc":["./image/new-2.jpg","./image/new-2.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"darkturquoise","productLink":"#","colorSrc":["./image/new-3.jpg","./image/new-3.jpg","./image/new-3.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]}]'>
+                                <div aria-label="Добавить в избранное" class="_icon-favorites-fill favorit" role="button"></div>
+                                <div class="product-card-swiper swiper-container">
+                                    <a href="" class="product__card-sub-wrapper swiper-wrapper">
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-1.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-2.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-3.jpg">
+                                        </div>
+                                    </a>
+                                    <div class="_icon-arrow-slider-1 product-card-swiper-prev" role="button" aria-label="Next slide"></div>
+                                    <div class="_icon-arrow-slider-2 product-card-swiper-next" role="button" aria-label="Previous slide"></div>
+                                </div>
+                                <!-- если есть размер но мужская сетка или женская -->
+                                <a href="#" class="product__buy-container">
+                                    <div class="product_sizes">
+                                        <p class="product__sizes-title">Добавить размер</p>
+                                        <div class="product__sizes-container">
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>XS</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">S</button>
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>M</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">L</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">XL</button>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- если сетка детская одежда -->
+                                <!-- 
+								<a href="#" class="product__buy-container long-size child-size">
+                                    <div class="child-size-item" type="button" data-stock-status="1">98...174</div>
+                                </a> 
+								-->
+                                <!-- если сетка обувная -->
+                                <!-- <a href="#" class="product__buy-container long-size shoe-size"> -->
+                                <!-- жен -->
+                                <!-- <div class="multi-size-item" type="button" data-stock-status="1">36...41</div> -->
+                                <!-- муж
+                                    <div class="multi-size-item" type="button" data-stock-status="1">41...45</div>
+                                    дет
+                                    <div class="multi-size-item" type="button" data-stock-status="1">23...30</div>
+                                    носки
+                                    <div class="multi-size-item" type="button" data-stock-status="1">36-40</div> -->
+                                <!-- </a> -->
+                                <!-- если нет размера у товара -->
+                                <!-- 
+								<a href="#" class="product__buy-container">
+                                    <div class="_icon-bag" role="button" data-stock-status="1"></div>
+                                </a> 
+								-->
+                            </div>
+                        </div>
+                        <div class="product__description-item">
+                            <div class="product__description-cont">
+                                <div class="product__description-title">Футболка из хлопка</div>
+                                <div class="product__description-price__container">
+                                    <div class="product__description-price cross-out-price"></div>
+                                    <div class="product__description-price old-price">50000 грн</div>
+                                </div>
+                            </div>
+                            <div class="product__description-subprod">
+                                <!-- каждый первый элеменит должен содержать класс class="focus-prod" -->
+                                <div data-prod-id="1" role="button" class="sub-prod focus-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-cards__slide swiper-slide">
+                    <div class="product__card-container">
+                        <div class="product__card">
+                            <div class="product__card-link" id="product-id-123456" data-json='[{"colorID":"white","productLink":"#","colorSrc":["./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg","./image/new-4.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"aquamarine","productLink":"#","colorSrc":["./image/new-2.jpg","./image/new-2.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]},{"colorID":"darkturquoise","productLink":"#","colorSrc":["./image/new-3.jpg","./image/new-3.jpg","./image/new-3.jpg"],"colorSize":[{"size":"xs","isDisabled":"enabled"},{"size":"s","isDisabled":"disabled"},{"size":"m","isDisabled":"enabled"},{"size":"l","isDisabled":"enabled"},{"size":"xl","isDisabled":"disabled"}]}]'>
+                                <div aria-label="Добавить в избранное" class="_icon-favorites-fill favorit" role="button"></div>
+                                <div class="product-card-swiper swiper-container">
+                                    <a href="" class="product__card-sub-wrapper swiper-wrapper">
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-1.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-2.jpg">
+                                        </div>
+                                        <div class="product__card-img-cont swiper-slide">
+                                            <img class="slide-img" src="./image/new-3.jpg">
+                                        </div>
+                                    </a>
+                                    <div class="_icon-arrow-slider-1 product-card-swiper-prev" role="button" aria-label="Next slide"></div>
+                                    <div class="_icon-arrow-slider-2 product-card-swiper-next" role="button" aria-label="Previous slide"></div>
+                                </div>
+                                <!-- если есть размер но мужская сетка или женская -->
+                                <a href="#" class="product__buy-container">
+                                    <div class="product_sizes">
+                                        <p class="product__sizes-title">Добавить размер</p>
+                                        <div class="product__sizes-container">
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>XS</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">S</button>
+                                            <button class="product__sizes-item" type="button" data-stock-status="1" disabled>M</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">L</button>
+                                            <button class="product__sizes-item item-active" data-stock-status="1" type="button">XL</button>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- если сетка детская одежда -->
+                                <!-- 
+								<a href="#" class="product__buy-container long-size child-size">
+                                    <div class="child-size-item" type="button" data-stock-status="1">98...174</div>
+                                </a> 
+								-->
+                                <!-- если сетка обувная -->
+                                <!-- <a href="#" class="product__buy-container long-size shoe-size"> -->
+                                <!-- жен -->
+                                <!-- <div class="multi-size-item" type="button" data-stock-status="1">36...41</div> -->
+                                <!-- муж
+                                    <div class="multi-size-item" type="button" data-stock-status="1">41...45</div>
+                                    дет
+                                    <div class="multi-size-item" type="button" data-stock-status="1">23...30</div>
+                                    носки
+                                    <div class="multi-size-item" type="button" data-stock-status="1">36-40</div> -->
+                                <!-- </a> -->
+                                <!-- если нет размера у товара -->
+                                <!-- 
+								<a href="#" class="product__buy-container">
+                                    <div class="_icon-bag" role="button" data-stock-status="1"></div>
+                                </a> 
+								-->
+                            </div>
+                        </div>
+                        <div class="product__description-item">
+                            <div class="product__description-cont">
+                                <div class="product__description-title">Футболка из хлопка</div>
+                                <div class="product__description-price__container">
+                                    <div class="product__description-price cross-out-price"></div>
+                                    <div class="product__description-price old-price">50000 грн</div>
+                                </div>
+                            </div>
+                            <div class="product__description-subprod">
+                                <!-- каждый первый элеменит должен содержать класс class="focus-prod" -->
+                                <div data-prod-id="1" role="button" class="sub-prod focus-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                                <div data-prod-id="1" role="button" class="sub-prod">
+                                    <img src="./image/test.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls-container">
+            <div class="slider-cards-controls-wrapper">
+                <div class="slider-cards-swiper-pagination custom-swiper-pagination"></div>
+                <div class="slider__btn-cont custom-swiper-btn-cont">
+                    <div class="_icon-arrow-slider-1 slider-cards-swiper-prev"></div>
+                    <span class="btn-slider-span">|</span>
+                    <div class="_icon-arrow-slider-2 slider-cards-swiper-next"></div>
+                </div>
+            </div>
+            <div class="slider-cards-swiper-scrollbar custom-swiper-scrollbar"></div>
+        </div>
+    </div>
+</section>
+<section class="nuostyle__wrapper">
+    <div class="custom__container">
+        <div class="nuot__title">#nuotstyle</div>
+        <div class="nuot__grid-wrapper">
+            <div class="nuot__block">
+                <div class="nuot__img-container">
+                    <img src="./image/nuot-1.jpg" alt="" loading="lazy">
+                </div>
+                <div class="nuot__img-container">
+                    <img src="./image/nuot-2.jpg" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="nuot__block">
+                <div class="nuot__style-block">
+                    <div class="nuot__title-head">
+                        #nuotstyle
+                    </div>
+                    <div class="nuot__text">
+                        Нам очень интересно узнать, с чем вы комбинируете свои покупки в NUOT. Поделитесь своим образом
+                        и упомяните нас как @nuot или добавьте хештег #nuotstyle.
+                    </div>
+                    <a href="#" class="button-link">
+                        <span>Перейти</span>
+                        <div class="_icon-arrow-link"></div>
+                    </a>
+                </div>
+                <div class="nuot__style-img">
+                    <img src="./image/nuot-3.jpg" alt="" loading="lazy">
+                </div>
+            </div>
+            <div class="nuot__block _third-block">
+                <div class="nuot__img-container">
+                    <img src="./image/nuot-2.jpg" alt="" loading="lazy">
+                </div>
+                <div class="nuot__img-container">
+                    <img src="./image/nuot-1.jpg" alt="" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog__wrapper">
+    <div class="custom__container">
+        <div class="blog__title">БЛОГ</div>
+        <div class="blog__swiper swiper-container">
+            <div class="swiper-wrapper">
+                <div class="blog__column swiper-slide">
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-1.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность</div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-2.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность </div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                </div>
+                <div class="blog__column swiper-slide">
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-4.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность</div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-3.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность </div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                </div>
+                <div class="blog__column swiper-slide">
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-3.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность</div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-4.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность </div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                </div>
+                <div class="blog__column swiper-slide">
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-3.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность</div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-4.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность </div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                </div>
+                <div class="blog__column swiper-slide">
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-3.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность</div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                    <a href="" class="blog__column-item">
+                        <img src="./image/blog-4.jpg" alt="" loading="lazy">
+                        <div class="blog__column-description">
+                            <div class="blog__column-title">Господа, выбранный нами инновационный путь предопределяет
+                                высокую востребованность </div>
+                            <div class="button-link">
+                                <span>Подробнее</span>
+                                <div class="_icon-arrow-link"></div>
+                            </div>
+                        </div>
+                        <div class="blog__column-date">20.05.2021</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls-container">
+            <div class="blog-controls-wrapper">
+                <div class="blog-swiper-pagination custom-swiper-pagination"></div>
+                <div class="slider__btn-cont custom-swiper-btn-cont">
+                    <div class="_icon-arrow-slider-1 blog-swiper-prev"></div>
+                    <span class="btn-slider-span">|</span>
+                    <div class="_icon-arrow-slider-2 blog-swiper-next"></div>
+                </div>
+            </div>
+            <div class="blog-swiper-scrollbar custom-swiper-scrollbar"></div>
+        </div>
+    </div>
+</section>
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div id="topBtn" class="_icon-arrow-top" role="button"></div>
+        </main>
+
+        <footer>
+            <section class="footer__wrapper">
+    <div class="footer__container">
+        <div class="footer__sub">
+            <div class="footer__sub-action">
+                <div class="footer__sub-title">Подпишитесь на новости</div>
+                <div class="footer__sub-form">
+                    <form name="newstler" id="newstler">
+                        <input form="newstler" type="email" minlength="6" required placeholder="Ваша електронная почта">
+                        <input form="newstler" name="chekoutNewstler" type="text" style="display: none;" value="">
+                        <button class="footer__sub-form-btn _icon-arrow-link" type="submit" form="newstler"></button>
+                    </form>
+                </div>
+                <hr>
+            </div>
+            <div class="footer__sub-success">
+                <p>Ваш email был добавлен в рассылку!</p>
+                <p>
+                    Вы можете отписаться в любой момент. Для этого воспользуйтесь нашими контактными данными в юридическом уведомлении.
+                </p>
+            </div>
+            <div class="footer__sub-social-cont">
+                <a class="_icon-instagram" href=""></a>
+                <a class="_icon-facebook" href=""></a>
+                <a class="_icon-youtube" href=""></a>
+            </div>
+        </div>
+        <div class="footer__info">
+            <div class="footer__info-title">ИНФОРМАЦИЯ И ПОМОЩЬ/</div>
+            <div class="footer__info-links">
+                <ul class="info-links-left">
+                    <li><a class="info-links-item" href="">Магазины</a></li>
+                    <li><a class="info-links-item" href="">Гарантия и возврат</a></li>
+                    <li><a class="info-links-item" href="">Вопросы (FAQ)</a></li>
+                    <li><a class="info-links-item" href="">Блог</a></li>
+                </ul>
+                <ul class="info-links-right">
+                    <li><a class="info-links-item" href="">О нас</a></li>
+                    <li><a class="info-links-item" href="">Условия приобретения</a></li>
+                    <li><a class="info-links-item" href="">Политика конфиденциальности</a></li>
+                    <li><a class="info-links-item sale" href="">СКИДКИ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__delivery">
+            <div class="footer__deliver-cont">
+                <div class="footer__simple-page-title">ОПЛАТА И ДОСТАВКА/</div>
+                <div class="footer__delivery-links">
+                    <a class="footer__delivery-item" href="">Варианты доставки</a>
+                </div>
+            </div>
+            <div class="footer__delivery-method">
+                <div class="footer__delivery-pay">
+                    <img src="./image/ApplePay.svg" alt="">
+                </div>
+                <div class="footer__delivery-pay">
+                    <img src="./image/GooglePay.svg" alt="">
+                </div>
+                <div class="footer__delivery-pay">
+                    <img src="./image/Mastercard.svg" alt="">
+                </div>
+                <div class="footer__delivery-pay">
+                    <img src="./image/Visa.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </footer>
+
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js" integrity="sha512-chZc2Mx8B1GzGSNMfJRH63jW7uYZXzX0a/UlWRrTvl4kxxYqUHNMtyTTA5IDQ7gTl4ATLoXlZthsialW3muS0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script async src="js/jquery.maskedinput.js"></script>
+    <script async src="js/bootstrap.bundle.min.js"></script>
+    <script async src="js/swiper-bundle.min.js"></script>
+    <script async src="js/uikit.min.js"></script>
+    <script async src="js/fancybox.umd.js"></script>
+    <script async src="js/select2.full.min.js"></script>
+    <script async src="js/nouislider.min.js"></script>
+
+    <!-- <script async src="js/lazysizes-5.3.1.min.js"></script> -->
+
+    <script>
+        window.CI360 = {
+            notInitOnLoad: true
+        }
+    </script>
+    <script async src="js/js-cloudimage-360-view-2.7.1.min.js"></script>
+    <!-- <script src="https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/2.7.1/js-cloudimage-360-view.min.js"></script> -->
+
+    <script async src="js/script.js"></script>
+</body>
+
+</html>
