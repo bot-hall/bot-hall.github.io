@@ -2102,10 +2102,9 @@ window.onload = function () {
 					e.preventDefault();
 					let textInput = reviewForm.querySelector('#reviewer');
 					let nameInput = reviewForm.querySelector('#reviewerName');
-					let telInput = reviewForm.querySelector('#telephoneInput');
+					let email = reviewForm.querySelector('input[type="email"]');
 					let raitingInput =
 						reviewForm.querySelector('input:checked');
-					let telErr = document.querySelector('.review__errors-tel');
 					let raitingErr = document.querySelector(
 						'.review__errors-raiting'
 					);
@@ -2117,18 +2116,16 @@ window.onload = function () {
 					let productId = product.getAttribute('data-id');
 					let reviewBtn = document.querySelector('.review-btn');
 
-					if (nameInput.value == '' || telInput.value == '') {
+					if (nameInput.value == '') {
 						showError(otherErr);
 					} else if (!raitingInput) {
 						showError(raitingErr);
-					} else if (telInput.value.includes('_')) {
-						showError(telErr);
 					} else {
 						reviewBtn.disabled = true;
 
 						let data = {
 							name: nameInput.value,
-							telephone: telInput.value,
+							email: email.value,
 							text: textInput.value,
 							rating: raitingInput.value,
 						};
@@ -2140,7 +2137,7 @@ window.onload = function () {
 							dataType: 'json',
 							success: function (data) {
 								nameInput.value = '';
-								telInput.value = '';
+								email.value = '';
 								textInput.value = '';
 								raitingInput.checked = false;
 								reviewBtn.disabled = false;
@@ -2149,13 +2146,13 @@ window.onload = function () {
 							},
 							error: function (err) {
 								nameInput.classList.add('error-input');
-								telInput.classList.add('error-input');
+								email.classList.add('error-input');
 								textInput.classList.add('error-input');
 								reviewBtn.disabled = false;
 
 								setTimeout(() => {
 									nameInput.classList.remove('error-input');
-									telInput.classList.remove('error-input');
+									email.classList.remove('error-input');
 									textInput.classList.remove('error-input');
 								}, 5000);
 								throw new Error(err);
@@ -2664,13 +2661,15 @@ window.onload = function () {
 			}
 		}
 
-		function informAbout(id, size = 'ONE') {
+		function informAbout(id, size = '') {
 			let showSize = infoAvailability.querySelector('.pre-size');
 			removeAllChildNodes(showSize);
 
 			showSize.insertAdjacentHTML(
 				'afterbegin',
-				`<button type="button" class="card__description-size" data-confirm=${id}>${size}</button>`
+				`<button type="button" class="card__description-size ${
+					size === '' ? 'empty-size' : ''
+				}" data-confirm=${id}>${size}</button>`
 			);
 
 			$(infoAvailability).modal();
@@ -3192,7 +3191,13 @@ window.onload = function () {
 
 		if (datePickerPage || datePickerModal) {
 			if (datePickerPage) {
-				datePickerPage.max = new Date().toISOString().split('T')[0];
+				let dateArr = new Date().toISOString().split('T')[0].split('-');
+				let year = dateArr[0];
+				let validBday = `${parseInt(year) - 18}-${dateArr[1]}-${
+					dateArr[2]
+				}`;
+				datePickerPage.max = validBday;
+				//console.log(validBday);
 			} else if (datePickerModal) {
 				datePickerModal.max = new Date().toISOString().split('T')[0];
 			}
