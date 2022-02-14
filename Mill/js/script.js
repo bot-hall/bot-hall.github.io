@@ -3189,18 +3189,59 @@ window.onload = function () {
 		let datePickerPage = document.getElementById('user-date_of_birth');
 		let datePickerModal = document.getElementById('date_of_birth');
 
-		if (datePickerPage || datePickerModal) {
-			if (datePickerPage) {
-				let dateArr = new Date().toISOString().split('T')[0].split('-');
-				let year = dateArr[0];
-				let validBday = `${parseInt(year) - 18}-${dateArr[1]}-${
-					dateArr[2]
-				}`;
-				datePickerPage.max = validBday;
-				//console.log(validBday);
-			} else if (datePickerModal) {
-				datePickerModal.max = new Date().toISOString().split('T')[0];
+		if (datePickerPage) {
+			pick(datePickerPage);
+		} else if (datePickerModal) {
+			pick(datePickerModal);
+		}
+
+		function pick(el) {
+			let dateArr = new Date().toISOString().split('T')[0].split('-');
+			let year = dateArr[0];
+			let validBday = `${parseInt(year) - 16}-${dateArr[1]}-${
+				dateArr[2]
+			}`;
+			let validBdayObj = new Date(
+				parseInt(year) - 16,
+				dateArr[1],
+				dateArr[2]
+			);
+
+			if (el.type != 'date') {
+				try {
+					if (el.value !== '') el.setAttribute('readonly', 'true');
+					let startDate =
+						el.value === '' ? validBdayObj : new Date(el.value);
+					let dateSelected =
+						el.value === '' ? false : new Date(el.value);
+
+					datepicker(el, {
+						maxDate: validBdayObj,
+						startDate: startDate,
+						dateSelected: dateSelected,
+						showAllDates: true,
+						overlayButton: 'Select',
+						formatter: (input, date, instance) => {
+							const newDate = new Date(date);
+							const year = newDate.getFullYear();
+							const month =
+								parseInt(newDate.getMonth() + 1) >= 10
+									? newDate.getMonth() + 1
+									: `0${newDate.getMonth() + 1}`;
+							const day =
+								parseInt(newDate.getDate()) >= 10
+									? newDate.getDate()
+									: `0${newDate.getDate()}`;
+							const value = `${year}-${month}-${day}`;
+							input.value = value;
+							el.setAttribute('readonly', 'true');
+						},
+					});
+				} catch (err) {
+					console.error(err);
+				}
 			}
+			return (el.max = validBday);
 		}
 		// contacts form
 		let mailingForm = document.getElementById('mailingForm');

@@ -791,310 +791,84 @@
             
             
             
+            
             <section class="main__personal-wrapper">
     <div class="main__personal-container">
         <div class="personal__sidebar">
             <p class="personal__sidebar-user">ПРИВЕТ, ИВАН!</p>
             <nav class="personal__sidebar-items">
-                <button type="button" class="personal__sidebar-item">МОИ ДАННЫЕ</button>
+                <button type="button" class="personal__sidebar-item item-active user-menu">МОИ ДАННЫЕ</button>
                 <!-- <a href="" class="personal__sidebar-item history-menu">ИСТОРИЯ ЗАКАЗОВ</a> -->
-                <button class="personal__sidebar-item history-menu item-active user-menu">ИСТОРИЯ ЗАКАЗОВ</button>
+                <a href="http://mill.loc/index.php?route=account/order" class="personal__sidebar-item">Мои заказы</a>
+                <a href="http://mill.loc/index.php?route=account/order" class="personal__sidebar-item">способы оплаты</a>
+                <a href="http://mill.loc/index.php?route=account/order" class="personal__sidebar-item">Профили в соцсетях</a>
+                <a href="http://mill.loc/index.php?route=account/order" class="personal__sidebar-item">Подарочные карты и сертификаты</a>
+                <a href="http://mill.loc/index.php?route=account/order" class="personal__sidebar-item">Общая информация</a>
                 <!-- <button class="personal__sidebar-item" type="button">КЕШБЕК СИСТЕМА</button> -->
                 <a href="" class="personal__sidebar-out">ВЫЙТИ</a>
             </nav>
         </div>
         <div class="personal__information__wrapper show-effect">
-            <div class="personal__main-history history-container">
-                <div class="history__title">
-                    <span class="history__title-text">ИСТОРИЯ ЗАКАЗОВ</span>
-                    <span class="close-item _icon-cancel" role="button"></span>
+            <div class="personal__main-data user-page-container">
+                <div class="personal__titles">
+                    <span class="personal__titles-text">ПРОФИЛИ В СОЦСЕТЯХ</span>
+                    <span class="_icon-cancel close-item" role="button"></span>
                 </div>
-                <div class="history__title-items">
-                    <button class="history-title-item active-buy-title active-title" type="button">Активные</button>
-                    <a class="history-title-item archive-title" type="button">Архив</a>
-                </div>
-
-
-
-                <div class="personal__main-data user-data-container">
-                    <div class="personal__titles">
-                        <span class="personal__titles-text">МОИ ДАННЫЕ</span>
-                        <span class="_icon-cancel close-item" role="button"></span>
+                <div class="connect__auth-container">
+                    <div class="connect__auth-item">
+                        <div class="connect__auth-img">
+                            <img src="./image/facebook-auth.svg" alt="facebook auth" loading="lazy">
+                        </div>
+                        <div class="connect__auth-titles">
+                            <p class="network__title">Facebook</p>
+                            <p class="network__sub-title">Surname Name</p>
+                        </div>
+                        <div class="connect__auth-remove">
+                            <div class="auth-remove-container">
+                                <div class="auth-remove-item">
+                                    <div class="auth-remove-text">Удалить</div>
+                                    <div class="_icon-cancel auth-remove-icon"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <form name="user-data" id="user-data" class="personal__form">
-                        <div class="data-item">
-                            <input id="user-lastname" class="input-words input-item" name="user-lastname" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-lastname">Фамилия</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
+                    <div class=" connect__auth-item">
+                        <div class="connect__auth-img">
+                            <img src="./image/google-auth.svg" alt="google auth" loading="lazy">
                         </div>
-                        <div class="data-item">
-                            <input id="user-firstname" class="input-words input-item" name="user-firstname" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-firstname">Имя</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
+                        <div class="connect__auth-titles">
+                            <p class="network__title">Google</p>
+                            <p class="network__sub-title">Surname Name</p>
                         </div>
-                        <div class="data-item">
-                            <input id="user-patronymic" class="input-words input-item" name="user-patronymic" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-patronymic">Отчество</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-telephone" class="telephoneInput person-telephone input-item init-tel-js" name="user-telephone" type="tel" placeholder="+380" required value="3333333333">
-                            <label for="user-telephone">Телефон</label>
-                            <div class="user-telephone-message">
-                                Подтвердите номер
-                            </div>
-                            <div class="confirmation__container">
-                                <button class="confirm-btn" type="button">Подтвердить номер телефона</button>
-                                <p class="confirmed-text">Номер подтвержден<span class="_icon-checked"></span></p>
+                        <div class="connect__auth-remove">
+                            <div class="auth-remove-container">
+                                <div class="auth-remove-item">
+                                    <div class="auth-remove-text">Удалить</div>
+                                    <div class="_icon-cancel auth-remove-icon"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="data-item">
-                            <input id="user-email" class="input-item" name="user-email" type="email" placeholder="" required value="w@w.com">
-                            <label for="user-email">E-mail</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-date_of_birth" name="user-date_of_birth" type="date" max="" value="1991-11-14" required>
-                            <label for="user-date_of_birth">Дата рождения</label>
-                        </div>
-                        <div class="data-item">
-                            <select class="" id="user-gender" name="user-gender" required>
-                                <option selected>Не указано</option>
-                                <option value="male">Муж.</option>
-                                <option value="female">Жен.</option>
-                            </select>
-                            <label for="user-gender">Пол</label>
-                        </div>
-                        <input class="user-persone-capcha" form="modalInform" name="capcha" type="text" style="display: none;" value="">
-                        <p class="user-persone-success">Данные успешно обновлены!</p>
-                        <button class="personal-btn" form="user-data" type="submit">сохранить</button>
-                    </form>
+                    </div>
+                </div>
+                <div class="connect__acounts">
+                    <p class="connect__acounts-title">ПОДКЛЮЧИТЬ АККАУНТЫ</p>
+                    <div class="connect__acounts-container">
+                        <a href="#" class="connect__acounts-item">
+                            <div class="connect__auth-img">
+                                <img src="./image/facebook-auth.svg" alt="facebook auth" loading="lazy">
+                            </div>
+                            <p class="connect__acounts-subtitle">Facebook</p>
+                        </a>
+                        <a href="#" class="connect__acounts-item">
+                            <div class="connect__auth-img">
+                                <img src="./image/apple-auth.svg" alt="apple auth" loading="lazy">
+                            </div>
+                            <p class="connect__acounts-subtitle">Apple</p>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="active__wrapper">
-                <div class="active-order">
-                    <div class="active-order__titles">
-                        <p class="active-order__main-title">
-                            Заказ № 123456789,
-                            <span>от 20.05.2021</span>
-                        </p>
-                    </div>
-                    <div class="ttn-group">
-                        <div class="active-order__titles order-collapse" role="button">
-                            <p class="active-order__main-title">
-                                <span class="icon _icon-arrow-slider-2"></span>
-                                <span>Rooh</span>
-                            </p>
-                        </div>
-                        <div class="collapse order-collapse__item">
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom">
-                                <div class="order-info-bottom__first">
-                                    <p class="order-info-bottom__first__adress">Харьков, Харьковская обл., Новая почта, склад 50</p>
-                                    <a href="" class="order-info-bottom__first__ttn">Отследить</a>
-                                </div>
-                                <div class="order-info-bottom__past past-desctop">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">65 грн</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom__past past-mobile">
-                                <p class="past__items">
-                                    <span class="past__item__text">Доставка</span>
-                                    <span class="past__item__cost">65 грн</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="past__items">
-                        <span class="past__item__text">Всего</span>
-                        <span class="past__item__cost total-cost">565 грн</span>
-                    </p>
-                </div>
-
-                <ul class="buttom__pagination-wrapper">
-                    <li>
-                        <div class="buttom__pagination-arrow pagination-arrow-prev">
-                            <div class="_icon-arrow-slider-1 pagination-disabled"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item buttom-pagination-active" href="">1</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">2</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">3</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">2</a>
-                    </li>
-                    <li>
-                        <span class="buttom__pagination-item pagination-between-item">...</span>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">8</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-arrow pagination-arrow-next" href="">
-                            <div class="_icon-arrow-slider-2"></div>
-                        </a>
-                    </li>
-                </ul>
-            </div> -->
-            <!-- <div class="archive__wrapper">
-                <div class="active-order">
-                    <div class="active-order__titles">
-                        <p class="active-order__main-title">
-                            Заказ № 123456789,
-                            <span>от 20.05.2021</span>
-                        </p>
-                        <p class="active-order__main-title past-desctop">
-                            ДОСТАВЛЕН,
-                            <span>22.05.2021</span>
-                        </p>
-                    </div>
-                    <div class="ttn-group">
-                        <div class="active-order__titles order-collapse" role="button">
-                            <p class="active-order__main-title">
-                                <span class="icon _icon-arrow-slider-2"></span>
-                                <span>TTH 9999328732821</span>
-                            </p>
-                        </div>
-                        <div class="collapse order-collapse__item">
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                    <a href="" class="active-order__review">Оставить отзыв</a>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom">
-                                <div class="order-info-bottom__first">
-                                    <p class="order-info-bottom__first__adress">Харьков, Харьковская обл., Новая почта, склад 50</p>
-                                </div>
-                                <div class="order-info-bottom__past past-desctop">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">Самовывоз</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom past-mobile-archive">
-                                <p class="active-order__main-title">
-                                    ДОСТАВЛЕН,
-                                    <span>22.05.2021</span>
-                                </p>
-                                <div class="order-info-bottom__past">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">Самовывоз</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="modal fade" id="personalConfirm" tabindex="-1" aria-labelledby="personalConfirm" aria-modal="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-m">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span class="_icon-cancel"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="title">Для подтверждения номера телефона</p>
-                            <p class="confirm-number-title"></p>
-                            <div class="personal__modal-wrapper">
-                                <div class="personal__modal-container">
-                                    <input class="personal__modal-code input-item" type="number" min="99999" max="999999" required>
-                                    <label class="personal__modal-label">Введите код подтверждения</label>
-                                    <div class="requirements">
-                                        Мин. 6 символов
-                                    </div>
-                                </div>
-                                <div class="personal__refresh-code" role="button">Повторное СМС</div>
-                                <div class="personal__error-number"></div>
-                                <button class="personal__send-code" type="button">Подтвердить</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  -->
+        </div>
 </section>
             
             
@@ -1110,7 +884,7 @@
             <div id="topBtn" class="_icon-arrow-top" role="button"></div>
         </main>
 
-        <footer>
+        <!-- <footer>
             <section class="footer__wrapper">
     <div class="footer__container">
         <div class="footer__sub">
@@ -1178,12 +952,22 @@
         </div>
     </div>
 </section>
-        </footer>
+        </footer> -->
 
     </div>
 
     <script src="js/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js" integrity="sha512-chZc2Mx8B1GzGSNMfJRH63jW7uYZXzX0a/UlWRrTvl4kxxYqUHNMtyTTA5IDQ7gTl4ATLoXlZthsialW3muS0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- html5 datapicker polyfill -->
+    <script>
+        const datefield = document.createElement("input")
+        datefield.setAttribute("type", "date")
+        if (datefield.type != "date") {
+            document.write('<link rel="stylesheet" href="./dist/css/datepicker.min.css">\n')
+            document.write('<script src="js/datepicker.min.js"><\/script>\n')
+        }
+        datefield.remove()
+    </script>
+    <!-- html5 datapicker polyfill -->
     <script async src="js/jquery.maskedinput.js"></script>
     <script async src="js/bootstrap.bundle.min.js"></script>
     <script async src="js/swiper-bundle.min.js"></script>
