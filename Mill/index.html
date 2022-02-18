@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#144563" />
+    <meta name="theme-color" content="#99bfb8" />
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#144563" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#99bfb8" />
 
     <title>Milinal</title>
     <link rel="shortcut icon" type="image/jpg" href="./image/favicon.ico" />
@@ -787,316 +787,637 @@
             
             
 
-            
-            
-            
-            
-            <section class="main__personal-wrapper">
-    <div class="main__personal-container">
-        <div class="personal__sidebar">
-            <p class="personal__sidebar-user">ПРИВЕТ, ИВАН!</p>
-            <nav class="personal__sidebar-items">
-                <button type="button" class="personal__sidebar-item">МОИ ДАННЫЕ</button>
-                <!-- <a href="" class="personal__sidebar-item history-menu">ИСТОРИЯ ЗАКАЗОВ</a> -->
-                <button class="personal__sidebar-item history-menu item-active user-menu">ИСТОРИЯ ЗАКАЗОВ</button>
-                <!-- <button class="personal__sidebar-item" type="button">КЕШБЕК СИСТЕМА</button> -->
-                <a href="" class="personal__sidebar-out">ВЫЙТИ</a>
-            </nav>
+            <section class="bread__crumbs-wrapper">
+    <div class="bread__crumbs-container custom__container">
+        <ul class="bread__crumbs-menu">
+            <li>
+                <a class="bread__crumbs-item" href="http://store-nuot.loc/index.php?route=common/home">Главная<span>/</span>
+                </a>
+            </li>
+            <li>
+                <a class="bread__crumbs-item" href="http://store-nuot.loc/index.php?route=product/category&amp;path=18_24_62">Штаны |
+                    Джинсы
+                    <!-- <span>/</span> -->
+                </a>
+            </li>
+            <!-- <li>
+                <a class="bread__crumbs-item"
+                    href="http://store-nuot.loc/index.php?route=product/product&amp;product_id=62">Штаны Sport Базовые
+                    Беж</a>
+            </li> -->
+        </ul>
+        <a href="http://store-nuot.loc/" role="button" class="bread__crumbs-back _icon-arrow-back">Назад</a>
+    </div>
+</section>
+<section class="top__catalog-wrapper">
+    <div class="top__catalog">
+        <h5 class="top__catalog-title">ПЛАТЬЯ</h5>
+        <!-- <div class="top__catalog-subitems">
+            <ul class="catalog__subitems-container">
+                <li>
+                    <a class="catalog__subitem" href="">Все</a>
+                </li>
+                <li>
+                    <a class="catalog__subitem" href="">Короткие</a>
+                </li>
+                <li>
+                    <a class="catalog__subitem" href="">Миди</a>
+                </li>
+                <li>
+                    <a class="catalog__subitem" href="">Длинные</a>
+                </li>
+                <li>
+                    <a class="catalog__subitem" href="">Джинсовые</a>
+                </li>
+            </ul>
+        </div> -->
+        <div class="top__filters-wrapper custom__container">
+            <div class="top__filters-container _icon-filters init-container-btn" role="button">Отфильтровать и упорядочить
+            </div>
+            <div class="top__pagination">Смотреть по&ensp;<span data-look="grid__catalog-container-2" class="top__pagination-item" role="button">&ensp;2&ensp;</span>|<span data-look="grid__catalog-container-3" class="top__pagination-item" role="button">&ensp;3&ensp;</span>|<span data-look="grid__catalog-container" class="top__pagination-item look-by-active" role="button">&ensp;4</span>
+            </div>
         </div>
-        <div class="personal__information__wrapper show-effect">
-            <div class="personal__main-history history-container">
-                <div class="history__title">
-                    <span class="history__title-text">ИСТОРИЯ ЗАКАЗОВ</span>
-                    <span class="close-item _icon-cancel" role="button"></span>
-                </div>
-                <div class="history__title-items">
-                    <button class="history-title-item active-buy-title active-title" type="button">Активные</button>
-                    <a class="history-title-item archive-title" type="button">Архив</a>
-                </div>
-
-
-
-                <div class="personal__main-data user-data-container">
-                    <div class="personal__titles">
-                        <span class="personal__titles-text">МОИ ДАННЫЕ</span>
-                        <span class="_icon-cancel close-item" role="button"></span>
+    </div>
+</section>
+<section class="grid__catalog-wrapper">
+    <div class="grid__catalog-container custom__container">
+        <form id="filtersForm" class="filters init-container" action="{{ filter }}" method="post" enctype="multipart/form-data">
+            <div class="filter-title-container">
+                <span class="filter-title">ОТФИЛЬТРОВАТЬ И УПОРЯДОЧИТЬ</span>
+                <span class="filter-title-close _icon-cancel" role="button"></span>
+            </div>
+            <div class="filters-main">
+                <div class="filters-main__size">
+                    <div role="button" class="filters-main__title filter-size-js">
+                        <span class="icon _icon-arrow-slider-2"></span>
+                        <span class="filters-main__title__text">ЗАЗМЕР</span>
                     </div>
-                    <form name="user-data" id="user-data" class="personal__form">
-                        <div class="data-item">
-                            <input id="user-lastname" class="input-words input-item" name="user-lastname" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-lastname">Фамилия</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-firstname" class="input-words input-item" name="user-firstname" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-firstname">Имя</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-patronymic" class="input-words input-item" name="user-patronymic" type="text" pattern=".{2,}" maxlength="50" title="Минимум 2 символа" value="eww" required>
-                            <label for="user-patronymic">Отчество</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-telephone" class="telephoneInput person-telephone input-item init-tel-js" name="user-telephone" type="tel" placeholder="+380" required value="3333333333">
-                            <label for="user-telephone">Телефон</label>
-                            <div class="user-telephone-message">
-                                Подтвердите номер
-                            </div>
-                            <div class="confirmation__container">
-                                <button class="confirm-btn" type="button">Подтвердить номер телефона</button>
-                                <p class="confirmed-text">Номер подтвержден<span class="_icon-checked"></span></p>
-                            </div>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-email" class="input-item" name="user-email" type="email" placeholder="" required value="w@w.com">
-                            <label for="user-email">E-mail</label>
-                            <svg class="svg-line-box" xmlns="http://www.w3.org/2000/svg">
-                                <line class="svg-line" y1="2" x2="650" y2="2"></line>
-                            </svg>
-                        </div>
-                        <div class="data-item">
-                            <input id="user-date_of_birth" name="user-date_of_birth" type="date" required value="1991-11-14" autocomplete="off">
-                            <!-- <input id="user-date_of_birth" name="user-date_of_birth" type="date" max required> -->
-                            <label for="user-date_of_birth">Дата рождения</label>
-                        </div>
-                        <div class="data-item">
-                            <select class="" id="user-gender" name="user-gender" required>
-                                <option selected>Не указано</option>
-                                <option value="male">Муж.</option>
-                                <option value="female">Жен.</option>
+                    <div class="filters-select" id="filterSize">
+                        <div class="collapse-container">
+                            <label for="">Выбранный размер</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option selected value="1">S</option>
+                                <option selected value="2">M</option>
+                                <option value="1">S</option>
+                                <option value="2">M</option>
+                                <option value="3">S</option>
+                                <option value="4">M</option>
+                                <option value="5">S</option>
+                                <option value="6">M</option>
+                                <option value="7">S</option>
+                                <option value="8">M</option>
+                                <option value="9">S</option>
+                                <option value="10">M</option>
+                                <option value="11">S</option>
+                                <option value="12">M</option>
+                                <option value="13">S</option>
+                                <option value="14">M</option>
                             </select>
-                            <label for="user-gender">Пол</label>
+                            <input type="hidden" id="allSizes" name="all_sizes" form="filtersForm">
                         </div>
-                        <input class="user-persone-capcha" form="modalInform" name="capcha" type="text" style="display: none;" value="">
-                        <p class="user-persone-success">Данные успешно обновлены!</p>
-                        <button class="personal-btn" form="user-data" type="submit">сохранить</button>
-                    </form>
+                    </div>
+                </div>
+                <div class="filters-main__price">
+                    <div role="button" class="filters-main__title filter-price-js">
+                        <span class="icon _icon-arrow-slider-2"></span>
+                        <span class="filters-main__title__text">ЦЕНА</span>
+                    </div>
+                    <div class="filters-select" id="filterPrice">
+                        <div class="collapse-container">
+                            <div id="noUiSliderRange"></div>
+                            <div class="range-container">
+                                <input type="text" id="inputMin" class="input-min" data-chose="100" readonly value="100">
+                                <input type="text" id="inputMax" class="input-max" data-chose="10000" readonly value="10000">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="active__wrapper">
-                <div class="active-order">
-                    <div class="active-order__titles">
-                        <p class="active-order__main-title">
-                            Заказ № 123456789,
-                            <span>от 20.05.2021</span>
-                        </p>
-                    </div>
-                    <div class="ttn-group">
-                        <div class="active-order__titles order-collapse" role="button">
-                            <p class="active-order__main-title">
-                                <span class="icon _icon-arrow-slider-2"></span>
-                                <span>Rooh</span>
-                            </p>
-                        </div>
-                        <div class="collapse order-collapse__item">
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom">
-                                <div class="order-info-bottom__first">
-                                    <p class="order-info-bottom__first__adress">Харьков, Харьковская обл., Новая почта, склад 50</p>
-                                    <a href="" class="order-info-bottom__first__ttn">Отследить</a>
-                                </div>
-                                <div class="order-info-bottom__past past-desctop">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">65 грн</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom__past past-mobile">
-                                <p class="past__items">
-                                    <span class="past__item__text">Доставка</span>
-                                    <span class="past__item__cost">65 грн</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="past__items">
-                        <span class="past__item__text">Всего</span>
-                        <span class="past__item__cost total-cost">565 грн</span>
-                    </p>
+            <div class="filters-params">
+                <div role="button" class="filters-main__title filter-params-js">
+                    <span class="icon _icon-arrow-slider-2"></span>
+                    <span class="filters-main__title__text">ПАРАМЕТРЫ</span>
                 </div>
+                <div class="filters-params__container" id="filterParams">
+                    <div class="filters-params__container collapse-container">
+                        <div class="filters-select">
+                            <label for="">Материал верха</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">Lorem ipsum</option>
+                                <option value="2">Lorem ipsum</option>
+                                <option value="3">Lorem ipsum</option>
+                                <option value="4">Lorem ipsum</option>
+                                <option value="5">Lorem ipsum</option>
+                                <option value="6">Lorem ipsum</option>
+                                <option value="7">Lorem ipsum</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Длина лямок</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">Lorem</option>
+                                <option value="2">Lorem</option>
+                                <option value="3">Lorem</option>
+                                <option value="4">Lorem</option>
+                                <option value="5">Lorem</option>
+                                <option value="6">Lorem</option>
+                                <option value="7">Lorem</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Внутренний материал</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">ipsum</option>
+                                <option value="2">ipsum</option>
+                                <option value="3">ipsum</option>
+                                <option value="4">ipsum</option>
+                                <option value="5">ipsum</option>
+                                <option value="6">ipsum</option>
+                                <option value="7">ipsum</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Рамки</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">ipsum</option>
+                                <option value="2">ipsum</option>
+                                <option value="3">ipsum</option>
+                                <option value="4">ipsum</option>
+                                <option value="5">ipsum</option>
+                                <option value="6">ipsum</option>
+                                <option value="7">ipsum</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Молния</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">ipsum</option>
+                                <option value="2">ipsum</option>
+                                <option value="3">ipsum</option>
+                                <option value="4">ipsum</option>
+                                <option value="5">ipsum</option>
+                                <option value="6">ipsum</option>
+                                <option value="7">ipsum</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Фурнитура</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">ipsum</option>
+                                <option value="2">ipsum</option>
+                                <option value="3">ipsum</option>
+                                <option value="4">ipsum</option>
+                                <option value="5">ipsum</option>
+                                <option value="6">ipsum</option>
+                                <option value="7">ipsum</option>
+                            </select>
+                        </div>
+                        <div class="filters-select">
+                            <label for="">Отделение для ноутбука</label>
+                            <select class="filters-select2" id="" data-placeholder="Вce" data-text="Выбрано" name="" form="" multiple="multiple">
+                                <option value="1">ipsum</option>
+                                <option value="2">ipsum</option>
+                                <option value="3">ipsum</option>
+                                <option value="4">ipsum</option>
+                                <option value="5">ipsum</option>
+                                <option value="6">ipsum</option>
+                                <option value="7">ipsum</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="allFilters" name="all_filters" form="filtersForm">
+                    </div>
+                </div>
+            </div>
+            <div class="filters-other">
+                <div class="filters-other__sort">
 
-                <ul class="buttom__pagination-wrapper">
-                    <li>
-                        <div class="buttom__pagination-arrow pagination-arrow-prev">
-                            <div class="_icon-arrow-slider-1 pagination-disabled"></div>
+                    <div role="button" class="filters-main__title filter-regulate-js">
+                        <span class="icon _icon-arrow-slider-2"></span>
+                        <span class="filters-main__title__text">УПОРЯДОЧИТЬ</span>
+                    </div>
+
+                    <div class="other-regulate__container" id="filterRegulate">
+                        <div class="collapse-container">
+                            <div class="other-regulate">
+                                <input form="" class="custom-radio" id="default" type="radio" name="regulate" value="1" checked>
+                                <label for="default">По умолчанию</label>
+                            </div>
+                            <div class="other-regulate">
+                                <input form="" class="custom-radio" id="ascending" type="radio" name="regulate" value="2">
+                                <label for="ascending">Цена по возрастанию</label>
+                            </div>
+                            <div class="other-regulate">
+                                <input form="" class="custom-radio" id="descending" type="radio" name="regulate" value="3">
+                                <label for="descending">Цена по убыванию</label>
+                            </div>
                         </div>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item buttom-pagination-active" href="">1</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">2</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">3</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">2</a>
-                    </li>
-                    <li>
-                        <span class="buttom__pagination-item pagination-between-item">...</span>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-item" href="">8</a>
-                    </li>
-                    <li>
-                        <a class="buttom__pagination-arrow pagination-arrow-next" href="">
-                            <div class="_icon-arrow-slider-2"></div>
+                    </div>
+
+                </div>
+                <div class="filters-other__control-wrapper">
+                    <button class="control-apply" type="submit">ПРИМЕНИТЬ</button>
+                    <button class="control-throw" type="button">СБРОСИТЬ</button>
+                    <span class="_icon-cancel close-filters"></span>
+                </div>
+                <input type="hidden" id="filtersCapcha" name="filters_capcha" form="filtersForm" value="">
+            </div>
+        </form>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
                         </a>
-                    </li>
-                </ul>
-            </div> -->
-            <!-- <div class="archive__wrapper">
-                <div class="active-order">
-                    <div class="active-order__titles">
-                        <p class="active-order__main-title">
-                            Заказ № 123456789,
-                            <span>от 20.05.2021</span>
-                        </p>
-                        <p class="active-order__main-title past-desctop">
-                            ДОСТАВЛЕН,
-                            <span>22.05.2021</span>
-                        </p>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
-                    <div class="ttn-group">
-                        <div class="active-order__titles order-collapse" role="button">
-                            <p class="active-order__main-title">
-                                <span class="icon _icon-arrow-slider-2"></span>
-                                <span>TTH 9999328732821</span>
-                            </p>
-                        </div>
-                        <div class="collapse order-collapse__item">
-                            <div class="active-order__item">
-                                <a href="" class="active-order__img">
-                                    <img src="./image/cat-1.jpg" alt="">
-                                </a>
-                                <div class="active-order__info">
-                                    <div class="active-order__title">
-                                        <a href="" class="active-order__title-text">Платье летнее в цветочек</a>
-                                        <div class="check-info-container">
-                                            <span class="check-info-count">1 шт</span>
-                                            <span class="check-info-payment">безналичные</span>
-                                            <span class="check-info-price">500 грн</span>
-                                        </div>
-                                    </div>
-                                    <span class="basket__info__details-size">M</span>
-                                    <p class="active-order__art">Арт. 1234567</p>
-                                    <a href="" class="active-order__review">Оставить отзыв</a>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom">
-                                <div class="order-info-bottom__first">
-                                    <p class="order-info-bottom__first__adress">Харьков, Харьковская обл., Новая почта, склад 50</p>
-                                </div>
-                                <div class="order-info-bottom__past past-desctop">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">Самовывоз</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="order-info-bottom past-mobile-archive">
-                                <p class="active-order__main-title">
-                                    ДОСТАВЛЕН,
-                                    <span>22.05.2021</span>
-                                </p>
-                                <div class="order-info-bottom__past">
-                                    <p class="past__items">
-                                        <span class="past__item__text">Доставка</span>
-                                        <span class="past__item__cost">Самовывоз</span>
-                                    </p>
-                                </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
                             </div>
                         </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
                     </div>
                 </div>
-            </div> -->
-            <!-- <div class="modal fade" id="personalConfirm" tabindex="-1" aria-labelledby="personalConfirm" aria-modal="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-m">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span class="_icon-cancel"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="title">Для подтверждения номера телефона</p>
-                            <p class="confirm-number-title"></p>
-                            <div class="personal__modal-wrapper">
-                                <div class="personal__modal-container">
-                                    <input class="personal__modal-code input-item" type="number" min="99999" max="999999" required>
-                                    <label class="personal__modal-label">Введите код подтверждения</label>
-                                    <div class="requirements">
-                                        Мин. 6 символов
-                                    </div>
-                                </div>
-                                <div class="personal__refresh-code" role="button">Повторное СМС</div>
-                                <div class="personal__error-number"></div>
-                                <button class="personal__send-code" type="button">Подтвердить</button>
-                            </div>
-                        </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
                     </div>
                 </div>
-            </div>  -->
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="220176000000740000" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;5&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=5&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u0411\u0456\u043b\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u0411\u0435\u043b\u043e\u0435&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;6&quot;,&quot;model&quot;:&quot;NUOT Virna \u0421\u0443\u043a\u043d\u044f \u0412\u0435\u043d\u0435\u0446\u0456\u044f&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=6&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;\u0421\u0443\u043a\u043d\u044f \u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0443 \u0412\u0435\u043d\u0435\u0446\u0456\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430 virna_nuot_3  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;}],&quot;price&quot;:&quot;1200 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;5&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;6&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;size&quot;:&quot;S&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;1&quot;},{&quot;size&quot;:&quot;M&quot;,&quot;stock_status_id&quot;:3,&quot;option_value_id&quot;:&quot;2&quot;}],&quot;size_type&quot;:&quot;man_woman_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;\u041f\u043b\u0430\u0442\u044c\u0435 \u0438\u0437 \u0431\u0430\u0442\u0438\u0441\u0442\u0430 \u0412\u0435\u043d\u0435\u0446\u0438\u044f \u041b\u0430\u0432\u0430\u043d\u0434\u0430&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-5eeabb6b74f74f7f" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width: 350px;">
+                                <img class="slide-img" alt="Сукня з батисту Венеція Біла virna_nuot_3  фото 1" src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled swiper-button-lock" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next swiper-button-disabled swiper-button-lock" role="button" aria-label="Next slide" tabindex="-1" aria-controls="swiper-wrapper-5eeabb6b74f74f7f" aria-disabled="true"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=5" class="product__buy-container">
+                        <div class="product_sizes">
+                            <p class="product__sizes-title">Добавить размер</p>
+                            <div class="product__sizes-container" data-id="5" data-shop="0">
+                                <div class="product__sizes-item inform-card" data-stock-status="3">S</div>
+                                <div class="product__sizes-item inform-card" data-stock-status="3">M</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">NUOT Virna Сукня Венеція</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1200 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="5" role="button" class="sub-prod focus-prod" title="Платье из батиста Венеция Белое">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Біла virna_nuot_3  фото 1">
+                    </div>
+                    <div data-prod-id="6" role="button" class="sub-prod" title="Платье из батиста Венеция Лаванда">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="Сукня з батисту &quot;Венеція&quot; Лаванда virna_nuot_3  фото 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__card-container-item">
+            <div class="product__card">
+                <div class="product__card-link" data-sku="040002000000000003" data-json="[{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;312&quot;,&quot;model&quot;:&quot;\u0410\u0432\u0456\u0430\u043f\u0430\u043a&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=312&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/NK1-1397-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 2&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A3139-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 3&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A3145-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 4&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A3148-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 5&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A3172-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 6&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A4108-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 7&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/BF0A4113-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 8&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/NK1-1655-1000x1250-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 9&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/NK2-3198-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0406\u0420\u0418\u0419 multibrand  \u0444\u043e\u0442\u043e 10&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000003\/NK2-3199-1000x1250.jpg&quot;}],&quot;price&quot;:&quot;1650 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;312&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;313&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;314&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;stock_status_id&quot;:1}],&quot;size_type&quot;:&quot;without_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041b\u0415\u041e\u041f\u0410\u0420\u0414, \u0421\u0415\u0420\u042b\u0419&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;313&quot;,&quot;model&quot;:&quot;\u0410\u0432\u0456\u0430\u043f\u0430\u043a&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=313&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/NK2-7989-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 2&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/BF0A0754-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 3&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/BF0A0769-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 4&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/BF0A0792-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 5&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/NK2-3621-1000x1250-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 6&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/NK2-3620-1000x1250-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 7&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/NK2-3196-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e multibrand  \u0444\u043e\u0442\u043e 8&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000012\/NK2-3197-1000x1250.jpg&quot;}],&quot;price&quot;:&quot;1650 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;312&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;313&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;314&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;stock_status_id&quot;:1}],&quot;size_type&quot;:&quot;without_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0411\u041e\u0420\u0414\u041e&quot;},{&quot;added_to_wishlist&quot;:false,&quot;product_id&quot;:&quot;314&quot;,&quot;model&quot;:&quot;\u0410\u0432\u0456\u0430\u043f\u0430\u043a&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/index.php?route=product\/product&amp;product_id=314&quot;,&quot;images&quot;:[{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 1&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/DSCF1867-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 2&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1053-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 3&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1078-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 4&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1095-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 5&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1333-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 6&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1408-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 7&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/BF0A1429-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 8&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/DSCF1861-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 9&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/DSCF1867-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 10&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/NK1-6828-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 11&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/NK1-9318-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 12&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/NK1-9321-1000x1250.jpg&quot;},{&quot;alt&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u041a\u0412\u0406\u0422\u0418 multibrand  \u0444\u043e\u0442\u043e 13&quot;,&quot;href&quot;:&quot;http:\/\/mill.loc\/image\/catalog\/ACCESSORIES\/040002000000000006\/NK1-9323-1000x1250.jpg&quot;}],&quot;price&quot;:&quot;1650 \u0433\u0440\u043d&quot;,&quot;special&quot;:false,&quot;small_images&quot;:{&quot;312&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;313&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;,&quot;314&quot;:&quot;http:\/\/mill.loc\/catalog\/view\/theme\/nuot\/image\/nuot-photo-placegol.png&quot;},&quot;sizes&quot;:[{&quot;stock_status_id&quot;:2}],&quot;size_type&quot;:&quot;without_size&quot;,&quot;status&quot;:&quot;1&quot;,&quot;name&quot;:&quot;AVIAPACK \u041f\u0420\u0418\u041d\u0422 \u041e\u0420\u041d\u0410\u041c\u0415\u041d\u0422, \u0426\u0412\u0415\u0422\u042b&quot;}]">
+
+                    <div aria-label="Добавить в избранное" class="_icon-favorites favorit" role="button"></div>
+
+                    <div class="product-card-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <a href="http://mill.loc/index.php?route=product/product&amp;product_id=312" class="product__card-sub-wrapper swiper-wrapper" id="swiper-wrapper-7ad77917819ee1fc" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="product__card-img-cont swiper-slide swiper-slide-active" role="group" aria-label="1 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 1" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/NK1-1397-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide swiper-slide-next" role="group" aria-label="2 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 2" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A3139-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="3 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 3" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A3145-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="4 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 4" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A3148-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="5 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 5" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A3172-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="6 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 6" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A4108-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="7 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 7" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/BF0A4113-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="8 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 8" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/NK1-1655-1000x1250-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="9 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 9" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/NK2-3198-1000x1250.jpg">
+                            </div>
+                            <div class="product__card-img-cont swiper-slide" role="group" aria-label="10 / 10" style="width: 350px;">
+                                <img class="slide-img" alt="AVIAPACK ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 10" src="http://mill.loc/image/catalog/ACCESSORIES/040002000000000003/NK2-3199-1000x1250.jpg">
+                            </div>
+                        </a>
+                        <div class="_icon-arrow-slider-1 product-card-swiper-prev swiper-button-disabled" role="button" aria-label="Previous slide" tabindex="-1" aria-controls="swiper-wrapper-7ad77917819ee1fc" aria-disabled="true"></div>
+                        <div class="_icon-arrow-slider-2 product-card-swiper-next" role="button" aria-label="Next slide" tabindex="0" aria-controls="swiper-wrapper-7ad77917819ee1fc" aria-disabled="false"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <a href="http://mill.loc/index.php?route=product/product&amp;product_id=312" data-id="312" data-shop="0" class="product__buy-container">
+                        <div class="_icon-bag" data-stock-status="1"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="product__description-item">
+                <div class="product__description-cont">
+                    <div class="product__description-title">Авіапак</div>
+                    <div class="product__description-price__container">
+                        <div class="product__description-price cross-out-price item-active"></div>
+                        <div class="product__description-price">1650 грн</div>
+                    </div>
+                </div>
+                <div class="product__description-subprod">
+                    <div data-prod-id="312" role="button" class="sub-prod focus-prod" title="AVIAPACK ПРИНТ ЛЕОПАРД, СЕРЫЙ">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="&quot;AVIAPACK&quot; ПРИНТ ЛЕОПАРД, СІРИЙ multibrand  фото 1">
+                    </div>
+                    <div data-prod-id="313" role="button" class="sub-prod" title="AVIAPACK ПРИНТ ОРНАМЕНТ, БОРДО">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="&quot;AVIAPACK&quot; ПРИНТ ОРНАМЕНТ, БОРДО multibrand  фото 2">
+                    </div>
+                    <div data-prod-id="314" role="button" class="sub-prod" title="AVIAPACK ПРИНТ ОРНАМЕНТ, ЦВЕТЫ">
+                        <img src="http://mill.loc/catalog/view/theme/nuot/image/nuot-photo-placegol.png" alt="&quot;AVIAPACK&quot; ПРИНТ ОРНАМЕНТ, КВІТИ multibrand  фото 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div>
+        <p class="empty-text">По вашему запросу ничего не найдено</p>
+    </div> -->
 </section>
+            
+            
+            
+            
+            
+            
             
             
             
@@ -1112,7 +1433,7 @@
             <div id="topBtn" class="_icon-arrow-top" role="button"></div>
         </main>
 
-        <!-- <footer>
+        <footer>
             <section class="footer__wrapper">
     <div class="footer__container">
         <div class="footer__sub">
@@ -1180,7 +1501,7 @@
         </div>
     </div>
 </section>
-        </footer> -->
+        </footer>
 
     </div>
 

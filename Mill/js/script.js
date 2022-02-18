@@ -2427,12 +2427,17 @@ window.onload = function () {
 			// 	preOrder(cityId, cityShop, size);
 			// 	//$('#availability').modal('hide');
 			// }
-			else if (
-				(stockStatus == 1 && clazz == 15) ||
-				(stockStatus == 1 && clazz == 17)
-			) {
+			else if (stockStatus == 1 && clazz == 15) {
 				shopAddAjax(shop);
 				addAjax(id, shop);
+			} else if (stockStatus == 1 && clazz == 17) {
+				let size = i.getAttribute('data-size');
+				shopAddAjax(shop);
+				if (size) {
+					addAjax(id, shop, size);
+				} else {
+					addAjax(id, shop);
+				}
 			}
 			// else if (
 			// 	(stockStatus == 2 && clazz == 15) ||
@@ -2440,11 +2445,15 @@ window.onload = function () {
 			// ) {
 			// 	preOrder(id, shop);
 			// }
-			else if (
-				(stockStatus == 3 && clazz == 15) ||
-				(stockStatus == 3 && clazz == 17)
-			) {
+			else if (stockStatus == 3 && clazz == 15) {
 				informAbout(id);
+			} else if (stockStatus == 3 && clazz == 17) {
+				let size = i.getAttribute('data-size');
+				if (size) {
+					informAbout(id, size);
+				} else {
+					informAbout(id, size);
+				}
 			}
 			// else if (stockStatus == 1 && clazz == 16) {
 			// 	shopAddAjax(shop);
@@ -3876,20 +3885,46 @@ window.onload = function () {
 
 				if (!containsClazz && getComputedStyle(icon).opacity == '0') {
 					e.preventDefault();
-					icon.classList.add('opacity-checked');
 					let parent = document.querySelector('.buy__container');
 					let product_id = parent.getAttribute('data-id');
-					compareAjax(product_id, icon);
+					let sizesBlock = document.querySelector(
+						'.card__description__sizes-block'
+					);
+					let activeSize = document.querySelector(
+						'.card__description-size.active-compare'
+					);
+
+					if (sizesBlock && activeSize) {
+						icon.classList.add('opacity-checked');
+						activeSize.classList.remove('active-compare');
+						return compareAjax(
+							product_id,
+							icon,
+							activeSize.textContent
+						);
+					} else if (sizesBlock && !activeSize) {
+						document.querySelector(
+							'.importantSizeModal'
+						).style.display = 'block';
+						return $('#universalModal').modal();
+					}
+					icon.classList.add('opacity-checked');
+					return compareAjax(product_id, icon);
 				} else if (!containsClazz) {
 					e.preventDefault();
 				}
 			});
 
-			function compareAjax(id, item) {
+			function compareAjax(id, item, size = '') {
+				let sendData = {
+					product_id: id,
+					size: size,
+				};
+
 				$.ajax({
 					url: 'index.php?route=product/compare/add',
 					type: 'post',
-					data: 'product_id=' + id,
+					data: sendData,
 					dataType: 'json',
 					success: function (data) {
 						if (data.total > 1) {
@@ -5482,6 +5517,82 @@ window.onload = function () {
 			let clickEvent = document.createEvent('MouseEvents');
 			clickEvent.initEvent(eventType, true, true);
 			node.dispatchEvent(clickEvent);
+		}
+
+		// remove on user personal page
+		let removeUserPage = document.querySelectorAll('.connect__remove-item');
+		if (removeUserPage.length > 0) {
+			let removeModal = document.getElementById('removeModal');
+			removeUserPage.forEach((i) => {
+				i.addEventListener('click', (e) => {
+					// let current = e.currentTarget;
+					// if (current.classList.contains('remove-account')) {
+					// 	removeModal.classList.add('account');
+					// } else if (current.classList.contains('remove-card')) {
+					// 	removeModal.classList.add('card');
+					// }
+					$(removeModal).modal();
+				});
+			});
+		}
+
+		//payment card
+		let addPayCard = document.querySelector('.add-pay-card');
+		if (addPayCard) {
+			let payCardNumber = document.querySelector('.pay-card-number');
+			payCardNumber.addEventListener('input', (e) => {
+				payCardNumber.value = payCardNumber.value.replace(
+					/[^0-9]/g,
+					''
+				);
+			});
+
+			let showCard = document.querySelector('.show__card-container');
+			let addCard = document.querySelector('.add__card-container');
+			addPayCard.addEventListener('click', () => {
+				addCard.style.display = 'block';
+				showCard.style.display = 'none';
+			});
+
+			let closeAddCard = document.querySelectorAll('.close-add-card');
+			closeAddCard.forEach((i) => {
+				i.addEventListener('click', () => {
+					addCard.style.display = 'none';
+					showCard.style.display = 'block';
+				});
+			});
+		}
+
+		//hide text in universal modal
+		$('#universalModal').on('hidden.bs.modal', function () {
+			let sizeText = document.querySelector('.importantSizeModal');
+			let favoriteText = document.querySelector('.favoriteModal');
+
+			if (sizeText) {
+				sizeText.style.display = 'none';
+			}
+
+			if (favoriteText) {
+				favoriteText.style.display = 'none';
+			}
+		});
+
+		//add compare size
+		let sizesForCompare = document.querySelectorAll(
+			'.card__description-size'
+		);
+		if (sizesForCompare.length > 0) {
+			sizesForCompare.forEach((i) => {
+				i.addEventListener('click', sizesCompareListener, false);
+			});
+
+			function sizesCompareListener(e) {
+				let activeItem = document.querySelector(
+					'.card__description-size.active-compare'
+				);
+				if (activeItem) activeItem.classList.remove('active-compare');
+				this.classList.add('active-compare');
+			}
 		}
 	})();
 };
