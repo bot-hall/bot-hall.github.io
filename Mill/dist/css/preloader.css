@@ -1,5 +1,10 @@
+:root {
+	--duration: 400ms;
+	--delay: 800ms;
+}
+
 .main-preloader {
-	background-color: #144563;
+	background-color: #f7f7f7;
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -14,14 +19,127 @@
 	flex-direction: column;
 }
 
-.main-preloader.done {
-	animation: hidden-loader 0.5s linear forwards;
-	animation-delay: 0.6s;
+.main-preloader svg {
+	/* height: 94px; */
+	height: auto;
+	/* width: 520px; */
+	width: 35vw;
 }
 
-.main-preloader .nuot-loader-svg {
-	z-index: 2;
-	filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.9));
+.main-preloader .letter-1 {
+	transform-origin: center;
+	/* transform: translateX(50%); */
+	animation: 425ms transition-leter 600ms linear both;
+}
+
+@keyframes transition-leter {
+	0% {
+		transform: translateX(40%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.letter-2,
+.letter-3,
+.letter-4,
+.letter-5,
+.letter-6,
+.letter-7 {
+	opacity: 0;
+}
+
+.main-preloader .letter-2 {
+	animation-name: show-leter;
+	animation-duration: var(--duration);
+	animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	animation-delay: var(--delay);
+	animation-fill-mode: both;
+}
+
+.main-preloader .letter-3 {
+	animation: var(--duration) show-leter calc(var(--duration) + var(--delay))
+		cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+.main-preloader .letter-4 {
+	animation: var(--duration) show-leter
+		calc((var(--duration) * 2) + var(--delay))
+		cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+.main-preloader .letter-5 {
+	animation: var(--duration) show-leter
+		calc((var(--duration) * 3) + var(--delay))
+		cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+.main-preloader .letter-6 {
+	animation: var(--duration) show-leter
+		calc((var(--duration) * 4) + var(--delay))
+		cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+.main-preloader .letter-7 {
+	animation: var(--duration) show-leter
+		calc((var(--duration) * 5) + var(--delay))
+		cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@keyframes show-leter {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.blind {
+	position: absolute;
+	transform-origin: center;
+	transform: translateX(-100%);
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	background: black;
+	top: 0;
+}
+
+.letter-1 {
+	background-image: linear-gradient(
+		from 270deg,
+		#ff4800 10%,
+		#dfd902 35%,
+		#20dc68,
+		#0092f4,
+		#da54d8 72% 75%,
+		#ff4800 95%
+	);
+}
+
+.done .blind {
+	animation: 800ms blind linear both;
+}
+
+@keyframes blind {
+	0% {
+		transform: translateX(-100%);
+		background: black;
+	}
+	50% {
+		transform: translateX(0);
+		background: black;
+	}
+	100% {
+		transform: translateX(0);
+		background: #f7f7f7;
+	}
+}
+
+.main-preloader.done {
+	animation: 0.5s hidden-loader 1000ms linear forwards;
 }
 
 @keyframes hidden-loader {
@@ -31,105 +149,28 @@
 	}
 }
 
-.loader {
-	opacity: 0;
-	stroke-dasharray: 100 300;
-	stroke-dashoffset: 100;
-	display: flex;
-	width: 200px;
-	height: 2px;
-	background-color: #11364d;
-	margin-top: 50px;
-	overflow: hidden;
-	z-index: 2;
+.loading-animation .loading-1 {
+	/* stroke-dasharray: 1;
+	stroke-dashoffset: 20; */
+	stroke-dasharray: 240;
+	stroke-dashoffset: 480;
+	animation: loading-1 2.4s linear infinite;
 }
 
-.load-line {
-	stroke: #fa8a3e;
-	stroke-width: 4;
-}
-
-.load-line-box {
-	width: 200px;
-	height: 2px;
-}
-
-.show-loader {
-	animation: show-loader 0.1s linear forwards, load-line 1.8s linear infinite;
-}
-
-@keyframes show-loader {
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes load-line {
-	to {
-		stroke-dashoffset: -200;
-	}
-}
-
-.nuot-loader-svg__path {
-	fill: none;
-	stroke-width: 2;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	stroke-miterlimit: 10;
-	stroke-dasharray: 1000;
-	stroke-dashoffset: 1000;
-	animation: dash 5s linear forwards;
-	animation-delay: 0.8s;
-}
-
-@keyframes dash {
+@keyframes loading-1 {
 	to {
 		stroke-dashoffset: 0;
 	}
 }
 
-.loader-hide {
-	animation: scale-out-center 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+.loading-animation .loading-2 {
+	stroke-dasharray: 240;
+	stroke-dashoffset: 0;
+	animation: loading-2 2.4s linear infinite;
 }
 
-@keyframes scale-out-center {
-	0% {
-		transform: scale(1);
-	}
-	100% {
-		transform: scale(0);
-	}
-}
-
-.paint {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
-
-.pulse {
-	fill: #0e3349;
-	stroke: #0e3349;
-	stroke-width: 3;
-	stroke-miterlimit: 10;
-	animation-duration: 2s;
-	animation-name: pulse;
-	animation-iteration-count: infinite;
-	/* width: 20px;
-    height: 20px; */
-	position: absolute;
-	z-index: 1;
-}
-
-@keyframes pulse {
-	from {
-		stroke-width: 15px;
-		stroke-opacity: 1;
-		r: 5px;
-	}
-
+@keyframes loading-2 {
 	to {
-		stroke-opacity: 0;
-		r: 20px;
+		stroke-dashoffset: 480;
 	}
 }

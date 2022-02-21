@@ -310,28 +310,6 @@ window.onload = function () {
 			parent.removeChild(parent.firstChild);
 		}
 	}
-	// //mask plagin
-	// $('.telephoneInput')
-	// 	.click(function () {
-	// 		if ($(this).val().includes('_')) {
-	// 			$(this).setCursorPosition(5);
-	// 		}
-	// 		///$(this).val('9');
-	// 	})
-	// 	.mask('+380(99)9999999');
-	// $('.telephoneInput').mask('+380(99)9999999');
-	// //mask plagin fix center
-	// $.fn.setCursorPosition = function (pos) {
-	// 	if ($(this).get(0).setSelectionRange) {
-	// 		$(this).get(0).setSelectionRange(pos, pos);
-	// 	} else if ($(this).get(0).createTextRange) {
-	// 		var range = $(this).get(0).createTextRange();
-	// 		range.collapse(true);
-	// 		range.moveEnd('character', pos);
-	// 		range.moveStart('character', pos);
-	// 		range.select();
-	// 	}
-	// };
 	//needs for revrite dropped cart in checkout page
 	function droppedCartData() {
 		// let lastname = document.getElementById('lastname').value;
@@ -451,6 +429,955 @@ window.onload = function () {
 		// 	},
 		// });
 	}
+
+	//! basket
+	//init add product to basket in catalogs pages
+	let stockStatus;
+	let id;
+	let shop;
+	let size;
+	let cityShop;
+	let cityId;
+
+	function isStokStatus(clazz, i) {
+		document
+			.querySelectorAll('.card__description-size.active-size')
+			.forEach((i) => {
+				i.classList.remove('active-size');
+			});
+
+		if (stockStatus == 1 && (clazz == 13 || clazz == 14)) {
+			i.classList.toggle('active-size');
+		} else if (stockStatus == 1 && clazz == 12) {
+			shopAddAjax(shop);
+			addAjax(id, shop);
+		} else if (stockStatus == 1 && clazz == 11) {
+			shopAddAjax(shop);
+			addAjax(id, shop, size);
+		} else if (stockStatus == 2 && clazz == 13) {
+			if (size == 'ONE') {
+				preOrder(id, shop);
+			} else {
+				preOrder(id, shop, size);
+			}
+		} else if (stockStatus == 2 && clazz == 12) {
+			preOrder(id, shop);
+		} else if (stockStatus == 2 && clazz == 11) {
+			preOrder(id, shop, size);
+		} else if (stockStatus == 3 && clazz == 12) {
+			informAbout(id);
+		} else if (stockStatus == 3 && clazz == 11) {
+			informAbout(id, size);
+		} else if (stockStatus == 3 && clazz == 13) {
+			if (size == 'ONE') {
+				informAbout(id);
+			} else {
+				informAbout(id, size);
+			}
+		} else if (
+			(stockStatus == 2 && clazz == 14) ||
+			(stockStatus == 3 && clazz == 14)
+		) {
+			preOrder(cityId, cityShop, size);
+			$('#availability').modal('hide');
+		} else if (
+			(stockStatus == 1 && clazz == 15) ||
+			(stockStatus == 1 && clazz == 17)
+		) {
+			shopAddAjax(shop);
+			addAjax(id, shop);
+		} else if (
+			(stockStatus == 2 && clazz == 15) ||
+			(stockStatus == 2 && clazz == 17)
+		) {
+			preOrder(id, shop);
+		} else if (
+			(stockStatus == 3 && clazz == 15) ||
+			(stockStatus == 3 && clazz == 17)
+		) {
+			informAbout(id);
+		} else if (stockStatus == 1 && clazz == 16) {
+			shopAddAjax(shop);
+			addAjax(id, shop);
+		} else if (
+			(stockStatus == 2 && clazz == 16) ||
+			(stockStatus == 3 && clazz == 16)
+		) {
+			preOrder(id, shop);
+		}
+	}
+
+	function stockStatusListener(e) {
+		i = this;
+		stockStatus = i.getAttribute('data-stock-status');
+		let parent = i.parentNode;
+		let clList = parent.classList;
+		id = parent.getAttribute('data-id');
+		shop = parent.getAttribute('data-shop');
+		size = i.textContent;
+		let clazz;
+		let citySizes =
+			i.parentNode.parentNode.parentNode.classList.contains(
+				'city__sizes'
+			);
+		cityShop = i.parentNode.parentNode.parentNode.getAttribute('data-shop');
+		cityId = i.parentNode.parentNode.parentNode.getAttribute('data-id');
+
+		if (
+			window.matchMedia('(min-width: 640px)').matches &&
+			clList.contains('product__sizes-container')
+		) {
+			clazz = 11;
+			isStokStatus(clazz, i);
+		} else if (
+			window.matchMedia('(min-width: 640px)').matches &&
+			clList.contains('product__buy-container')
+		) {
+			clazz = 12;
+			isStokStatus(clazz, i);
+		} else if (
+			clList.contains('card__description__sizes-block') &&
+			!citySizes
+		) {
+			clazz = 13;
+			isStokStatus(clazz, i);
+		} else if (citySizes) {
+			clazz = 14;
+			isStokStatus(clazz, i);
+		} else if (clList.contains('buy__container')) {
+			clazz = 15;
+			isStokStatus(clazz, i);
+		} else if (clList.contains('city__sizes')) {
+			$('#availability').modal('hide');
+			clazz = 16;
+			isStokStatus(clazz, i);
+		} else if (clList.contains('table__btns-container')) {
+			clazz = 17;
+			isStokStatus(clazz, i);
+		}
+	}
+
+	function initStockStatus() {
+		document.querySelectorAll('[data-stock-status]').forEach((i) => {
+			i.addEventListener('click', stockStatusListener, false);
+		});
+	}
+	initStockStatus();
+
+	function informAbout(id, size = 'ONE') {
+		let showSize = infoAvailability.querySelector('.pre-size');
+		removeAllChildNodes(showSize);
+
+		showSize.insertAdjacentHTML(
+			'afterbegin',
+			`<button type="button" class="card__description-size" data-confirm=${id}>${size}</button>`
+		);
+
+		$(infoAvailability).modal();
+	}
+
+	function preOrder(id, shop, size = 'ONE') {
+		let modal = document.querySelector('#preOrderModal');
+		let basketSize = modal.querySelector('.pre-size');
+		removeAllChildNodes(basketSize);
+
+		basketSize.insertAdjacentHTML(
+			'afterbegin',
+			`<button type="button" class="card__description-size" data-shop="${shop}" data-confirm=${id}>${size}</button>`
+		);
+
+		$('#preOrderModal').modal();
+	}
+
+	//shop ajax (buy product)
+	function shopAddAjax(shop) {
+		let data = {
+			shop_id: shop,
+		};
+
+		$.ajax({
+			url: 'index.php?route=product/product/resorvedOfflineProduct',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			success: function (data) {},
+			error: function (err) {
+				throw new Error(err);
+			},
+		});
+	}
+	// add to basket (buy product)
+	function addAjax(id, shop, size = '') {
+		let data = {
+			product_id: id,
+			quantity: 1,
+			shop_id: shop,
+			option: {
+				[id]: size,
+			},
+		};
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			success: function (data) {
+				basketRendering(data);
+				// pixel
+				FBAddToCart(id, data);
+			},
+			error: function (err) {
+				throw new Error(err);
+			},
+		});
+	}
+	// draw basket
+	function basketRendering(data) {
+		let basketContainer = document.querySelector('.basket__items');
+		let basketTotal = document.querySelector('.basket__count-container');
+		removeAllChildNodes(basketContainer);
+		removeAllChildNodes(basketTotal);
+
+		basketTotal.insertAdjacentHTML(
+			'beforeend',
+			`
+            <div class="basket__count">
+                <div class="basket__count-title">${data.total[0].product_total_title}</div>
+                <div class="basket__count-price">${data.total[0].product_total_price}</div>
+            </div>
+        `
+		);
+
+		data.cart.forEach((i) => {
+			basketContainer.insertAdjacentHTML(
+				'beforeend',
+				`
+                <div class="basket__item">
+                    <a href="${i.product_href}" class="basket__img">
+                        <img src="${i.product_thumb}" alt="">
+                    </a>
+                    <div class="basket__info">
+                        <div class="basket__info-title">
+                            <a href="${i.product_href}" class="basket__info-title-text">${i.product_name}</a>
+                            <div role="button" class="_icon-cancel" data-remove-id=${i.cart_id}></div>
+                        </div>
+                        <div class="basket__info-art">Арт. ${i.product_sku}</div>
+                        <div class="basket__info__details">
+                            <div class="basket__info__details-sub">
+                                <div class="basket__info__details-size">${i.product_size}</div>
+                                <div class="basket__info__details-amount">
+                                    <div class="spinner-basket-container">
+                                        <div class="spinner-border spinner-basket" role="status">
+                                            <span class="sr-only">Загрузка...</span>
+                                        </div>
+                                    </div>
+                                    <button class="step stepDown" type="button" data-edit-id="${i.cart_id}">-</button>
+                                    <input type="number" min="1" max="${i.max}" value="${i.product_quantity}" readonly="" class="details-amount">
+                                    <button class="step stepUp" type="button" data-edit-id="${i.cart_id}">+</button>
+                                </div>
+                            </div>
+                            <div class="basket__info__price">
+                                <div class="basket__info__price-title">${i.product_title}</div>
+                                <div class="basket__info__price-cost">${i.product_price}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+			);
+		});
+
+		basketWrapp.classList.toggle('show-effect');
+		basketModal.classList.toggle('active-modal-basket');
+
+		setToBasketIcon(data.total[0].products_total_count);
+		removeInit();
+		isEmpty();
+		stepEdit();
+	}
+	let headerbag = document.querySelector('.header-bag');
+	let basketModal = document.querySelector('#menu__mobile-modal');
+	let basketWrapp;
+	let closeBasket;
+	let basketContinue;
+	let orderPage = document.querySelector('.ordering__wrapper');
+	let infoAvailability = document.getElementById('infoAvailability');
+	//let body = document.querySelector('body');
+
+	if (headerbag) {
+		basketWrapp = document.querySelector('.header__basket-wrapper');
+		closeBasket = basketWrapp.querySelector('.close-basket');
+		basketContinue = basketWrapp.querySelector('.basket__submit-continue');
+	}
+
+	// show/close basket
+	if (headerbag) {
+		headerbag.addEventListener('click', (e) => {
+			if (e.target.classList.contains('header-bag')) {
+				basketWrapp.classList.toggle('show-effect');
+				basketModal.classList.toggle('active-modal-basket');
+			}
+			isEmpty();
+		});
+
+		closeBasket.addEventListener('click', (e) => {
+			basketWrapp.classList.toggle('show-effect');
+			basketModal.classList.toggle('active-modal-basket');
+		});
+
+		basketContinue.addEventListener('click', (e) => {
+			basketWrapp.classList.toggle('show-effect');
+			basketModal.classList.toggle('active-modal-basket');
+		});
+
+		document.addEventListener('click', function (e) {
+			let target = e.target;
+			detectClickOut(basketWrapp, headerbag, target);
+		});
+	}
+
+	//working functions
+	function detectClickOut(container, icon, target) {
+		let itsContainer = target == container || container.contains(target);
+		let itsBtn = target == icon;
+		let isActive = container.classList.contains('show-effect');
+
+		if (!itsContainer && !itsBtn && isActive) {
+			basketWrapp.classList.toggle('show-effect');
+			basketModal.classList.toggle('active-modal-basket');
+		}
+	}
+
+	function isEmpty() {
+		let basketContent = document.querySelectorAll('.basket__item');
+
+		if (orderPage && basketContent.length == 0) {
+			window.location.replace(window.location.origin);
+		} else if (!orderPage && basketContent.length == 0) {
+			basketWrapp.querySelector('.basket__empty').style.display = 'block';
+			basketWrapp.querySelector(
+				'.basket__count-container'
+			).style.display = 'none';
+			basketWrapp.querySelector('.basket__submit-cont').style.display =
+				'none';
+		} else if (!orderPage && basketContent.length !== 0) {
+			basketWrapp.querySelector('.basket__empty').style.display = 'none';
+			basketWrapp.querySelector(
+				'.basket__count-container'
+			).style.display = 'block';
+			basketWrapp.querySelector('.basket__submit-cont').style.display =
+				'flex';
+		}
+	}
+
+	function setToBasketIcon(sum) {
+		let basket = document.querySelector('.products-total');
+		removeAllChildNodes(basket);
+
+		if (sum > 0) {
+			basket.insertAdjacentHTML('beforeend', `(${sum})`);
+		}
+	}
+
+	function setChecoutData(data) {
+		let totalWithOutPromo = document.querySelector('.item-sum');
+		document.querySelector('.item-count-number').textContent =
+			data.products_total_count;
+
+		if (data.sale_total_price == 0) {
+			totalWithOutPromo.textContent = data.product_total_price;
+		} else {
+			totalWithOutPromo.textContent = data.sale_total_price;
+		}
+	}
+
+	function showBasketModal() {
+		let universal = document.querySelector('#universalModal');
+		universal.querySelectorAll('.universalModal').forEach((i) => {
+			i.style.display = 'none';
+		});
+		document.querySelector('.importantSizeModal').style.display = 'block';
+		$('#universalModal').modal();
+	}
+
+	//add to basket
+	// init with main button
+	let addBtn = document.querySelector('.buy__container-btn');
+	if (addBtn) {
+		addBtn.addEventListener('click', (e) => {
+			let mainSizes = document.querySelector('.main-sizes');
+			let active = mainSizes.querySelector('.active-size');
+			if (active) {
+				let id = active.parentNode.getAttribute('data-id');
+				let size = active.textContent;
+				let shop = active.getAttribute('data-shop');
+
+				if (size == 'ONE') {
+					addAjax(id, shop);
+				} else {
+					addAjax(id, shop, size);
+				}
+
+				shopAddAjax(shop);
+				active.classList.toggle('active-size');
+			} else {
+				showBasketModal();
+			}
+		});
+	}
+	// init with reserve button
+	let reserveBtn = document.querySelectorAll('.city__reserve');
+	if (reserveBtn.length > 0) {
+		reserveBtn.forEach((i) => {
+			i.addEventListener('click', (e) => {
+				let active = i.parentNode.querySelector('.active-size');
+				if (active) {
+					let id = i.parentNode.getAttribute('data-id');
+					let size = active.textContent;
+					let shop = i.parentNode.getAttribute('data-shop');
+
+					if (size == 'ONE') {
+						addAjax(id, shop);
+					} else {
+						addAjax(id, shop, size);
+					}
+
+					shopAddAjax(shop);
+					active.classList.toggle('active-size');
+					$('#availability').modal('toggle');
+				} else {
+					$('#availability').modal('toggle');
+					showBasketModal();
+				}
+			});
+		});
+	}
+	//products in slider
+	let sliderBlock = document.querySelector('.slider-cards__swiper');
+	let gridCatalodItem = document.querySelectorAll(
+		'.product__card-container-item'
+	);
+	if (sliderBlock || gridCatalodItem.length > 0) {
+		getAllSubProducts();
+	}
+
+	function getAllSubProducts() {
+		let subProdrodBtn = document.querySelectorAll('[data-prod-id]');
+
+		subProdrodBtn.forEach((i) => {
+			i.addEventListener('click', subProdrodListener, false);
+		});
+	}
+
+	function subProdrodListener(e) {
+		i = this;
+		let btnProdId = i.getAttribute('data-prod-id');
+		let parent = i.parentNode.parentNode.parentNode;
+		let card = parent.querySelector('[data-json]');
+		let dataId = parent.querySelector('[data-id]');
+		let dataJson = card.getAttribute('data-json');
+		let dataArr = JSON.parse(dataJson);
+		let favorite = card.querySelector('.favorit');
+		let crossOutPrice =
+			card.parentNode.parentNode.querySelector('.cross-out-price');
+		let price = crossOutPrice.nextElementSibling;
+
+		let subProdCont = i.parentNode;
+		subProdCont.querySelector('.focus-prod').classList.remove('focus-prod');
+		i.classList.add('focus-prod');
+
+		dataArr.forEach((i) => {
+			if (i.product_id == btnProdId) {
+				let buyCont = parent.querySelector('.product__buy-container');
+				buyCont.setAttribute('href', i.href);
+				let sizesCont = buyCont.querySelector(
+					'.product__sizes-container'
+				);
+				let cardLink = parent.querySelector(
+					'.product__card-sub-wrapper'
+				);
+				cardLink.setAttribute('href', i.href);
+				dataId.setAttribute('data-id', i.product_id);
+				let iconBag = parent.querySelector('._icon-bag');
+
+				if (i.special !== false) {
+					crossOutPrice.textContent = i.price;
+					price.textContent = i.special;
+					price.classList.add('old-price');
+				} else {
+					crossOutPrice.textContent = '';
+					price.textContent = i.price;
+					price.classList.remove('old-price');
+				}
+
+				if (sizesCont) {
+					while (sizesCont.firstChild) {
+						sizesCont.removeChild(sizesCont.firstChild);
+					}
+
+					i.sizes.forEach((i) => {
+						if (i.stock_status_id == 2) {
+							sizesCont.insertAdjacentHTML(
+								'beforeend',
+								`
+                                <div class="product__sizes-item item-active" data-stock-status="${i.stock_status_id}">${i.size}</div>
+                            `
+							);
+						} else if (i.stock_status_id == 3) {
+							sizesCont.insertAdjacentHTML(
+								'beforeend',
+								`
+                                <div class="product__sizes-item inform-card" data-stock-status="${i.stock_status_id}">${i.size}</div>
+                            `
+							);
+						} else if (i.stock_status_id == 1) {
+							sizesCont.insertAdjacentHTML(
+								'beforeend',
+								`
+                                <div class="product__sizes-item" data-stock-status="${i.stock_status_id}">${i.size}</div>
+                            `
+							);
+						}
+					});
+					document
+						.querySelectorAll('[data-stock-status]')
+						.forEach((i) => {
+							i.removeEventListener(
+								'click',
+								stockStatusListener,
+								false
+							);
+						});
+					initStockStatus();
+				} else if (iconBag) {
+					i.sizes.forEach((i) => {
+						iconBag.setAttribute(
+							'data-stock-status',
+							i.stock_status_id
+						);
+					});
+				}
+
+				let imgCont = parent.querySelector(
+					'.product__card-sub-wrapper'
+				);
+				while (imgCont.firstChild) {
+					imgCont.removeChild(imgCont.firstChild);
+				}
+
+				i.images.forEach((i) => {
+					imgCont.insertAdjacentHTML(
+						'afterbegin',
+						`
+                            <div class="product__card-img-cont swiper-slide">
+                                <img class="slide-img" src="${i.href}">
+                            </div>
+                        `
+					);
+				});
+
+				if (Array.isArray(productCardSwiper)) {
+					productCardSwiper.map((i) => {
+						i.update();
+					});
+				} else {
+					productCardSwiper.update();
+				}
+
+				if (i.added_to_wishlist) {
+					favorite.classList.remove('_icon-favorites');
+					favorite.classList.add('_icon-favorites-fill');
+				} else {
+					favorite.classList.add('_icon-favorites');
+					favorite.classList.remove('_icon-favorites-fill');
+				}
+			}
+		});
+	}
+
+	let confirm = document.querySelector('.confirm__pre-order');
+	if (confirm) {
+		confirm.addEventListener('click', (e) => {
+			let confirmItem = document.querySelector('[data-confirm]');
+			let confirmId = confirmItem.getAttribute('data-confirm');
+			let shopId = confirmItem.getAttribute('data-shop');
+			let confirmSize = confirmItem.textContent;
+
+			if (confirmSize == 'ONE') {
+				addAjax(confirmId, shopId);
+			} else {
+				addAjax(confirmId, shopId, confirmSize);
+			}
+
+			shopAddAjax(shopId);
+		});
+	}
+
+	//init editing
+	function stepEdit() {
+		let step = document.querySelectorAll('.step');
+
+		if (step.length > 0) {
+			step.forEach((i) => {
+				i.addEventListener('click', (e) => {
+					let value =
+						i.parentNode.querySelector('.details-amount').value;
+					let id = i.getAttribute('data-edit-id');
+
+					if (
+						i.classList.contains('stepUp') &&
+						!i.classList.contains('disabled-item')
+					) {
+						editAjax(value, id, '+', i);
+					}
+
+					if (i.classList.contains('stepDown')) {
+						editAjax(value, id, '-', i);
+					}
+				});
+			});
+		}
+	}
+	stepEdit();
+
+	function editAjax(quantity, id, step, i) {
+		let spinnerEl = i.parentNode.querySelector('.spinner-basket-container');
+
+		let promo = '';
+		let certificate = '';
+		let magazineId = '';
+		let pay = '';
+
+		if (document.querySelector('.shopping__inform-promo')) {
+			promo = document.querySelector('.shopping__inform-promo').value;
+		}
+
+		if (document.querySelector('.shopping__inform-certificate')) {
+			certificate = document.querySelector(
+				'.shopping__inform-certificate'
+			).value;
+		}
+
+		if (orderPage) {
+			magazineId =
+				i.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute(
+					'data-magazine-id'
+				);
+			pay = document.querySelector('#pay').value;
+		}
+
+		let data = {
+			quantity: quantity,
+			key: id,
+			step: step,
+			promo: promo,
+			certificate: certificate,
+			shop_id: magazineId,
+			client_was_going_to_pay: pay,
+		};
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/edit',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			beforeSend: function () {
+				hiding(spinnerEl, 'flex');
+			},
+			success: function (data) {
+				hiding(spinnerEl, 'none');
+				if (data.is_max) {
+					i.classList.add('disabled-item');
+				} else {
+					let stepUpBtn = i.parentNode.querySelector('.stepUp');
+					stepUpBtn.classList.remove('disabled-item');
+
+					if (orderPage) {
+						setEditdata(data, i);
+						setChecoutData(data);
+						sendDroppedCartData(droppedCartData());
+						initSaleCode(data);
+
+						if (data.shipping_methods !== 'products not found!') {
+							changeDeliveryMethods(data);
+						}
+					} else {
+						setEditdata(data, i);
+						setToBasketIcon(data.products_total_count);
+					}
+				}
+			},
+			error: function (err) {
+				hiding(spinnerEl, 'none');
+				throw new Error(err);
+			},
+		});
+	}
+
+	function setEditdata(data, i) {
+		let basketTotalPrice = document.querySelector('.basket__count-price');
+
+		if (data.value > 0) {
+			let input = i.parentNode.querySelector('.details-amount');
+			let itemTotalPrice =
+				i.parentNode.parentNode.parentNode.querySelector(
+					'.basket__info__price-cost'
+				);
+
+			input.value = data.value;
+			basketTotalPrice.innerHTML = data.product_total_price;
+			itemTotalPrice.innerHTML = data.product_total;
+		} else {
+			i.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+			basketTotalPrice.innerHTML = data.product_total_price;
+		}
+		isEmpty();
+	}
+
+	//init deleting
+	function removeInit() {
+		let removeItem = document.querySelectorAll('[data-remove-id]');
+
+		if (removeItem.length > 0) {
+			removeItem.forEach((i) => {
+				i.addEventListener('click', (e) => {
+					if (orderPage) {
+						confirmRemove(i);
+					} else {
+						removeAjax(i.getAttribute('data-remove-id'), i);
+					}
+				});
+			});
+		}
+	}
+	removeInit();
+
+	function confirmRemove(i) {
+		let confirm =
+			i.parentNode.parentNode.parentNode.querySelector(
+				'.confirm__basket'
+			);
+		confirm.style.display = 'flex';
+
+		document.addEventListener('click', function (e) {
+			let target = e.target;
+			let itsSearch = target == confirm || confirm.contains(target);
+			let itsBtn = target == i;
+			let isActive = (confirm.style.display = 'flex');
+			let no = target.classList.contains('confirm__basket-no');
+			let yes = target.classList.contains('confirm__basket-yes');
+
+			if ((!itsSearch && !itsBtn && isActive) || no || yes) {
+				confirm.style.display = 'none';
+			}
+		});
+	}
+
+	if (orderPage) {
+		document.querySelectorAll('.confirm__basket-yes').forEach((i) => {
+			i.addEventListener('click', () => {
+				let item =
+					i.parentNode.parentNode.parentNode.querySelector(
+						'[data-remove-id]'
+					);
+				let id = item.getAttribute('data-remove-id');
+				removeAjax(id, item);
+			});
+		});
+	}
+
+	function removeAjax(id, i) {
+		let promo = '';
+		let certificate = '';
+		let pay = '';
+
+		if (orderPage) {
+			pay = document.querySelector('#pay').value;
+		}
+
+		if (document.querySelector('.shopping__inform-promo')) {
+			promo = document.querySelector('.shopping__inform-promo').value;
+		}
+
+		if (document.querySelector('.shopping__inform-certificate')) {
+			certificate = document.querySelector(
+				'.shopping__inform-certificate'
+			).value;
+		}
+
+		data = {
+			key: id,
+			promo: promo,
+			certificate: certificate,
+			client_was_going_to_pay: pay,
+		};
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/remove',
+			type: 'post',
+			data: data,
+			dataType: 'json',
+			success: function (data) {
+				if (orderPage) {
+					sendDroppedCartData(droppedCartData());
+					i.parentNode.parentNode.parentNode.remove();
+					i.parentNode.parentNode.parentNode.remove();
+					let basketTotalPrice = document.querySelector(
+						'.basket__count-price'
+					);
+					basketTotalPrice.innerHTML = data.product_total_price;
+					initSaleCode(data);
+
+					if (data.shipping_methods !== 'products not found!') {
+						changeDeliveryMethods(data);
+					}
+
+					setChecoutData(data);
+					isEmpty();
+				} else {
+					i.parentNode.parentNode.parentNode.remove();
+					let basketTotalPrice = document.querySelector(
+						'.basket__count-price'
+					);
+					basketTotalPrice.innerHTML = data.product_total_price;
+
+					isEmpty();
+					setToBasketIcon(data.products_total_count);
+				}
+			},
+			error: function (err) {
+				throw new Error(err);
+			},
+		});
+	}
+
+	function changeDeliveryMethods(data) {
+		let methods = document.getElementById('orderMethod');
+		let methodsArr = Object.values(data.shipping_methods);
+		let methodsTrue = methodsArr.filter((i) => i.status === true);
+
+		if (methods.options.length - 1 !== methodsTrue.length) {
+			removeAllChildNodes(methods);
+
+			methods.insertAdjacentHTML(
+				'beforeend',
+				`
+                <option value=""></option>
+            `
+			);
+			if (data.shipping_methods.flat.status === true) {
+				methods.insertAdjacentHTML(
+					'beforeend',
+					`
+                    <option value="flat">${data.shipping_methods.flat.name}</option>
+                `
+				);
+			}
+			if (data.shipping_methods.novaposhta.status === true) {
+				methods.insertAdjacentHTML(
+					'beforeend',
+					`
+                <option value="novaposhta">${data.shipping_methods.novaposhta.name}</option>
+            `
+				);
+			}
+			if (data.shipping_methods.ukposhta.status === true) {
+				methods.insertAdjacentHTML(
+					'beforeend',
+					`
+                <option value="ukposhta">${data.shipping_methods.ukposhta.name}</option>
+            `
+				);
+			}
+			if (data.shipping_methods.justin.status === true) {
+				methods.insertAdjacentHTML(
+					'beforeend',
+					`
+                <option value="justin">${data.shipping_methods.justin.name}</option>
+            `
+				);
+			}
+			$('.select__order-deliver').select2('destroy');
+			$('.select__order-deliver').select2({
+				minimumResultsForSearch: -1,
+				width: '100%',
+			});
+
+			let shops = document.getElementById('shop');
+			shops.querySelector('option:checked').removeAttribute('selected');
+
+			let regions = document.getElementById('regions');
+			removeAllChildNodes(regions);
+			let cities = document.getElementById('cities');
+			removeAllChildNodes(cities);
+			let warehouses = document.getElementById('warehouses');
+			removeAllChildNodes(warehouses);
+			document.querySelector('.shop-method').style.display = 'none';
+			document.querySelector('.other-method').style.display = 'none';
+		}
+	}
+	////////? ordering switch
+	let personalTitle = document.querySelectorAll('.personal__title');
+	if (personalTitle.length > 0) {
+		personalTitle.forEach((i) => {
+			i.addEventListener('click', (e) => {
+				if (!i.classList.contains('active-title')) {
+					userOrderSwitch(i);
+					i.classList.toggle('active-title');
+				}
+			});
+		});
+	}
+
+	function userOrderSwitch(i) {
+		let newUser = document.querySelector('.personal-new');
+		let logedUser = document.querySelector('.personal-loged');
+
+		let newWrapper = document.querySelector('.order__user-wrapper');
+		let logedWrapper = document.querySelector('.login__user-wrapper');
+		let deliveryWrapper = document.querySelector('.delivery__methods');
+
+		if (i.classList.contains('personal-new')) {
+			newWrapper.style.display = 'block';
+			logedWrapper.style.display = 'none';
+			deliveryWrapper.style.display = 'block';
+			logedUser.classList.remove('active-title');
+		} else if (i.classList.contains('personal-loged')) {
+			newWrapper.style.display = 'none';
+			logedWrapper.style.display = 'flex';
+			deliveryWrapper.style.display = 'none';
+			newUser.classList.remove('active-title');
+		}
+	}
+	//fun for prevent def for a link size in catalog cards
+	function initCatalogSizeContainers() {
+		let prodContainers = document.querySelectorAll(
+			'.product__buy-container'
+		);
+		if (
+			window.matchMedia('(min-width: 640px)').matches &&
+			prodContainers.length > 0
+		) {
+			prodContainers.forEach((i) => {
+				i.addEventListener(
+					'click',
+					catalogSizeContainersListener,
+					false
+				);
+			});
+		}
+	}
+	initCatalogSizeContainers();
+
+	function catalogSizeContainersListener(e) {
+		i = this;
+		let longSize = i.classList.contains('long-size');
+		if (!longSize) {
+			e.preventDefault();
+		}
+	}
+
 	//! Confirm telephone in other pages
 	// (function () {
 	// 	let telephone = document.querySelector('.init-tel-js');
@@ -857,8 +1784,8 @@ window.onload = function () {
 		let menuModal = document.querySelector('.menu__mobile-modal');
 		let checkoutAuth = document.querySelector('.auth__wrapper-checkout');
 		let numberCont = document.querySelector('.number__container');
-		let codeCont = document.querySelector('.code__container');
-		let resTel = document.querySelector('.code__container-text');
+		let codeCont = document.querySelector('.auth__container');
+		let resTel = document.querySelector('.auth__container-text');
 		let refreshBtn = document.querySelector('.refresh-form');
 		let codeInput;
 		let userPhone;
@@ -1229,6 +2156,24 @@ window.onload = function () {
 		// }
 
 		if (unknownUser) {
+			//!new
+			document
+				.querySelector('.to-registration')
+				.addEventListener('click', (e) => {
+					// if (getComputedStyle(authWrapper).display == 'none') {
+					// 	personalWrapper.classList.toggle('show-effect');
+					// 	BGModal.classList.toggle('show-modal'); //
+					// 	body.classList.toggle('body-not-scroll');
+					// 	initScrollBar();
+					// } else {
+					// 	authWrapper.classList.toggle('show-effect');
+					// 	BGModal.classList.toggle('show-modal'); //
+					// 	body.classList.toggle('body-not-scroll');
+					// 	initScrollBar();
+					// }
+					personalWrapper.classList.add('show-effect');
+					authWrapper.classList.remove('show-effect');
+				});
 			//form show
 			unknownMobile.addEventListener('click', (e) => {
 				if (getComputedStyle(authWrapper).display == 'none') {
@@ -1309,331 +2254,319 @@ window.onload = function () {
 		}
 
 		if (unknownUser || checkoutAuth) {
-			//form submit
-			let numberForm = document.getElementById('numberForm');
-			numberInput = numberForm.getElementsByTagName('input');
-			let codeForm = document.getElementById('codeForm');
-			codeInput = codeForm.getElementsByTagName('input');
-			let spinner = document.querySelector('.spinner-number');
-
-			document
-				.querySelector('.back-number')
-				.addEventListener('click', (e) => {
-					numberCont.style.display = 'block';
-					codeCont.style.display = 'none';
-					document
-						.querySelector('.send-tel')
-						.removeAttribute('disabled');
-					document
-						.querySelector('.send-code-btn')
-						.removeAttribute('disabled');
-					clearTimeout(refreshTimeout);
-					refreshBtn.style.display = 'none';
-					document.querySelector('.code-error-block').textContent =
-						'';
-
-					if (checkoutAuth) {
-						document.querySelector(
-							'.code__container-title-error'
-						).style.display = 'none';
-						codeInput[0].parentNode.style.display = 'flex';
-						codeInput[0].value = '';
-						numberInput[0].value = '';
-					}
-					resetCode();
-				});
-
-			refreshBtn.addEventListener('click', (e) => {
-				resetCode();
-				setTimeout(
-					() => sendNumber(userPhone, spinner, numberInput[0]),
-					400
-				);
-
-				clearTimeout(refreshTimeout);
-				refreshBtn.style.display = 'none';
-				refreshTimeout = setTimeout(
-					() => (refreshBtn.style.display = 'block'),
-					60000
-				);
-			});
-
-			numberInput[0].addEventListener('keyup', (e) => {
-				if (e.keyCode != 13) {
-					numberInput[0].setCustomValidity('');
-					numberInput[0].classList.remove('error-input');
-				}
-			});
-
-			function setCustomValidity() {
-				let numberValue = numberInput[0].value;
-				if (numberValue == '' || numberValue.includes('_')) {
-					numberInput[0].classList.add('error-input');
-					numberInput[0].setCustomValidity(
-						numberInput[0].getAttribute('data-valid-massadge')
-					);
-				}
-			}
-
-			let numberFormBtn = document.querySelector('.send-tel');
-			numberFormBtn.addEventListener('click', setCustomValidity, false);
-
-			numberForm.addEventListener('submit', function (e) {
-				e.preventDefault();
-				let numberValue = numberInput[0].value;
-
-				if (
-					numberValue !== '' &&
-					!numberValue.includes('_') &&
-					numberInput[1].value == ''
-				) {
-					let number = numberValue.replace('(', '').replace(')', '');
-					userPhone = {
-						phone: number,
-					};
-
-					document.querySelector('.send-tel').disabled = true;
-					sendNumber(userPhone, spinner, numberInput[0]);
-				}
-			});
-
-			codeForm.addEventListener('submit', function (e) {
-				e.preventDefault();
-				let codeValue = codeInput[0].value;
-
-				if (codeValue.length == 6 && codeInput[1].value == '') {
-					let data = {
-						sms_code: codeValue,
-						opencart_code: trueCode,
-						phone: userPhone,
-					};
-					sendCode(data);
-				}
-			});
+			// //form submit
+			// let numberForm = document.getElementById('numberForm');
+			// numberInput = numberForm.getElementsByTagName('input');
+			// let codeForm = document.getElementById('codeForm');
+			// codeInput = codeForm.getElementsByTagName('input');
+			// let spinner = document.querySelector('.spinner-number');
+			// document
+			// 	.querySelector('.back-number')
+			// 	.addEventListener('click', (e) => {
+			// 		numberCont.style.display = 'block';
+			// 		codeCont.style.display = 'none';
+			// 		document
+			// 			.querySelector('.send-tel')
+			// 			.removeAttribute('disabled');
+			// 		document
+			// 			.querySelector('.send-code-btn')
+			// 			.removeAttribute('disabled');
+			// 		clearTimeout(refreshTimeout);
+			// 		refreshBtn.style.display = 'none';
+			// 		document.querySelector('.code-error-block').textContent =
+			// 			'';
+			// 		if (checkoutAuth) {
+			// 			document.querySelector(
+			// 				'.auth__container-title-error'
+			// 			).style.display = 'none';
+			// 			codeInput[0].parentNode.style.display = 'flex';
+			// 			codeInput[0].value = '';
+			// 			numberInput[0].value = '';
+			// 		}
+			// 		resetCode();
+			// 	});
+			// refreshBtn.addEventListener('click', (e) => {
+			// 	resetCode();
+			// 	setTimeout(
+			// 		() => sendNumber(userPhone, spinner, numberInput[0]),
+			// 		400
+			// 	);
+			// 	clearTimeout(refreshTimeout);
+			// 	refreshBtn.style.display = 'none';
+			// 	refreshTimeout = setTimeout(
+			// 		() => (refreshBtn.style.display = 'block'),
+			// 		60000
+			// 	);
+			// });
+			// numberInput[0].addEventListener('keyup', (e) => {
+			// 	if (e.keyCode != 13) {
+			// 		numberInput[0].setCustomValidity('');
+			// 		numberInput[0].classList.remove('error-input');
+			// 	}
+			// });
+			// function setCustomValidity() {
+			// 	let numberValue = numberInput[0].value;
+			// 	if (numberValue == '' || numberValue.includes('_')) {
+			// 		numberInput[0].classList.add('error-input');
+			// 		numberInput[0].setCustomValidity(
+			// 			numberInput[0].getAttribute('data-valid-massadge')
+			// 		);
+			// 	}
+			// }
+			// let numberFormBtn = document.querySelector('.send-tel');
+			// numberFormBtn.addEventListener('click', setCustomValidity, false);
+			// numberForm.addEventListener('submit', function (e) {
+			// 	e.preventDefault();
+			// 	let numberValue = numberInput[0].value;
+			// 	if (
+			// 		numberValue !== '' &&
+			// 		!numberValue.includes('_') &&
+			// 		numberInput[1].value == ''
+			// 	) {
+			// 		let number = numberValue.replace('(', '').replace(')', '');
+			// 		userPhone = {
+			// 			phone: number,
+			// 		};
+			// 		document.querySelector('.send-tel').disabled = true;
+			// 		sendNumber(userPhone, spinner, numberInput[0]);
+			// 	}
+			// });
+			// codeForm.addEventListener('submit', function (e) {
+			// 	e.preventDefault();
+			// 	let codeValue = codeInput[0].value;
+			// 	if (codeValue.length == 6 && codeInput[1].value == '') {
+			// 		let data = {
+			// 			sms_code: codeValue,
+			// 			opencart_code: trueCode,
+			// 			phone: userPhone,
+			// 		};
+			// 		sendCode(data);
+			// 	}
+			// });
 		}
 
-		async function resetCode() {
-			$.ajax({
-				url: `index.php?route=account/login/turboSmsClearAttemps`,
-				type: 'post',
-				data: userPhone,
-				dataType: 'json',
-				success: function () {
-					codeInput[0].value = '';
-				},
-				error: function (err) {
-					throw new Error(err);
-				},
-			});
-		}
+		// async function resetCode() {
+		// 	$.ajax({
+		// 		url: `index.php?route=account/login/turboSmsClearAttemps`,
+		// 		type: 'post',
+		// 		data: userPhone,
+		// 		dataType: 'json',
+		// 		success: function () {
+		// 			codeInput[0].value = '';
+		// 		},
+		// 		error: function (err) {
+		// 			throw new Error(err);
+		// 		},
+		// 	});
+		// }
 
-		async function sendNumber(userPhone, spinner, hideEl = null) {
-			$.ajax({
-				url: `index.php?route=account/login/turboSmsGetCode`,
-				type: 'post',
-				data: userPhone,
-				dataType: 'json',
-				beforeSend: function () {
-					hiding(spinner, 'inline', hideEl);
-				},
-				success: function (data) {
-					if (data.send_sms === true && hideEl) {
-						numberCont.style.display = 'none';
-						codeCont.style.display = 'block';
-						resTel.textContent = `+${data.phone}`;
-						trueCode = data.send_code;
-						userPhone = data.phone;
-						location = data.location;
+		// async function sendNumber(userPhone, spinner, hideEl = null) {
+		// 	$.ajax({
+		// 		url: `index.php?route=account/login/turboSmsGetCode`,
+		// 		type: 'post',
+		// 		data: userPhone,
+		// 		dataType: 'json',
+		// 		beforeSend: function () {
+		// 			hiding(spinner, 'inline', hideEl);
+		// 		},
+		// 		success: function (data) {
+		// 			if (data.send_sms === true && hideEl) {
+		// 				numberCont.style.display = 'none';
+		// 				codeCont.style.display = 'block';
+		// 				resTel.textContent = `+${data.phone}`;
+		// 				trueCode = data.send_code;
+		// 				userPhone = data.phone;
+		// 				location = data.location;
 
-						//show refresh btn after 60 sec.
-						refreshTimeout = setTimeout(
-							() => (refreshBtn.style.display = 'block'),
-							60000
-						);
+		// 				//show refresh btn after 60 sec.
+		// 				refreshTimeout = setTimeout(
+		// 					() => (refreshBtn.style.display = 'block'),
+		// 					60000
+		// 				);
 
-						hiding(hideEl, 'block', spinner);
-					} else if (data.send_sms === true && !hideEl) {
-						hiding(spinner, 'none', null);
-						let telephoneInform =
-							document.querySelector('#telephoneInform');
-						telephoneInform.setAttribute('readonly', true);
-						document.querySelector(
-							'.modal__inform-wrapper'
-						).style.display = 'block';
+		// 				hiding(hideEl, 'block', spinner);
+		// 			} else if (data.send_sms === true && !hideEl) {
+		// 				hiding(spinner, 'none', null);
+		// 				let telephoneInform =
+		// 					document.querySelector('#telephoneInform');
+		// 				telephoneInform.setAttribute('readonly', true);
+		// 				document.querySelector(
+		// 					'.modal__inform-wrapper'
+		// 				).style.display = 'block';
 
-						trueCode = data.send_code;
-						userPhone = data.phone;
+		// 				trueCode = data.send_code;
+		// 				userPhone = data.phone;
 
-						refreshTimeoutModal = setTimeout(
-							() =>
-								(document.querySelector(
-									'.modal__refresh-code'
-								).style.display = 'block'),
-							60000
-						);
-					}
-				},
-				error: function (err) {
-					if (hideEl) {
-						hideEl.classList.add('error-input');
-						setTimeout(
-							() => hideEl.classList.remove('error-input'),
-							5000
-						);
-						document
-							.querySelector('.send-tel')
-							.removeAttribute('disabled');
-						hiding(hideEl, 'block', spinner);
-					} else if (!hideEl) {
-						document
-							.querySelector('.modal__inform-inform-tel')
-							.removeAttribute('disabled');
-						hiding(spinner, 'none', null);
-						let telephoneInform =
-							document.querySelector('#telephoneInform');
-						telephoneInform.classList.add('error-input');
-						setTimeout(
-							() =>
-								telephoneInform.classList.remove('error-input'),
-							5000
-						);
-					}
-					throw new Error(err);
-				},
-			});
-		}
+		// 				refreshTimeoutModal = setTimeout(
+		// 					() =>
+		// 						(document.querySelector(
+		// 							'.modal__refresh-code'
+		// 						).style.display = 'block'),
+		// 					60000
+		// 				);
+		// 			}
+		// 		},
+		// 		error: function (err) {
+		// 			if (hideEl) {
+		// 				hideEl.classList.add('error-input');
+		// 				setTimeout(
+		// 					() => hideEl.classList.remove('error-input'),
+		// 					5000
+		// 				);
+		// 				document
+		// 					.querySelector('.send-tel')
+		// 					.removeAttribute('disabled');
+		// 				hiding(hideEl, 'block', spinner);
+		// 			} else if (!hideEl) {
+		// 				document
+		// 					.querySelector('.modal__inform-inform-tel')
+		// 					.removeAttribute('disabled');
+		// 				hiding(spinner, 'none', null);
+		// 				let telephoneInform =
+		// 					document.querySelector('#telephoneInform');
+		// 				telephoneInform.classList.add('error-input');
+		// 				setTimeout(
+		// 					() =>
+		// 						telephoneInform.classList.remove('error-input'),
+		// 					5000
+		// 				);
+		// 			}
+		// 			throw new Error(err);
+		// 		},
+		// 	});
+		// }
 
-		async function sendCode(data) {
-			$.ajax({
-				url: `index.php?route=account/login/turboSmsCheckCode`,
-				type: 'post',
-				data: data,
-				dataType: 'json',
-				beforeSend: function () {
-					hiding(
-						document.querySelector('.spinner-code'),
-						'inline',
-						codeInput[0].parentNode
-					);
-					document.querySelector('.send-code-btn').disabled = true;
-				},
-				success: function (data) {
-					if (
-						data.code_matching === true &&
-						data.is_auth === false &&
-						unknownUser
-					) {
-						authWrapper.style.display = 'none';
-						personalWrapper.classList.toggle('show-effect');
-						document.getElementById('telephone').value =
-							data.telephone;
-						document.getElementById('codePerson').value = data.code;
-					} else if (
-						(data.code_matching === false && data.try_count <= 5) ||
-						(data.is_auth === true &&
-							data.code_matching === false &&
-							data.try_count <= 5)
-					) {
-						document
-							.querySelector('.send-code-btn')
-							.removeAttribute('disabled');
-						hiding(
-							codeInput[0].parentNode,
-							'flex',
-							document.querySelector('.spinner-code')
-						);
-						codeInput[0].classList.add('error-input');
-						codeInput[0].nextElementSibling.classList.add(
-							'error-label'
-						);
-						setTimeout(() => {
-							codeInput[0].classList.remove('error-input'),
-								codeInput[0].nextElementSibling.classList.remove(
-									'error-label'
-								);
-						}, 5000);
-						document.querySelector(
-							'.code-error-block'
-						).textContent = data.code_error;
-					} else if (
-						(data.code_matching === false && data.try_count > 5) ||
-						(data.is_auth === true &&
-							data.code_matching === false &&
-							data.try_count > 5)
-					) {
-						hiding(
-							codeInput[0].parentNode,
-							'flex',
-							document.querySelector('.spinner-code')
-						);
-						document
-							.querySelector('.send-code-btn')
-							.removeAttribute('disabled');
-						codeInput[0].classList.add('error-input');
-						codeInput[0].nextElementSibling.classList.add(
-							'error-label'
-						);
-						setTimeout(() => {
-							codeInput[0].classList.remove('error-input'),
-								codeInput[0].nextElementSibling.classList.remove(
-									'error-label'
-								);
-						}, 5000);
-						document.querySelector(
-							'.code-error-block'
-						).textContent = data.try_error;
-						refreshBtn.style.display = 'block';
-					} else if (
-						data.is_auth === true &&
-						data.code_matching === true
-					) {
-						document.querySelector('.location-login').value =
-							location;
-						document.getElementById('codeForm').submit();
-					} else if (data.is_auth === false && !unknownUser) {
-						hiding(
-							codeInput[0].parentNode,
-							'flex',
-							document.querySelector('.spinner-code')
-						);
+		// async function sendCode(data) {
+		// 	$.ajax({
+		// 		url: `index.php?route=account/login/turboSmsCheckCode`,
+		// 		type: 'post',
+		// 		data: data,
+		// 		dataType: 'json',
+		// 		beforeSend: function () {
+		// 			hiding(
+		// 				document.querySelector('.spinner-code'),
+		// 				'inline',
+		// 				codeInput[0].parentNode
+		// 			);
+		// 			document.querySelector('.send-code-btn').disabled = true;
+		// 		},
+		// 		success: function (data) {
+		// 			if (
+		// 				data.code_matching === true &&
+		// 				data.is_auth === false &&
+		// 				unknownUser
+		// 			) {
+		// 				authWrapper.style.display = 'none';
+		// 				personalWrapper.classList.toggle('show-effect');
+		// 				document.getElementById('telephone').value =
+		// 					data.telephone;
+		// 				document.getElementById('codePerson').value = data.code;
+		// 			} else if (
+		// 				(data.code_matching === false && data.try_count <= 5) ||
+		// 				(data.is_auth === true &&
+		// 					data.code_matching === false &&
+		// 					data.try_count <= 5)
+		// 			) {
+		// 				document
+		// 					.querySelector('.send-code-btn')
+		// 					.removeAttribute('disabled');
+		// 				hiding(
+		// 					codeInput[0].parentNode,
+		// 					'flex',
+		// 					document.querySelector('.spinner-code')
+		// 				);
+		// 				codeInput[0].classList.add('error-input');
+		// 				codeInput[0].nextElementSibling.classList.add(
+		// 					'error-label'
+		// 				);
+		// 				setTimeout(() => {
+		// 					codeInput[0].classList.remove('error-input'),
+		// 						codeInput[0].nextElementSibling.classList.remove(
+		// 							'error-label'
+		// 						);
+		// 				}, 5000);
+		// 				document.querySelector(
+		// 					'.code-error-block'
+		// 				).textContent = data.code_error;
+		// 			} else if (
+		// 				(data.code_matching === false && data.try_count > 5) ||
+		// 				(data.is_auth === true &&
+		// 					data.code_matching === false &&
+		// 					data.try_count > 5)
+		// 			) {
+		// 				hiding(
+		// 					codeInput[0].parentNode,
+		// 					'flex',
+		// 					document.querySelector('.spinner-code')
+		// 				);
+		// 				document
+		// 					.querySelector('.send-code-btn')
+		// 					.removeAttribute('disabled');
+		// 				codeInput[0].classList.add('error-input');
+		// 				codeInput[0].nextElementSibling.classList.add(
+		// 					'error-label'
+		// 				);
+		// 				setTimeout(() => {
+		// 					codeInput[0].classList.remove('error-input'),
+		// 						codeInput[0].nextElementSibling.classList.remove(
+		// 							'error-label'
+		// 						);
+		// 				}, 5000);
+		// 				document.querySelector(
+		// 					'.code-error-block'
+		// 				).textContent = data.try_error;
+		// 				refreshBtn.style.display = 'block';
+		// 			} else if (
+		// 				data.is_auth === true &&
+		// 				data.code_matching === true
+		// 			) {
+		// 				document.querySelector('.location-login').value =
+		// 					location;
+		// 				document.getElementById('codeForm').submit();
+		// 			} else if (data.is_auth === false && !unknownUser) {
+		// 				hiding(
+		// 					codeInput[0].parentNode,
+		// 					'flex',
+		// 					document.querySelector('.spinner-code')
+		// 				);
 
-						hiding(
-							document.querySelector(
-								'.code__container-title-error'
-							),
-							'block',
-							codeInput[0].parentNode
-						);
-						clearTimeout(refreshTimeout);
-						refreshBtn.style.display = 'none';
-						document.querySelector(
-							'.code-error-block'
-						).textContent = '';
-					}
-				},
-				error: function (err) {
-					hiding(
-						codeInput[0].parentNode,
-						'flex',
-						document.querySelector('.spinner-code')
-					);
-					document
-						.querySelector('.send-code-btn')
-						.removeAttribute('disabled');
-					codeInput[0].classList.add('error-input');
-					codeInput[0].nextElementSibling.classList.add(
-						'error-label'
-					);
-					setTimeout(() => {
-						codeInput[0].classList.remove('error-input'),
-							codeInput[0].nextElementSibling.classList.remove(
-								'error-label'
-							);
-					}, 5000);
-					throw new Error(err);
-				},
-			});
-		}
+		// 				hiding(
+		// 					document.querySelector(
+		// 						'.auth__container-title-error'
+		// 					),
+		// 					'block',
+		// 					codeInput[0].parentNode
+		// 				);
+		// 				clearTimeout(refreshTimeout);
+		// 				refreshBtn.style.display = 'none';
+		// 				document.querySelector(
+		// 					'.code-error-block'
+		// 				).textContent = '';
+		// 			}
+		// 		},
+		// 		error: function (err) {
+		// 			hiding(
+		// 				codeInput[0].parentNode,
+		// 				'flex',
+		// 				document.querySelector('.spinner-code')
+		// 			);
+		// 			document
+		// 				.querySelector('.send-code-btn')
+		// 				.removeAttribute('disabled');
+		// 			codeInput[0].classList.add('error-input');
+		// 			codeInput[0].nextElementSibling.classList.add(
+		// 				'error-label'
+		// 			);
+		// 			setTimeout(() => {
+		// 				codeInput[0].classList.remove('error-input'),
+		// 					codeInput[0].nextElementSibling.classList.remove(
+		// 						'error-label'
+		// 					);
+		// 			}, 5000);
+		// 			throw new Error(err);
+		// 		},
+		// 	});
+		// }
 
 		if (unknownUser) {
 			let personalForm = document.querySelector('#personal-data');
@@ -2206,970 +3139,6 @@ window.onload = function () {
 		}
 	})();
 
-	//! basket
-	(function () {
-		let headerbag = document.querySelector('.header-bag');
-		let basketModal = document.querySelector('#custom-modal');
-		let basketWrapp;
-		let closeBasket;
-		let basketContinue;
-		let orderPage = document.querySelector('.ordering__wrapper');
-		let infoAvailability = document.getElementById('infoAvailability');
-		//let body = document.querySelector('body');
-
-		if (headerbag) {
-			basketWrapp = document.querySelector('.header__basket-wrapper');
-			closeBasket = basketWrapp.querySelector('.close-basket');
-			basketContinue = basketWrapp.querySelector(
-				'.basket__submit-continue'
-			);
-		}
-
-		// show/close basket
-		if (headerbag) {
-			headerbag.addEventListener('click', (e) => {
-				if (e.target.classList.contains('header-bag')) {
-					basketWrapp.classList.toggle('show-effect');
-					basketModal.classList.toggle('show-modal');
-				}
-				isEmpty();
-			});
-
-			closeBasket.addEventListener('click', (e) => {
-				basketWrapp.classList.toggle('show-effect');
-				basketModal.classList.toggle('show-modal');
-			});
-
-			basketContinue.addEventListener('click', (e) => {
-				basketWrapp.classList.toggle('show-effect');
-				basketModal.classList.toggle('show-modal');
-			});
-
-			document.addEventListener('click', function (e) {
-				let target = e.target;
-				detectClickOut(basketWrapp, headerbag, target);
-			});
-		}
-
-		//working functions
-		function detectClickOut(container, icon, target) {
-			let itsContainer =
-				target == container || container.contains(target);
-			let itsBtn = target == icon;
-			let isActive = container.classList.contains('show-effect');
-
-			if (!itsContainer && !itsBtn && isActive) {
-				basketWrapp.classList.toggle('show-effect');
-				basketModal.classList.toggle('show-modal');
-			}
-		}
-
-		function isEmpty() {
-			let basketContent = document.querySelectorAll('.basket__item');
-
-			if (orderPage && basketContent.length == 0) {
-				window.location.replace(window.location.origin);
-			} else if (!orderPage && basketContent.length == 0) {
-				basketWrapp.querySelector('.basket__empty').style.display =
-					'block';
-				basketWrapp.querySelector(
-					'.basket__count-container'
-				).style.display = 'none';
-				basketWrapp.querySelector(
-					'.basket__submit-cont'
-				).style.display = 'none';
-			} else if (!orderPage && basketContent.length !== 0) {
-				basketWrapp.querySelector('.basket__empty').style.display =
-					'none';
-				basketWrapp.querySelector(
-					'.basket__count-container'
-				).style.display = 'block';
-				basketWrapp.querySelector(
-					'.basket__submit-cont'
-				).style.display = 'flex';
-			}
-		}
-
-		function setToBasketIcon(sum) {
-			let basket = document.querySelector('.products-total');
-			removeAllChildNodes(basket);
-
-			if (sum > 0) {
-				basket.insertAdjacentHTML('beforeend', `(${sum})`);
-			}
-		}
-
-		function setChecoutData(data) {
-			let totalWithOutPromo = document.querySelector('.item-sum');
-			document.querySelector('.item-count-number').textContent =
-				data.products_total_count;
-
-			if (data.sale_total_price == 0) {
-				totalWithOutPromo.textContent = data.product_total_price;
-			} else {
-				totalWithOutPromo.textContent = data.sale_total_price;
-			}
-		}
-
-		function showBasketModal() {
-			let universal = document.querySelector('#universalModal');
-			universal.querySelectorAll('.universalModal').forEach((i) => {
-				i.style.display = 'none';
-			});
-			document.querySelector('.importantSizeModal').style.display =
-				'block';
-			$('#universalModal').modal();
-		}
-
-		//add to basket
-		// init with main button
-		let addBtn = document.querySelector('.buy__container-btn');
-		if (addBtn) {
-			addBtn.addEventListener('click', (e) => {
-				let mainSizes = document.querySelector('.main-sizes');
-				let active = mainSizes.querySelector('.active-size');
-				if (active) {
-					let id = active.parentNode.getAttribute('data-id');
-					let size = active.textContent;
-					let shop = active.getAttribute('data-shop');
-
-					if (size == 'ONE') {
-						addAjax(id, shop);
-					} else {
-						addAjax(id, shop, size);
-					}
-
-					shopAddAjax(shop);
-					active.classList.toggle('active-size');
-				} else {
-					showBasketModal();
-				}
-			});
-		}
-		// init with reserve button
-		let reserveBtn = document.querySelectorAll('.city__reserve');
-		if (reserveBtn.length > 0) {
-			reserveBtn.forEach((i) => {
-				i.addEventListener('click', (e) => {
-					let active = i.parentNode.querySelector('.active-size');
-					if (active) {
-						let id = i.parentNode.getAttribute('data-id');
-						let size = active.textContent;
-						let shop = i.parentNode.getAttribute('data-shop');
-
-						if (size == 'ONE') {
-							addAjax(id, shop);
-						} else {
-							addAjax(id, shop, size);
-						}
-
-						shopAddAjax(shop);
-						active.classList.toggle('active-size');
-						//$('#availability').modal('toggle');
-					} else {
-						//$('#availability').modal('toggle');
-						showBasketModal();
-					}
-				});
-			});
-		}
-		//init add
-		let stockStatus;
-		let id;
-		let shop;
-		let size;
-		// let cityShop;
-		// let cityId;
-
-		function isStokStatus(clazz, i) {
-			document
-				.querySelectorAll('.card__description-size.active-size')
-				.forEach((i) => {
-					i.classList.remove('active-size');
-				});
-
-			if (stockStatus == 1 && clazz == 13) {
-				i.classList.toggle('active-size');
-			} else if (stockStatus == 1 && clazz == 12) {
-				shopAddAjax(shop);
-				addAjax(id, shop);
-			} else if (stockStatus == 1 && clazz == 11) {
-				shopAddAjax(shop);
-				addAjax(id, shop, size);
-			}
-			// else if (stockStatus == 2 && clazz == 13) {
-			// 	if (size == 'ONE') {
-			// 		preOrder(id, shop);
-			// 	} else {
-			// 		preOrder(id, shop, size);
-			// 	}
-			// }
-			// else if (stockStatus == 2 && clazz == 12) {
-			// 	preOrder(id, shop);
-			// } else if (stockStatus == 2 && clazz == 11) {
-			// 	preOrder(id, shop, size);
-			// }
-			else if (stockStatus == 3 && clazz == 12) {
-				informAbout(id);
-			} else if (stockStatus == 3 && clazz == 11) {
-				informAbout(id, size);
-			} else if (stockStatus == 3 && clazz == 13) {
-				if (size == 'ONE') {
-					informAbout(id);
-				} else {
-					informAbout(id, size);
-				}
-			}
-			// else if (
-			// 	(stockStatus == 2 && clazz == 14) ||
-			// 	(stockStatus == 3 && clazz == 14)
-			// ) {
-			// 	preOrder(cityId, cityShop, size);
-			// 	//$('#availability').modal('hide');
-			// }
-			else if (stockStatus == 1 && clazz == 15) {
-				shopAddAjax(shop);
-				addAjax(id, shop);
-			} else if (stockStatus == 1 && clazz == 17) {
-				let size = i.getAttribute('data-size');
-				shopAddAjax(shop);
-				if (size) {
-					addAjax(id, shop, size);
-				} else {
-					addAjax(id, shop);
-				}
-			}
-			// else if (
-			// 	(stockStatus == 2 && clazz == 15) ||
-			// 	(stockStatus == 2 && clazz == 17)
-			// ) {
-			// 	preOrder(id, shop);
-			// }
-			else if (stockStatus == 3 && clazz == 15) {
-				informAbout(id);
-			} else if (stockStatus == 3 && clazz == 17) {
-				let size = i.getAttribute('data-size');
-				if (size) {
-					informAbout(id, size);
-				} else {
-					informAbout(id, size);
-				}
-			}
-			// else if (stockStatus == 1 && clazz == 16) {
-			// 	shopAddAjax(shop);
-			// 	addAjax(id, shop);
-			// } else if (
-			// 	(stockStatus == 2 && clazz == 16) ||
-			// 	(stockStatus == 3 && clazz == 16)
-			// ) {
-			// 	preOrder(id, shop);
-			// }
-		}
-
-		function stockStatusListener(e) {
-			i = this;
-			stockStatus = i.getAttribute('data-stock-status');
-			let parent = i.parentNode;
-			let clList = parent.classList;
-			id = parent.getAttribute('data-id');
-			shop = parent.getAttribute('data-shop');
-			size = i.textContent;
-			let clazz;
-			let citySizes =
-				i.parentNode.parentNode.parentNode.classList.contains(
-					'city__sizes'
-				);
-			cityShop =
-				i.parentNode.parentNode.parentNode.getAttribute('data-shop');
-			cityId = i.parentNode.parentNode.parentNode.getAttribute('data-id');
-
-			if (
-				window.matchMedia('(min-width: 640px)').matches &&
-				clList.contains('product__sizes-container')
-			) {
-				clazz = 11;
-				isStokStatus(clazz, i);
-			} else if (
-				window.matchMedia('(min-width: 640px)').matches &&
-				clList.contains('product__buy-container')
-			) {
-				clazz = 12;
-				isStokStatus(clazz, i);
-			} else if (
-				clList.contains('card__description__sizes-block') &&
-				!citySizes
-			) {
-				clazz = 13;
-				isStokStatus(clazz, i);
-			} else if (citySizes) {
-				clazz = 14;
-				isStokStatus(clazz, i);
-			} else if (clList.contains('buy__container')) {
-				clazz = 15;
-				isStokStatus(clazz, i);
-			} else if (clList.contains('table__btns-container')) {
-				clazz = 17;
-				isStokStatus(clazz, i);
-			}
-			//  else if (clList.contains('city__sizes')) {
-			// 	$('#availability').modal('hide');
-			// 	clazz = 16;
-			// 	isStokStatus(clazz, i);
-			// }
-		}
-
-		function initStockStatus() {
-			document.querySelectorAll('[data-stock-status]').forEach((i) => {
-				i.addEventListener('click', stockStatusListener, false);
-			});
-		}
-		initStockStatus();
-
-		//products in slider
-		let sliderBlock = document.querySelector('.slider-cards__swiper');
-		let gridCatalodItem = document.querySelectorAll(
-			'.product__card-container-item'
-		);
-		if (sliderBlock || gridCatalodItem.length > 0) {
-			let prodBtn = document.querySelectorAll('[data-prod-id]');
-
-			prodBtn.forEach((i) => {
-				i.addEventListener('click', sizeBtnListener, false);
-			});
-
-			function sizeBtnListener(e) {
-				i = this;
-				let btnProdId = i.getAttribute('data-prod-id');
-				let parent = i.parentNode.parentNode.parentNode;
-				let card = parent.querySelector('[data-json]');
-				let dataId = parent.querySelector('[data-id]');
-				let dataJson = card.getAttribute('data-json');
-				let dataArr = JSON.parse(dataJson);
-				let favorite = card.querySelector('.favorit');
-				let crossOutPrice =
-					card.parentNode.parentNode.querySelector(
-						'.cross-out-price'
-					);
-				let price = crossOutPrice.nextElementSibling;
-
-				let subProdCont = i.parentNode;
-				subProdCont
-					.querySelector('.focus-prod')
-					.classList.remove('focus-prod');
-				i.classList.add('focus-prod');
-
-				dataArr.forEach((i) => {
-					if (i.product_id == btnProdId) {
-						let buyCont = parent.querySelector(
-							'.product__buy-container'
-						);
-						buyCont.setAttribute('href', i.href);
-						let sizesCont = buyCont.querySelector(
-							'.product__sizes-container'
-						);
-						let cardLink = parent.querySelector(
-							'.product__card-sub-wrapper'
-						);
-						cardLink.setAttribute('href', i.href);
-						dataId.setAttribute('data-id', i.product_id);
-						let iconBag = parent.querySelector('._icon-bag');
-
-						if (i.special !== false) {
-							crossOutPrice.textContent = i.price;
-							price.textContent = i.special;
-							price.classList.add('old-price');
-						} else {
-							crossOutPrice.textContent = '';
-							price.textContent = i.price;
-							price.classList.remove('old-price');
-						}
-
-						if (sizesCont) {
-							while (sizesCont.firstChild) {
-								sizesCont.removeChild(sizesCont.firstChild);
-							}
-
-							i.sizes.forEach((i) => {
-								if (i.stock_status_id == 2) {
-									sizesCont.insertAdjacentHTML(
-										'beforeend',
-										`
-			                            <div class="product__sizes-item item-active" data-stock-status="${i.stock_status_id}">${i.size}</div>
-			                        `
-									);
-								} else if (i.stock_status_id == 3) {
-									sizesCont.insertAdjacentHTML(
-										'beforeend',
-										`
-			                            <div class="product__sizes-item inform-card" data-stock-status="${i.stock_status_id}">${i.size}</div>
-			                        `
-									);
-								} else if (i.stock_status_id == 1) {
-									sizesCont.insertAdjacentHTML(
-										'beforeend',
-										`
-			                            <div class="product__sizes-item" data-stock-status="${i.stock_status_id}">${i.size}</div>
-			                        `
-									);
-								}
-							});
-							document
-								.querySelectorAll('[data-stock-status]')
-								.forEach((i) => {
-									i.removeEventListener(
-										'click',
-										stockStatusListener,
-										false
-									);
-								});
-							initStockStatus();
-						} else if (iconBag) {
-							i.sizes.forEach((i) => {
-								iconBag.setAttribute(
-									'data-stock-status',
-									i.stock_status_id
-								);
-							});
-						}
-
-						let imgCont = parent.querySelector(
-							'.product__card-sub-wrapper'
-						);
-						while (imgCont.firstChild) {
-							imgCont.removeChild(imgCont.firstChild);
-						}
-
-						i.images.forEach((i) => {
-							imgCont.insertAdjacentHTML(
-								'afterbegin',
-								`
-			                        <div class="product__card-img-cont swiper-slide">
-			                            <img class="slide-img" src="${i.href}">
-			                        </div>
-			                    `
-							);
-						});
-
-						if (Array.isArray(productCardSwiper)) {
-							productCardSwiper.map((i) => {
-								i.update();
-							});
-						} else {
-							productCardSwiper.update();
-						}
-
-						if (i.added_to_wishlist) {
-							favorite.classList.remove('_icon-favorites');
-							favorite.classList.add('_icon-favorites-fill');
-						} else {
-							favorite.classList.add('_icon-favorites');
-							favorite.classList.remove('_icon-favorites-fill');
-						}
-					}
-				});
-			}
-		}
-
-		function informAbout(id, size = '') {
-			let showSize = infoAvailability.querySelector('.pre-size');
-			removeAllChildNodes(showSize);
-
-			showSize.insertAdjacentHTML(
-				'afterbegin',
-				`<button type="button" class="card__description-size ${
-					size === '' ? 'empty-size' : ''
-				}" data-confirm=${id}>${size}</button>`
-			);
-
-			$(infoAvailability).modal();
-		}
-
-		// function preOrder(id, shop, size = 'ONE') {
-		// 	let modal = document.querySelector('#preOrderModal');
-		// 	let basketSize = modal.querySelector('.pre-size');
-		// 	removeAllChildNodes(basketSize);
-
-		// 	basketSize.insertAdjacentHTML(
-		// 		'afterbegin',
-		// 		`<button type="button" class="card__description-size" data-shop="${shop}" data-confirm=${id}>${size}</button>`
-		// 	);
-
-		// 	$('#preOrderModal').modal();
-		// }
-
-		let confirm = document.querySelector('.confirm__pre-order');
-		if (confirm) {
-			confirm.addEventListener('click', (e) => {
-				let confirmItem = document.querySelector('[data-confirm]');
-				let confirmId = confirmItem.getAttribute('data-confirm');
-				let shopId = confirmItem.getAttribute('data-shop');
-				let confirmSize = confirmItem.textContent;
-
-				if (confirmSize == 'ONE') {
-					addAjax(confirmId, shopId);
-				} else {
-					addAjax(confirmId, shopId, confirmSize);
-				}
-
-				shopAddAjax(shopId);
-			});
-		}
-
-		//shop ajax
-		function shopAddAjax(shop) {
-			let data = {
-				shop_id: shop,
-			};
-
-			$.ajax({
-				url: 'index.php?route=product/product/resorvedOfflineProduct',
-				type: 'post',
-				data: data,
-				dataType: 'json',
-				success: function (data) {},
-				error: function (err) {
-					throw new Error(err);
-				},
-			});
-		}
-
-		function addAjax(id, shop, size = '') {
-			let data = {
-				product_id: id,
-				quantity: 1,
-				shop_id: shop,
-				option: {
-					[id]: size,
-				},
-			};
-
-			$.ajax({
-				url: 'index.php?route=checkout/cart/add',
-				type: 'post',
-				data: data,
-				dataType: 'json',
-				success: function (data) {
-					basketRendering(data);
-					// pixel
-					FBAddToCart(id, data);
-				},
-				error: function (err) {
-					throw new Error(err);
-				},
-			});
-		}
-
-		function basketRendering(data) {
-			let basketContainer = document.querySelector('.basket__items');
-			let basketTotal = document.querySelector(
-				'.basket__count-container'
-			);
-			removeAllChildNodes(basketContainer);
-			removeAllChildNodes(basketTotal);
-
-			basketTotal.insertAdjacentHTML(
-				'beforeend',
-				`
-				<div class="basket__count">
-                    <div class="basket__count-title">${data.total[0].product_total_title}</div>
-                    <div class="basket__count-price">${data.total[0].product_total_price}</div>
-                </div>
-			`
-			);
-
-			data.cart.forEach((i) => {
-				basketContainer.insertAdjacentHTML(
-					'beforeend',
-					`
-					<div class="basket__item">
-						<a href="${i.product_href}" class="basket__img">
-							<img src="${i.product_thumb}" alt="">
-						</a>
-						<div class="basket__info">
-							<div class="basket__info-title">
-								<a href="${i.product_href}" class="basket__info-title-text">${i.product_name}</a>
-								<div role="button" class="_icon-cancel" data-remove-id=${i.cart_id}></div>
-							</div>
-							<div class="basket__info-art">Арт. ${i.product_sku}</div>
-							<div class="basket__info__details">
-								<div class="basket__info__details-sub">
-									<div class="basket__info__details-size">${i.product_size}</div>
-									<div class="basket__info__details-amount">
-										<div class="spinner-basket-container">
-											<div class="spinner-border spinner-basket" role="status">
-												<span class="sr-only">Загрузка...</span>
-											</div>
-										</div>
-										<button class="step stepDown" type="button" data-edit-id="${i.cart_id}">-</button>
-										<input type="number" min="1" max="${i.max}" value="${i.product_quantity}" readonly="" class="details-amount">
-										<button class="step stepUp" type="button" data-edit-id="${i.cart_id}">+</button>
-									</div>
-								</div>
-								<div class="basket__info__price">
-									<div class="basket__info__price-title">${i.product_title}</div>
-									<div class="basket__info__price-cost">${i.product_price}</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				`
-				);
-			});
-
-			basketWrapp.classList.toggle('show-effect');
-			basketModal.classList.toggle('show-modal');
-
-			setToBasketIcon(data.total[0].products_total_count);
-			removeInit();
-			isEmpty();
-			stepEdit();
-		}
-
-		//init editing
-		function stepEdit() {
-			let step = document.querySelectorAll('.step');
-
-			if (step.length > 0) {
-				step.forEach((i) => {
-					i.addEventListener('click', (e) => {
-						let value =
-							i.parentNode.querySelector('.details-amount').value;
-						let id = i.getAttribute('data-edit-id');
-
-						if (
-							i.classList.contains('stepUp') &&
-							!i.classList.contains('disabled-item')
-						) {
-							editAjax(value, id, '+', i);
-						}
-
-						if (i.classList.contains('stepDown')) {
-							editAjax(value, id, '-', i);
-						}
-					});
-				});
-			}
-		}
-		stepEdit();
-
-		function editAjax(quantity, id, step, i) {
-			let spinnerEl = i.parentNode.querySelector(
-				'.spinner-basket-container'
-			);
-
-			let promo = '';
-			let certificate = '';
-			let magazineId = '';
-			let pay = '';
-
-			if (document.querySelector('.shopping__inform-promo')) {
-				promo = document.querySelector('.shopping__inform-promo').value;
-			}
-
-			if (document.querySelector('.shopping__inform-certificate')) {
-				certificate = document.querySelector(
-					'.shopping__inform-certificate'
-				).value;
-			}
-
-			if (orderPage) {
-				magazineId =
-					i.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute(
-						'data-magazine-id'
-					);
-				pay = document.querySelector('#pay').value;
-			}
-
-			let data = {
-				quantity: quantity,
-				key: id,
-				step: step,
-				promo: promo,
-				certificate: certificate,
-				shop_id: magazineId,
-				client_was_going_to_pay: pay,
-			};
-
-			$.ajax({
-				url: 'index.php?route=checkout/cart/edit',
-				type: 'post',
-				data: data,
-				dataType: 'json',
-				beforeSend: function () {
-					hiding(spinnerEl, 'flex');
-				},
-				success: function (data) {
-					hiding(spinnerEl, 'none');
-					if (data.is_max) {
-						i.classList.add('disabled-item');
-					} else {
-						let stepUpBtn = i.parentNode.querySelector('.stepUp');
-						stepUpBtn.classList.remove('disabled-item');
-
-						if (orderPage) {
-							setEditdata(data, i);
-							setChecoutData(data);
-							sendDroppedCartData(droppedCartData());
-							initSaleCode(data);
-
-							if (
-								data.shipping_methods !== 'products not found!'
-							) {
-								changeDeliveryMethods(data);
-							}
-						} else {
-							setEditdata(data, i);
-							setToBasketIcon(data.products_total_count);
-						}
-					}
-				},
-				error: function (err) {
-					hiding(spinnerEl, 'none');
-					throw new Error(err);
-				},
-			});
-		}
-
-		function setEditdata(data, i) {
-			let basketTotalPrice = document.querySelector(
-				'.basket__count-price'
-			);
-
-			if (data.value > 0) {
-				let input = i.parentNode.querySelector('.details-amount');
-				let itemTotalPrice =
-					i.parentNode.parentNode.parentNode.querySelector(
-						'.basket__info__price-cost'
-					);
-
-				input.value = data.value;
-				basketTotalPrice.innerHTML = data.product_total_price;
-				itemTotalPrice.innerHTML = data.product_total;
-			} else {
-				i.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
-				basketTotalPrice.innerHTML = data.product_total_price;
-			}
-			isEmpty();
-		}
-
-		//init deleting
-		function removeInit() {
-			let removeItem = document.querySelectorAll('[data-remove-id]');
-
-			if (removeItem.length > 0) {
-				removeItem.forEach((i) => {
-					i.addEventListener('click', (e) => {
-						if (orderPage) {
-							confirmRemove(i);
-						} else {
-							removeAjax(i.getAttribute('data-remove-id'), i);
-						}
-					});
-				});
-			}
-		}
-		removeInit();
-
-		function confirmRemove(i) {
-			let confirm =
-				i.parentNode.parentNode.parentNode.querySelector(
-					'.confirm__basket'
-				);
-			confirm.style.display = 'flex';
-
-			document.addEventListener('click', function (e) {
-				let target = e.target;
-				let itsSearch = target == confirm || confirm.contains(target);
-				let itsBtn = target == i;
-				let isActive = (confirm.style.display = 'flex');
-				let no = target.classList.contains('confirm__basket-no');
-				let yes = target.classList.contains('confirm__basket-yes');
-
-				if ((!itsSearch && !itsBtn && isActive) || no || yes) {
-					confirm.style.display = 'none';
-				}
-			});
-		}
-
-		if (orderPage) {
-			document.querySelectorAll('.confirm__basket-yes').forEach((i) => {
-				i.addEventListener('click', () => {
-					let item =
-						i.parentNode.parentNode.parentNode.querySelector(
-							'[data-remove-id]'
-						);
-					let id = item.getAttribute('data-remove-id');
-					removeAjax(id, item);
-				});
-			});
-		}
-
-		function removeAjax(id, i) {
-			let promo = '';
-			let certificate = '';
-			let pay = '';
-
-			if (orderPage) {
-				pay = document.querySelector('#pay').value;
-			}
-
-			if (document.querySelector('.shopping__inform-promo')) {
-				promo = document.querySelector('.shopping__inform-promo').value;
-			}
-
-			if (document.querySelector('.shopping__inform-certificate')) {
-				certificate = document.querySelector(
-					'.shopping__inform-certificate'
-				).value;
-			}
-
-			data = {
-				key: id,
-				promo: promo,
-				certificate: certificate,
-				client_was_going_to_pay: pay,
-			};
-
-			$.ajax({
-				url: 'index.php?route=checkout/cart/remove',
-				type: 'post',
-				data: data,
-				dataType: 'json',
-				success: function (data) {
-					if (orderPage) {
-						sendDroppedCartData(droppedCartData());
-						i.parentNode.parentNode.parentNode.remove();
-						i.parentNode.parentNode.parentNode.remove();
-						let basketTotalPrice = document.querySelector(
-							'.basket__count-price'
-						);
-						basketTotalPrice.innerHTML = data.product_total_price;
-						initSaleCode(data);
-
-						if (data.shipping_methods !== 'products not found!') {
-							changeDeliveryMethods(data);
-						}
-
-						setChecoutData(data);
-						isEmpty();
-					} else {
-						i.parentNode.parentNode.parentNode.remove();
-						let basketTotalPrice = document.querySelector(
-							'.basket__count-price'
-						);
-						basketTotalPrice.innerHTML = data.product_total_price;
-
-						isEmpty();
-						setToBasketIcon(data.products_total_count);
-					}
-				},
-				error: function (err) {
-					throw new Error(err);
-				},
-			});
-		}
-
-		function changeDeliveryMethods(data) {
-			let methods = document.getElementById('orderMethod');
-			let methodsArr = Object.values(data.shipping_methods);
-			let methodsTrue = methodsArr.filter((i) => i.status === true);
-
-			if (methods.options.length - 1 !== methodsTrue.length) {
-				removeAllChildNodes(methods);
-
-				methods.insertAdjacentHTML(
-					'beforeend',
-					`
-					<option value=""></option>
-				`
-				);
-				if (data.shipping_methods.flat.status === true) {
-					methods.insertAdjacentHTML(
-						'beforeend',
-						`
-						<option value="flat">${data.shipping_methods.flat.name}</option>
-					`
-					);
-				}
-				if (data.shipping_methods.novaposhta.status === true) {
-					methods.insertAdjacentHTML(
-						'beforeend',
-						`
-					<option value="novaposhta">${data.shipping_methods.novaposhta.name}</option>
-				`
-					);
-				}
-				if (data.shipping_methods.ukposhta.status === true) {
-					methods.insertAdjacentHTML(
-						'beforeend',
-						`
-					<option value="ukposhta">${data.shipping_methods.ukposhta.name}</option>
-				`
-					);
-				}
-				if (data.shipping_methods.justin.status === true) {
-					methods.insertAdjacentHTML(
-						'beforeend',
-						`
-					<option value="justin">${data.shipping_methods.justin.name}</option>
-				`
-					);
-				}
-				$('.select__order-deliver').select2('destroy');
-				$('.select__order-deliver').select2({
-					minimumResultsForSearch: -1,
-					width: '100%',
-				});
-
-				let shops = document.getElementById('shop');
-				shops
-					.querySelector('option:checked')
-					.removeAttribute('selected');
-
-				let regions = document.getElementById('regions');
-				removeAllChildNodes(regions);
-				let cities = document.getElementById('cities');
-				removeAllChildNodes(cities);
-				let warehouses = document.getElementById('warehouses');
-				removeAllChildNodes(warehouses);
-				document.querySelector('.shop-method').style.display = 'none';
-				document.querySelector('.other-method').style.display = 'none';
-			}
-		}
-		////////? ordering switch
-		let personalTitle = document.querySelectorAll('.personal__title');
-		if (personalTitle.length > 0) {
-			personalTitle.forEach((i) => {
-				i.addEventListener('click', (e) => {
-					if (!i.classList.contains('active-title')) {
-						userOrderSwitch(i);
-						i.classList.toggle('active-title');
-					}
-				});
-			});
-		}
-
-		function userOrderSwitch(i) {
-			let newUser = document.querySelector('.personal-new');
-			let logedUser = document.querySelector('.personal-loged');
-
-			let newWrapper = document.querySelector('.order__user-wrapper');
-			let logedWrapper = document.querySelector('.login__user-wrapper');
-			let deliveryWrapper = document.querySelector('.delivery__methods');
-
-			if (i.classList.contains('personal-new')) {
-				newWrapper.style.display = 'block';
-				logedWrapper.style.display = 'none';
-				deliveryWrapper.style.display = 'block';
-				logedUser.classList.remove('active-title');
-			} else if (i.classList.contains('personal-loged')) {
-				newWrapper.style.display = 'none';
-				logedWrapper.style.display = 'flex';
-				deliveryWrapper.style.display = 'none';
-				newUser.classList.remove('active-title');
-			}
-		}
-	})();
 	//! other change
 	(function () {
 		// hide production btn in home page
@@ -3628,7 +3597,7 @@ window.onload = function () {
 			});
 
 			//!get filters
-			function getFilters(filtersForm, paginationPage = false) {
+			function getFilters(filtersForm) {
 				let filterParams = document.getElementById('filterParams');
 				let filterSize = document.getElementById('filterSize');
 
@@ -3661,20 +3630,33 @@ window.onload = function () {
 
 				let min = filtersForm.querySelector('#inputMin');
 				let max = filtersForm.querySelector('#inputMax');
+				let defaultMin = min.getAttribute('data-min');
+				let defaultMax = max.getAttribute('data-max');
 				let regulate = filtersForm.querySelector(
 					'input[name="regulate"]:checked'
 				).value;
 
+				if (
+					Number(min.value) !== Number(defaultMin) ||
+					Number(max.value) !== Number(defaultMax)
+				) {
+					return {
+						path: filtersForm.getAttribute('data-path'),
+						route: filtersForm.getAttribute('data-route'),
+						all_sizes: allSizesArr,
+						all_filters: allParamsArr,
+						price_min: min.value,
+						price_max: max.value,
+						regulate: regulate,
+						search: filtersForm.getAttribute('data-search'),
+					};
+				}
+
 				return {
-					page: paginationPage
-						? paginationPage
-						: filtersForm.getAttribute('data-form-page'),
 					path: filtersForm.getAttribute('data-path'),
 					route: filtersForm.getAttribute('data-route'),
 					all_sizes: allSizesArr,
 					all_filters: allParamsArr,
-					price_min: min.value,
-					price_max: max.value,
 					regulate: regulate,
 					search: filtersForm.getAttribute('data-search'),
 				};
@@ -3704,34 +3686,133 @@ window.onload = function () {
 			});
 		}
 
-		//pagination
-		let dataPage = document.querySelectorAll('[data-page]');
-		if (dataPage.length > 0) {
-			dataPage.forEach((i) => {
-				i.addEventListener('click', () => {
-					let filtersForm = document.getElementById('filtersForm');
-					if (filtersForm) {
-						sendFilters(
-							getFilters(filtersForm, i.getAttribute('data-page'))
-						);
-					}
-					// let pageInput = document.querySelector(
-					// 	'.pagination-page-input'
-					// );
-					// let pageRout = i.getAttribute('data-page');
-					// let page = pageRout.split('page=');
-					// pageInput.value = page[1];
-					// let path = document.querySelector('.pagination-path-input');
+		//new pagination
+		let paginationBlock = document.querySelector('.catalog-pagination');
+		if (paginationBlock) {
+			const callbackFunction = (entries) => {
+				const [entry] = entries;
+				if (entry.isIntersecting) {
+					preGetNewCards(entry.target);
+				}
+			};
 
-					// if (path) {
-					// 	path.value = i.getAttribute('data-path');
-					// }
-					// let form = document.querySelector('#paginationForm');
-					// form.submit();
+			const options = {
+				root: null,
+				rootMargin: '0px',
+				threshold: 0.1,
+			};
+
+			const observer = new IntersectionObserver(
+				callbackFunction,
+				options
+			);
+
+			let cards = paginationBlock.querySelectorAll(
+				'.product__card-container-item'
+			);
+
+			if (cards.length >= 20) {
+				let footer = document.querySelector('footer');
+				observer.observe(footer);
+			}
+
+			let pageNumber = 1;
+
+			function preGetNewCards(targetEl) {
+				let page = '&page=';
+				if (!window.location.pathname.includes('index')) {
+					page = '?page=';
+				}
+				let loader = document.querySelector('.pagination-loader');
+
+				if (document.querySelector('[data-search]')) {
+					return getNewCardsSearchPage(targetEl, loader);
+				}
+				return getNewCards(targetEl, page, loader);
+			}
+
+			function getNewCards(targetEl, page, loader) {
+				$.ajax({
+					url: `${window.location.href}${page}${
+						parseInt(pageNumber) + 1
+					}`,
+					type: 'get',
+					beforeSend: function () {
+						loader.style.display = 'flex';
+						observer.unobserve(targetEl);
+					},
+					success: function (data) {
+						if (
+							parseInt(pageNumber) === parseInt(data.paginate.max)
+						) {
+							loader.style.display = 'none';
+						} else {
+							drawNewCards(data, targetEl, loader);
+						}
+					},
+					error: function (err) {
+						loader.style.display = 'none';
+						throw new Error(err);
+					},
 				});
-			});
+			}
+
+			function getNewCardsSearchPage(targetEl, loader) {
+				$.ajax({
+					url: `${window.location.href}`,
+					type: 'post',
+					dataType: 'json',
+					data: { page: parseInt(pageNumber) + 1 },
+					beforeSend: function () {
+						loader.style.display = 'flex';
+						observer.unobserve(targetEl);
+					},
+					success: function (data) {
+						if (
+							parseInt(pageNumber) === parseInt(data.paginate.max)
+						) {
+							loader.style.display = 'none';
+						} else {
+							drawNewCards(data, targetEl, loader);
+						}
+					},
+					error: function (err) {
+						loader.style.display = 'none';
+						throw new Error(err);
+					},
+				});
+			}
+
+			function drawNewCards(data, targetEl, loader) {
+				loader.style.display = 'none';
+				pageNumber = parseInt(data.paginate.page);
+				paginationBlock.insertAdjacentHTML(
+					'beforeend',
+					data.paginate.products
+				);
+				initFavorites();
+				initStockStatus();
+				initCatalogSizeContainers();
+
+				productCardSwiper = new Swiper('.product-card-swiper', {
+					watchOverflow: true,
+					slidesPerView: 1,
+					navigation: {
+						nextEl: '.product-card-swiper-next',
+						prevEl: '.product-card-swiper-prev',
+					},
+				});
+
+				getAllSubProducts();
+
+				if (
+					parseInt(data.paginate.page) !== parseInt(data.paginate.max)
+				) {
+					return observer.observe(targetEl);
+				}
+			}
 		}
-		//personal
+
 		// personal page collapse TTH
 		let orderCollapse = document.querySelectorAll('.order-collapse');
 		if (orderCollapse.length > 0) {

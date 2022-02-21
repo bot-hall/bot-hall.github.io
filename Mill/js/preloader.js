@@ -1,30 +1,22 @@
-let interval;
+let timer;
 
 document.addEventListener('readystatechange', () => {
 	if (document.readyState == 'interactive') {
-		interval = setTimeout(() => {
-			let loader = document.querySelector('.loader');
-			loader.classList.add('show-loader');
-		}, 3500);
+		timer = setTimeout(() => {
+			let mainPreloader = document.getElementById('mainPreloader');
+			mainPreloader.classList.add('loading-animation');
+		}, 3600);
 	}
 });
 
 window.addEventListener('load', preloaderHide);
 
 function preloaderHide() {
-	clearInterval(interval);
-
+	clearInterval(timer);
 	setTimeout(() => {
-		let nuotSvg = document.querySelector('.nuot-loader-svg');
-		nuotSvg.classList.add('loader-hide');
-
-		let loader = document.querySelector('.loader');
-		loader.classList.add('loader-hide');
-
 		let mainPreloader = document.getElementById('mainPreloader');
 		mainPreloader.classList.add('done');
-
-		document.cookie = 'firstLoad=true';
-		sessionStorage.setItem('firstLoad', true);
+		// // document.cookie = 'firstLoad=true';
+		// // sessionStorage.setItem('firstLoad', true);
 	}, 3300);
 }
