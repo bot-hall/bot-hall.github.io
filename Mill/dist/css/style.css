@@ -58,127 +58,127 @@
 }
 
 ._icon-certificate:before {
-  content: "\e91a";
+  content: "";
 }
 
 ._icon-arrow-back:before {
-  content: "\e901";
+  content: "";
 }
 
 ._icon-arrow-link:before {
-  content: "\e902";
+  content: "";
 }
 
 ._icon-arrow-slider-1:before {
-  content: "\e903";
+  content: "";
 }
 
 ._icon-arrow-slider-2:before {
-  content: "\e904";
+  content: "";
 }
 
 ._icon-arrow-top:before {
-  content: "\e905";
+  content: "";
 }
 
 ._icon-bag:before {
-  content: "\e906";
+  content: "";
 }
 
 ._icon-basket:before {
-  content: "\e907";
+  content: "";
 }
 
 ._icon-cancel:before {
-  content: "\e908";
+  content: "";
 }
 
 ._icon-checked:before {
-  content: "\e909";
+  content: "";
 }
 
 ._icon-clock:before {
-  content: "\e90a";
+  content: "";
 }
 
 ._icon-delivery:before {
-  content: "\e90b";
+  content: "";
 }
 
 ._icon-description:before {
-  content: "\e90c";
+  content: "";
 }
 
 ._icon-facebook:before {
-  content: "\e90d";
+  content: "";
 }
 
 ._icon-favorites:before {
-  content: "\e90e";
+  content: "";
 }
 
 ._icon-favorites-fill:before {
-  content: "\e90f";
+  content: "";
 }
 
 ._icon-filters:before {
-  content: "\e910";
+  content: "";
 }
 
 ._icon-garant:before {
-  content: "\e911";
+  content: "";
 }
 
 ._icon-info:before {
-  content: "\e912";
+  content: "";
 }
 
 ._icon-instagram:before {
-  content: "\e913";
+  content: "";
 }
 
 ._icon-scales:before {
-  content: "\e914";
+  content: "";
 }
 
 ._icon-search:before {
-  content: "\e915";
+  content: "";
 }
 
 ._icon-shops:before {
-  content: "\e916";
+  content: "";
 }
 
 ._icon-tel:before {
-  content: "\e917";
+  content: "";
 }
 
 ._icon-user:before {
-  content: "\e918";
+  content: "";
 }
 
 ._icon-youtube:before {
-  content: "\e919";
+  content: "";
 }
 
 ._icon-backpack:before {
-  content: "\e900";
+  content: "";
 }
 
 ._icon-forward:before {
-  content: "\e969";
+  content: "";
 }
 
 ._icon-reply:before {
-  content: "\e96a";
+  content: "";
 }
 
 ._icon-play3:before {
-  content: "\ea1c";
+  content: "";
 }
 
 ._icon-pause2:before {
-  content: "\ea1d";
+  content: "";
 }
 
 * {
@@ -4962,7 +4962,7 @@ table {
 }
 
 .compare__table td {
-  max-width: 22%;
+  max-width: calc((100% - 12%) / 4);
   overflow: hidden;
 }
 
@@ -5030,7 +5030,7 @@ table {
 
 .compare__table .top-td {
   padding: 8px;
-  width: 22%;
+  width: calc((100% - 12%) / 4);
   height: 239px;
 }
 
@@ -5963,12 +5963,12 @@ table {
 .add__card-container .pay-card-number {
   padding-left: 60px;
   background: url(../../image/pay-placeholder.svg) no-repeat right;
-  background-position-x: 7%;
+  background-position-x: calc(100% - 93%);
 }
 
 .add__card-container .pay-card-number:focus {
   background: url(../../image/pay-placeholder-orange.svg) no-repeat right;
-  background-position-x: 7%;
+  background-position-x: calc(100% - 93%);
 }
 
 .date-card-container {

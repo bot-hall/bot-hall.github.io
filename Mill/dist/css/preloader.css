@@ -1,6 +1,6 @@
 :root {
 	--duration: 400ms;
-	--delay: 800ms;
+	--delay: 1200ms;
 }
 
 .main-preloader {
@@ -21,22 +21,28 @@
 
 .main-preloader svg {
 	/* height: 94px; */
-	height: auto;
 	/* width: 520px; */
+	height: auto;
 	width: 35vw;
+}
+
+@media screen and (max-width: 640px) {
+	.main-preloader svg {
+		height: auto;
+		width: 220px;
+	}
 }
 
 .main-preloader .letter-1 {
 	transform-origin: center;
-	/* transform: translateX(50%); */
-	animation: 425ms transition-leter 600ms linear both;
+	transform: translateX(40%);
+	/* animation: 430ms transition-leter 600ms linear both; */
+	animation: 800ms transition-leter 600ms cubic-bezier(1, 0.02, 0.81, 0.21)
+		both;
 }
 
 @keyframes transition-leter {
-	0% {
-		transform: translateX(40%);
-	}
-	100% {
+	to {
 		transform: translateX(0);
 	}
 }
@@ -105,18 +111,6 @@
 	z-index: 1;
 	background: black;
 	top: 0;
-}
-
-.letter-1 {
-	background-image: linear-gradient(
-		from 270deg,
-		#ff4800 10%,
-		#dfd902 35%,
-		#20dc68,
-		#0092f4,
-		#da54d8 72% 75%,
-		#ff4800 95%
-	);
 }
 
 .done .blind {
